@@ -33,7 +33,7 @@ public class TipoLancamentoService {
             TipoLancamentoModel tipoLancamentoModel = tipoLancamentoRepository.findById(id).get();
             return modelMapper.map(tipoLancamentoModel, TipoLancamentoDto.class);
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException("Objeto não encontrado! Matrícula: " + id + ", Tipo: " + TipoLancamentoModel.class.getName());
+            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + TipoLancamentoModel.class.getName());
         }
     }
 
@@ -58,7 +58,7 @@ public class TipoLancamentoService {
             return modelMapper.map(TipoLancamentoNovo, TipoLancamentoDto.class);
 
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Campo(s) obrigatório(s) do Aluno não foi(foram) preenchido(s).");
+            throw new DataIntegrityException("Campo(s) obrigatório(s) do Tipo de Lançamento não foi(foram) preenchido(s).");
         }
     }
 
@@ -74,10 +74,10 @@ public class TipoLancamentoService {
                 return modelMapper.map(tipoLancamentoAtualizado, TipoLancamentoDto.class);
 
             }else{
-                throw new DataIntegrityException("A Matrícula do Aluno não existe na base de dados!");
+                throw new DataIntegrityException("A Id do Tipo de Lançamento não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Campo(s) obrigatório(s) do Aluno não foi(foram) preenchido(s).");
+            throw new DataIntegrityException("Campo(s) obrigatório(s) do Tipo de Lançamento não foi(foram) preenchido(s).");
         }
     }
 
@@ -87,10 +87,10 @@ public class TipoLancamentoService {
                 tipoLancamentoRepository.deleteById(id);
 
             }else {
-                throw new DataIntegrityException("A Matrícula do Aluno não existe na base de dados!");
+                throw new DataIntegrityException("O Id Tipo de Lançamento não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir um Aluno!");
+            throw new DataIntegrityException("Não é possível excluir um Tipo de Lançamento!");
         }
     }
 }
