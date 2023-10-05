@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
 @RequestMapping("/tipolancamento")
 public class TipoLancamentoController {
+    private final TipoLancamentoService tipoLancamentoService;
 
-    @Autowired
-    private TipoLancamentoService tipoLancamentoService;
+    public TipoLancamentoController(TipoLancamentoService tipoLancamentoService) {
+        this.tipoLancamentoService = tipoLancamentoService;
+    }
 
     @GetMapping
     public ResponseEntity<List<TipoLancamentoDto>> findAll() {
