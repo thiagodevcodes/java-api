@@ -9,7 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface TipoLancamentoRepository extends JpaRepository<TipoLancamentoModel, Integer> {
-
-    Optional<TipoLancamentoModel> findById(Integer id);
     Optional<TipoLancamentoModel> findByNome(String nome);
 }
