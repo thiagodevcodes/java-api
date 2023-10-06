@@ -17,11 +17,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/tipolancamento")
 public class TipoLancamentoController {
-    private final TipoLancamentoService tipoLancamentoService;
-
-    public TipoLancamentoController(TipoLancamentoService tipoLancamentoService) {
-        this.tipoLancamentoService = tipoLancamentoService;
-    }
+    @Autowired
+    TipoLancamentoService tipoLancamentoService;
 
     @GetMapping
     public ResponseEntity<List<TipoLancamentoDto>> findAll() {

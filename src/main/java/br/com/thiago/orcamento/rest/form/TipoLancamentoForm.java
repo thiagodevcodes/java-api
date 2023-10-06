@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 
 @Data
 public class TipoLancamentoForm {
-
     @NotEmpty
     @NotBlank
     @Size(max = 100)
