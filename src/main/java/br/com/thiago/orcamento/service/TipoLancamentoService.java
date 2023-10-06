@@ -21,12 +21,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class TipoLancamentoService {
+
+    @Autowired
     TipoLancamentoRepository tipoLancamentoRepository;
-    private final ModelMapper modelMapper;
-    public TipoLancamentoService(TipoLancamentoRepository tipoLancamentoRepository, ModelMapper modelMapper) {
-        this.tipoLancamentoRepository = tipoLancamentoRepository;
-        this.modelMapper = modelMapper;
-    }
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     public TipoLancamentoDto findById(Integer id) {
         try {
