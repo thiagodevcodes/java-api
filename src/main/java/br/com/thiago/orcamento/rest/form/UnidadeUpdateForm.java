@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Data
-public class TipoLancamentoUpdateForm {
+public class UnidadeUpdateForm {
 
     @NotEmpty
     @NotBlank(message = "O Nome não pode estar em branco.")

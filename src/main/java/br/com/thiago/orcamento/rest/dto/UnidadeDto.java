@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class TipoLancamentoDto {
+public class UnidadeDto {
 
     private Integer id;
     private String nome;

@@ -36,10 +36,10 @@ public class TipoLancamentoService {
     }
 
     public List<TipoLancamentoDto> findAll(){
-        List<TipoLancamentoModel> alunoList = tipoLancamentoRepository.findAll();
+        List<TipoLancamentoModel> tipoLancamentoList = tipoLancamentoRepository.findAll();
 
-        return alunoList.stream()
-                .map(aluno -> modelMapper.map(aluno, TipoLancamentoDto.class))
+        return tipoLancamentoList.stream()
+                .map(tipoLancamento -> modelMapper.map(tipoLancamento, TipoLancamentoDto.class))
                 .collect(Collectors.toList());
     }
 
@@ -60,13 +60,13 @@ public class TipoLancamentoService {
         }
     }
 
-    public TipoLancamentoDto updateById(TipoLancamentoUpdateForm alunoUpdateForm, Integer id) {
+    public TipoLancamentoDto updateById(TipoLancamentoUpdateForm tipoLancamentoUpdateForm, Integer id) {
         try {
             Optional<TipoLancamentoModel> tipoLancamentoExistente = tipoLancamentoRepository.findById(id);
 
             if (tipoLancamentoExistente.isPresent()) {
                 TipoLancamentoModel tipoLancamentoAtualizado = tipoLancamentoExistente.get();
-                tipoLancamentoAtualizado.setNome(alunoUpdateForm.getNome());
+                tipoLancamentoAtualizado.setNome(tipoLancamentoUpdateForm.getNome());
                 tipoLancamentoAtualizado = tipoLancamentoRepository.save(tipoLancamentoAtualizado);
 
                 return modelMapper.map(tipoLancamentoAtualizado, TipoLancamentoDto.class);

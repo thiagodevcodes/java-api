@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name="TipoLancamento")
+@Table(name="Unidade")
 
-public class TipoLancamentoModel {
+public class UnidadeModel {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

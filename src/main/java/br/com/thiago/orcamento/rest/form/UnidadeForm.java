@@ -9,12 +9,15 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Data
-public class TipoLancamentoUpdateForm {
+public class UnidadeForm {
 
     @NotEmpty
-    @NotBlank(message = "O Nome não pode estar em branco.")
+    @NotBlank
     @Size(max = 100)
     private String nome;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDateTime dataCadastro;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime dataAlteracao;

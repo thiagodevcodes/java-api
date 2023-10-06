@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -23,8 +23,8 @@ public class TipoLancamentoController {
 
     @GetMapping
     public ResponseEntity<List<TipoLancamentoDto>> findAll() {
-        List<TipoLancamentoDto> alunoDtoList = tipoLancamentoService.findAll();
-        return ResponseEntity.ok().body(alunoDtoList);
+        List<TipoLancamentoDto> tipoLancamentoDtoList = tipoLancamentoService.findAll();
+        return ResponseEntity.ok().body(tipoLancamentoDtoList);
     }
 
     @GetMapping("/{id}")
@@ -38,10 +38,10 @@ public class TipoLancamentoController {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
-        tipoLancamentoForm.setDataCadastro(LocalDate.now());
-        tipoLancamentoForm.setDataAlteracao(LocalDate.now());
-        TipoLancamentoDto alunoDto = tipoLancamentoService.insert(tipoLancamentoForm);
-        return ResponseEntity.ok().body(alunoDto);
+        tipoLancamentoForm.setDataCadastro(LocalDateTime.now().minusHours(3));
+        tipoLancamentoForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
+        TipoLancamentoDto tipoLancamentoDto = tipoLancamentoService.insert(tipoLancamentoForm);
+        return ResponseEntity.ok().body(tipoLancamentoDto);
     }
 
     @PutMapping("/{id}")
@@ -49,7 +49,7 @@ public class TipoLancamentoController {
             , @PathVariable("id") Integer id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
-        tipoLancamentoUpdateForm.setDataAlteracao(LocalDate.now());
+        tipoLancamentoUpdateForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
         TipoLancamentoDto tipoLancamentoDto = tipoLancamentoService.updateById(tipoLancamentoUpdateForm, id);
         return ResponseEntity.ok().body(tipoLancamentoDto);
     }
