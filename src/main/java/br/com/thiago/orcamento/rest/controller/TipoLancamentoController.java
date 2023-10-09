@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tipolancamento")
+@RequestMapping("/tipo-lancamento")
 public class TipoLancamentoController {
 
     @Autowired

@@ -162,3 +162,20 @@ INSERT INTO solicitante (nome, data_cadastro, data_alteracao) VALUES
 ('1ª Promotoria Distrital (1ª Vara de Assistência Judiciária - 19ª Vara Cível)', localtimestamp, localtimestamp),
 ('3ª Promotoria Distrital (3ª Vara de Assistência Judiciária - 24ª Vara Cível)', localtimestamp, localtimestamp),
 ('2ª Promotoria Distrital (2ª Vara de Assistência Judiciária - 23ª Vara Cível)', localtimestamp, localtimestamp);
+
+INSERT INTO objetivo_estrategico (nome, data_cadastro, data_alteracao) VALUES
+('Incrementar o diálogo e a atuação conjunta do MP com os órgãos públicos e instituições não governamentais de defesa do consumidor', localtimestamp, localtimestamp),
+('Fortalecer as redes de atendimento a grupos vulneráveis junto aos Órgãos Públicos', localtimestamp, localtimestamp),
+('Atuar na universalização do acesso à educação e à saúde com a prestação de serviços de qualidade', localtimestamp, localtimestamp),
+('Aprimorar as atividades de combate à corrupção, defesa do patrimônio público e fiscalização do terceiro setor', localtimestamp, localtimestamp),
+('Contribuir para a preservação do meio ambiente e patrimônio histórico e cultural e para o desenvolvimento urbano de forma sustentável, em sintonia com as demais instituições e com a sociedade em geral', localtimestamp, localtimestamp),
+('Intensificar o combate à criminalidade e o efetivo controle externo da atividade policial', localtimestamp, localtimestamp),
+('Aprimorar, informatizar e desburocratizar as rotinas administrativas', localtimestamp, localtimestamp),
+('Potencializar práticas resolutivas da atuação ministerial', localtimestamp, localtimestamp),
+('Aprimorar o processo de gestão e governança', localtimestamp, localtimestamp),
+('Capacitar, valorizar e motivar todos que atuam na instituição', localtimestamp, localtimestamp),
+('Promover a qualidade de vida no trabalho e a valorização dos Membros e Servidores', localtimestamp, localtimestamp),
+('Aperfeiçoar a comunicação efetiva com a sociedade e o relacionamento institucional', localtimestamp, localtimestamp),
+('Modernizar e adequar a infraestrutura física', localtimestamp, localtimestamp),
+('Prover soluções de TI, entregando benefícios, mitigando riscos e otimizando recursos', localtimestamp, localtimestamp),
+('Assegurar recursos orçamentários, otimizar sua alocação e aperfeiçoar o gerenciamento', localtimestamp, localtimestamp);

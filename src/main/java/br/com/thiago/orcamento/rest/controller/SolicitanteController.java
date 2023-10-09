@@ -29,8 +29,8 @@ public class SolicitanteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<SolicitanteDto> find(@PathVariable("id") Integer id) {
-        SolicitanteDto unidadeDto = solicitanteService.findById(id);
-        return ResponseEntity.ok().body(unidadeDto);
+        SolicitanteDto solicitanteDto = solicitanteService.findById(id);
+        return ResponseEntity.ok().body(solicitanteDto);
     }
 
     @PostMapping
