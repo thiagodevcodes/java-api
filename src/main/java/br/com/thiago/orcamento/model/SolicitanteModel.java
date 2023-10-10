@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name="Solicitante")
+@Table(name="solicitante")
 
 public class SolicitanteModel {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,9 +16,9 @@ public class SolicitanteModel {
     @Column(name = "nome", length = 200, nullable = false)
     private String nome;
 
-    @Column(name = "dataCadastro", nullable = false)
+    @Column(name = "data_cadastro", nullable = false)
     private LocalDateTime dataCadastro;
 
-    @Column(name = "dataAlteracao")
+    @Column(name = "data_alteracao")
     private LocalDateTime dataAlteracao;
 }

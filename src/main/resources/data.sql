@@ -179,3 +179,7 @@ INSERT INTO objetivo_estrategico (nome, data_cadastro, data_alteracao) VALUES
 ('Modernizar e adequar a infraestrutura física', localtimestamp, localtimestamp),
 ('Prover soluções de TI, entregando benefícios, mitigando riscos e otimizando recursos', localtimestamp, localtimestamp),
 ('Assegurar recursos orçamentários, otimizar sua alocação e aperfeiçoar o gerenciamento', localtimestamp, localtimestamp);
+
+INSERT INTO tipo_transacao (nome, data_cadastro, data_alteracao) VALUES
+('Débito', localtimestamp, localtimestamp),
+('Crédito', localtimestamp, localtimestamp);

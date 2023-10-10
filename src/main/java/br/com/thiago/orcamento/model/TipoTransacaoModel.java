@@ -7,19 +7,18 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name="tipo_lancamento")
-
-public class TipoLancamentoModel {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Table(name="tipo_transacao")
+public class TipoTransacaoModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
-    @Column(name = "data_cadastro", nullable = false)
+    @Column(name = "dataCadastro", nullable = false)
     private LocalDateTime dataCadastro;
 
-    @Column(name = "data_alteracao")
+    @Column(name = "dataAlteracao")
     private LocalDateTime dataAlteracao;
 }

@@ -7,19 +7,18 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name="Unidade")
+@Table(name="unidade")
 
 public class UnidadeModel {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nome", length = 100, nullable = false)
+    @Column(name = "nome", length = 200, nullable = false)
     private String nome;
 
-    @Column(name = "dataCadastro", nullable = false)
+    @Column(name = "data_cadastro", nullable = false)
     private LocalDateTime dataCadastro;
 
-    @Column(name = "dataAlteracao")
+    @Column(name = "data_alteracao")
     private LocalDateTime dataAlteracao;
 }
