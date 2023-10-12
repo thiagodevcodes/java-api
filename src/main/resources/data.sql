@@ -183,3 +183,8 @@ INSERT INTO objetivo_estrategico (nome, data_cadastro, data_alteracao) VALUES
 INSERT INTO tipo_transacao (nome, data_cadastro, data_alteracao) VALUES
 ('Débito', localtimestamp, localtimestamp),
 ('Crédito', localtimestamp, localtimestamp);
+
+INSERT INTO grupo_despesa (nome, data_cadastro, data_alteracao) VALUES
+('Pessoal', localtimestamp, localtimestamp),
+('Outras Despesas Correntes', localtimestamp, localtimestamp);
+('Investimentos', localtimestamp, localtimestamp);
