@@ -49,7 +49,7 @@ public class TipoTransacaoService {
             Optional<TipoTransacaoModel> byNome = tipoTransacaoRepository.findByNome(TipoTransacaoNovo.getNome());
 
             if (byNome.isPresent()) {
-                throw new IllegalStateException("Tipo de Lançamento já registrado.");
+                throw new IllegalStateException("Tipo de Transação já registrado.");
             }
             TipoTransacaoNovo = tipoTransacaoRepository.save(TipoTransacaoNovo);
             return modelMapper.map(TipoTransacaoNovo, TipoTransacaoDto.class);

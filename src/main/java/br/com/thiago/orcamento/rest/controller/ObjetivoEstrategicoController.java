@@ -4,6 +4,7 @@ import br.com.thiago.orcamento.rest.dto.ObjetivoEstrategicoDto;
 import br.com.thiago.orcamento.rest.form.ObjetivoEstrategicoForm;
 import br.com.thiago.orcamento.rest.form.ObjetivoEstrategicoUpdateForm;
 import br.com.thiago.orcamento.service.ObjetivoEstrategicoService;
+
 import br.com.thiago.orcamento.service.exceptions.ConstraintException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,8 @@ public class ObjetivoEstrategicoController {
 
     @GetMapping
     public ResponseEntity<List<ObjetivoEstrategicoDto>> findAll() {
-        List<ObjetivoEstrategicoDto> solicitanteDtoList = objetivoEstrategicoService.findAll();
-        return ResponseEntity.ok().body(solicitanteDtoList);
+        List<ObjetivoEstrategicoDto> objetivoEstrategicoDtoList = objetivoEstrategicoService.findAll();
+        return ResponseEntity.ok().body(objetivoEstrategicoDtoList);
     }
 
     @GetMapping("/{id}")

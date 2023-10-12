@@ -56,7 +56,7 @@ public class UnidadeService {
             return modelMapper.map(UnidadeNovo, UnidadeDto.class);
 
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Campo(s) obrigatório(s) do Tipo de Lançamento não foi(foram) preenchido(s).");
+            throw new DataIntegrityException("Campo(s) obrigatório(s) de Unidade não foi(foram) preenchido(s).");
         }
     }
 

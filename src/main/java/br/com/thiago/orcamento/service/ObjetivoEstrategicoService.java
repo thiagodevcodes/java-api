@@ -50,13 +50,13 @@ public class ObjetivoEstrategicoService {
             Optional<ObjetivoEstrategicoModel> byNome = objetivoEstrategicoRepository.findByNome(ObjetivoEstrategicoNovo.getNome());
 
             if (byNome.isPresent()) {
-                throw new IllegalStateException("Solicitante já registrado.");
+                throw new IllegalStateException("Objetivo Estratégico já registrado.");
             }
             ObjetivoEstrategicoNovo = objetivoEstrategicoRepository.save(ObjetivoEstrategicoNovo);
             return modelMapper.map(ObjetivoEstrategicoNovo, ObjetivoEstrategicoDto.class);
 
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Campo(s) obrigatório(s) do Tipo de Lançamento não foi(foram) preenchido(s).");
+            throw new DataIntegrityException("Campo(s) obrigatório(s) do Objetivo Estratégico não foi(foram) preenchido(s).");
         }
     }
 

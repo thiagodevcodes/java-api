@@ -55,7 +55,7 @@ public class SolicitanteService {
             return modelMapper.map(SolicitanteNovo, SolicitanteDto.class);
 
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Campo(s) obrigatório(s) do Tipo de Lançamento não foi(foram) preenchido(s).");
+            throw new DataIntegrityException("Campo(s) obrigatório(s) do Solicitante não foi(foram) preenchido(s).");
         }
     }
 
@@ -71,10 +71,10 @@ public class SolicitanteService {
                 return modelMapper.map(solicitanteAtualizado, SolicitanteDto.class);
 
             }else{
-                throw new DataIntegrityException("O Id da Unidade não existe na base de dados!");
+                throw new DataIntegrityException("O Id da Solicitante não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Campo(s) obrigatório(s) da Unidade não foi(foram) preenchido(s).");
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da Solicitante não foi(foram) preenchido(s).");
         }
     }
 
@@ -84,10 +84,10 @@ public class SolicitanteService {
                 solicitanteRepository.deleteById(id);
 
             }else {
-                throw new DataIntegrityException("O Id da Unidade não existe na base de dados!");
+                throw new DataIntegrityException("O Id da Solicitante não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir uma Unidade!");
+            throw new DataIntegrityException("Não é possível excluir uma Solicitante!");
         }
     }
 }
