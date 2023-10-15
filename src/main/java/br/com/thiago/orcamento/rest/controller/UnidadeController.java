@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -38,8 +37,6 @@ public class UnidadeController {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
-        unidadeForm.setDataCadastro(LocalDateTime.now().minusHours(3));
-        unidadeForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
         UnidadeDto unidadeDto = unidadeService.insert(unidadeForm);
         return ResponseEntity.ok().body(unidadeDto);
     }
@@ -49,7 +46,7 @@ public class UnidadeController {
             , @PathVariable("id") Integer id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
-        unidadeUpdateForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
+
         UnidadeDto unidadeDto = unidadeService.updateById(unidadeUpdateForm, id);
         return ResponseEntity.ok().body(unidadeDto);
     }

@@ -50,8 +50,10 @@ public class TipoLancamentoService {
             Optional<TipoLancamentoModel> byNome = tipoLancamentoRepository.findByNome(TipoLancamentoNovo.getNome());
 
             if (byNome.isPresent()) {
-                throw new IllegalStateException("Tipo de Lançamento já registrado.");
+                throw new DataIntegrityException("Tipo de Lançamento já registrado.");
             }
+
+
             TipoLancamentoNovo = tipoLancamentoRepository.save(TipoLancamentoNovo);
             return modelMapper.map(TipoLancamentoNovo, TipoLancamentoDto.class);
 

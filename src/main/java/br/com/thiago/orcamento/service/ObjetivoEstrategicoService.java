@@ -39,7 +39,7 @@ public class ObjetivoEstrategicoService {
         List<ObjetivoEstrategicoModel> objetivoEstrategicoList = objetivoEstrategicoRepository.findAll();
 
         return objetivoEstrategicoList.stream()
-                .map(aluno -> modelMapper.map(aluno, ObjetivoEstrategicoDto.class))
+                .map(objetivoEstrategico -> modelMapper.map(objetivoEstrategico, ObjetivoEstrategicoDto.class))
                 .collect(Collectors.toList());
     }
 
@@ -50,7 +50,7 @@ public class ObjetivoEstrategicoService {
             Optional<ObjetivoEstrategicoModel> byNome = objetivoEstrategicoRepository.findByNome(ObjetivoEstrategicoNovo.getNome());
 
             if (byNome.isPresent()) {
-                throw new IllegalStateException("Objetivo Estratégico já registrado.");
+                throw new DataIntegrityException("Objetivo Estratégico já registrado.");
             }
             ObjetivoEstrategicoNovo = objetivoEstrategicoRepository.save(ObjetivoEstrategicoNovo);
             return modelMapper.map(ObjetivoEstrategicoNovo, ObjetivoEstrategicoDto.class);

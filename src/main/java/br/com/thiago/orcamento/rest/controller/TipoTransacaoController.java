@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -39,8 +38,6 @@ public class TipoTransacaoController {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
-        tipoTransacaoForm.setDataCadastro(LocalDateTime.now().minusHours(3));
-        tipoTransacaoForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
         TipoTransacaoDto tipoTransacaoDto = tipoTransacaoService.insert(tipoTransacaoForm);
         return ResponseEntity.ok().body(tipoTransacaoDto);
     }
@@ -50,7 +47,7 @@ public class TipoTransacaoController {
             , @PathVariable("id") Integer id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
-        tipoTransacaoUpdateForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
+
         TipoTransacaoDto tipoTransacaoDto = tipoTransacaoService.updateById(tipoTransacaoUpdateForm, id);
         return ResponseEntity.ok().body(tipoTransacaoDto);
     }

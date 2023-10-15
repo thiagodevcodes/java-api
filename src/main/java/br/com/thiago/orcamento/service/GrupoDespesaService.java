@@ -39,7 +39,7 @@ public class GrupoDespesaService {
         List<GrupoDespesaModel> grupoDespesaList = grupoDespesaRepository.findAll();
 
         return grupoDespesaList.stream()
-                .map(aluno -> modelMapper.map(aluno, GrupoDespesaDto.class))
+                .map(grupoDespesa -> modelMapper.map(grupoDespesa, GrupoDespesaDto.class))
                 .collect(Collectors.toList());
     }
 
@@ -48,10 +48,11 @@ public class GrupoDespesaService {
             GrupoDespesaModel GrupoDespesaNovo = modelMapper.map(grupoDespesaForm, GrupoDespesaModel.class);
 
             Optional<GrupoDespesaModel> byNome = grupoDespesaRepository.findByNome(GrupoDespesaNovo.getNome());
-
+            
             if (byNome.isPresent()) {
-                throw new IllegalStateException("Grupo Despesa já registrado.");
+                throw new DataIntegrityException("Grupo Despesa já registrado.");
             }
+
             GrupoDespesaNovo = grupoDespesaRepository.save(GrupoDespesaNovo);
             return modelMapper.map(GrupoDespesaNovo, GrupoDespesaDto.class);
 

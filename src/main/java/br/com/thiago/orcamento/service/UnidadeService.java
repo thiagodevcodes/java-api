@@ -39,7 +39,7 @@ public class UnidadeService {
         List<UnidadeModel> unidadeList = unidadeRepository.findAll();
 
         return unidadeList.stream()
-                .map(aluno -> modelMapper.map(aluno, UnidadeDto.class))
+                .map(unidade -> modelMapper.map(unidade, UnidadeDto.class))
                 .collect(Collectors.toList());
     }
 
@@ -50,8 +50,9 @@ public class UnidadeService {
             Optional<UnidadeModel> byNome = unidadeRepository.findByNome(UnidadeNovo.getNome());
 
             if (byNome.isPresent()) {
-                throw new IllegalStateException("Unidade já registrada.");
+                throw new DataIntegrityException("Unidade já registrada.");
             }
+            
             UnidadeNovo = unidadeRepository.save(UnidadeNovo);
             return modelMapper.map(UnidadeNovo, UnidadeDto.class);
 

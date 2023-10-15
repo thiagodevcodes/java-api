@@ -3,6 +3,10 @@ package br.com.thiago.orcamento.model;
 import lombok.Data;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,9 +20,11 @@ public class TipoTransacaoModel {
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
+    @CreationTimestamp
     @Column(name = "dataCadastro", nullable = false)
     private LocalDateTime dataCadastro;
 
+    @UpdateTimestamp
     @Column(name = "dataAlteracao")
     private LocalDateTime dataAlteracao;
 }

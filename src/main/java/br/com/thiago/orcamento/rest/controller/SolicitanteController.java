@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -38,8 +37,6 @@ public class SolicitanteController {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
-        solicitanteForm.setDataCadastro(LocalDateTime.now().minusHours(3));
-        solicitanteForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
         SolicitanteDto solicitanteDto = solicitanteService.insert(solicitanteForm);
         return ResponseEntity.ok().body(solicitanteDto);
     }
@@ -49,7 +46,7 @@ public class SolicitanteController {
             , @PathVariable("id") Integer id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
-        solicitanteUpdateForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
+
         SolicitanteDto solicitanteDto = solicitanteService.updateById(solicitanteUpdateForm, id);
         return ResponseEntity.ok().body(solicitanteDto);
     }

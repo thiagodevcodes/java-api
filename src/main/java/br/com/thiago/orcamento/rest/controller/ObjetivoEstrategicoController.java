@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -39,8 +38,6 @@ public class ObjetivoEstrategicoController {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
-        objetivoEstrategicoForm.setDataCadastro(LocalDateTime.now().minusHours(3));
-        objetivoEstrategicoForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
         ObjetivoEstrategicoDto objetivoEstrategicoDto = objetivoEstrategicoService.insert(objetivoEstrategicoForm);
         return ResponseEntity.ok().body(objetivoEstrategicoDto);
     }
@@ -50,7 +47,7 @@ public class ObjetivoEstrategicoController {
         ObjetivoEstrategicoUpdateForm objetivoEstrategicoUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
-        objetivoEstrategicoUpdateForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
+
         ObjetivoEstrategicoDto objetivoEstrategicoDto = objetivoEstrategicoService.updateById(objetivoEstrategicoUpdateForm, id);
         return ResponseEntity.ok().body(objetivoEstrategicoDto);
     }

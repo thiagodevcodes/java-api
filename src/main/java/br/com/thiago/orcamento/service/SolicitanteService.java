@@ -38,7 +38,7 @@ public class SolicitanteService {
         List<SolicitanteModel> solicitanteList = solicitanteRepository.findAll();
 
         return solicitanteList.stream()
-                .map(aluno -> modelMapper.map(aluno, SolicitanteDto.class))
+                .map(solicitante -> modelMapper.map(solicitante, SolicitanteDto.class))
                 .collect(Collectors.toList());
     }
 
@@ -49,7 +49,7 @@ public class SolicitanteService {
             Optional<SolicitanteModel> byNome = solicitanteRepository.findByNome(SolicitanteNovo.getNome());
 
             if (byNome.isPresent()) {
-                throw new IllegalStateException("Solicitante já registrado.");
+                throw new DataIntegrityException("Solicitante já registrado.");
             }
             SolicitanteNovo = solicitanteRepository.save(SolicitanteNovo);
             return modelMapper.map(SolicitanteNovo, SolicitanteDto.class);

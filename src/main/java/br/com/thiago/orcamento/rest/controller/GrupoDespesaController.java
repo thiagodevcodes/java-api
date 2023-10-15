@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import javax.validation.Valid;
 
@@ -38,8 +37,6 @@ public class GrupoDespesaController {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
 
-        grupoDespesaForm.setDataCadastro(LocalDateTime.now().minusHours(3));
-        grupoDespesaForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
         GrupoDespesaDto grupoDespesaDto = grupoDespesaService.insert(grupoDespesaForm);
         return ResponseEntity.ok().body(grupoDespesaDto);
     }
@@ -49,7 +46,7 @@ public class GrupoDespesaController {
         GrupoDespesaUpdateForm grupoDespesaUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
-        grupoDespesaUpdateForm.setDataAlteracao(LocalDateTime.now().minusHours(3));
+        
         GrupoDespesaDto grupoDespesaDto = grupoDespesaService.updateById(grupoDespesaUpdateForm, id);
         return ResponseEntity.ok().body(grupoDespesaDto);
     }
