@@ -1,13 +1,5 @@
 package br.com.thiago.orcamento.service;
 
-import br.com.thiago.orcamento.model.GrupoDespesaModel;
-import br.com.thiago.orcamento.repository.GrupoDespesaRepository;
-import br.com.thiago.orcamento.rest.dto.GrupoDespesaDto;
-import br.com.thiago.orcamento.rest.form.GrupoDespesaForm;
-import br.com.thiago.orcamento.rest.form.GrupoDespesaUpdateForm;
-import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
-import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -17,6 +9,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
+import br.com.thiago.orcamento.model.GrupoDespesaModel;
+import br.com.thiago.orcamento.repository.GrupoDespesaRepository;
+import br.com.thiago.orcamento.rest.dto.GrupoDespesaDto;
+import br.com.thiago.orcamento.rest.form.GrupoDespesaForm;
+import br.com.thiago.orcamento.rest.form.GrupoDespesaUpdateForm;
+import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
+import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class GrupoDespesaService {
@@ -48,8 +48,9 @@ public class GrupoDespesaService {
             GrupoDespesaModel GrupoDespesaNovo = modelMapper.map(grupoDespesaForm, GrupoDespesaModel.class);
 
             Optional<GrupoDespesaModel> byNome = grupoDespesaRepository.findByNome(GrupoDespesaNovo.getNome());
-            
-            if (byNome.isPresent()) {
+            Optional<GrupoDespesaModel> byCodigo = grupoDespesaRepository.findByCodigo(grupoDespesaForm.getCodigo());
+
+            if (byNome.isPresent() || byCodigo.isPresent()) {
                 throw new DataIntegrityException("Grupo Despesa já registrado.");
             }
 

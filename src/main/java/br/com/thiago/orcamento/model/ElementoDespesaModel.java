@@ -1,28 +1,23 @@
 package br.com.thiago.orcamento.model;
 
-import java.time.LocalDateTime;
+import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import lombok.Data;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "modadalidade_aplicacao")
-public class ModalidadeAplicacaoModel {
+@Table(name="elemento_despesa")
+public class ElementoDespesaModel {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "codigo", nullable = false, unique = true)
-    private Float codigo;
+    private Integer codigo;
 
     @Column(name = "nome", length = 200, nullable = false)
     private String nome;

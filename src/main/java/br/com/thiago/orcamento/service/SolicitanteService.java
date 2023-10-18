@@ -1,5 +1,15 @@
 package br.com.thiago.orcamento.service;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
+
 import br.com.thiago.orcamento.model.SolicitanteModel;
 import br.com.thiago.orcamento.repository.SolicitanteRepository;
 import br.com.thiago.orcamento.rest.dto.SolicitanteDto;
@@ -7,15 +17,6 @@ import br.com.thiago.orcamento.rest.form.SolicitanteForm;
 import br.com.thiago.orcamento.rest.form.SolicitanteUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class SolicitanteService {

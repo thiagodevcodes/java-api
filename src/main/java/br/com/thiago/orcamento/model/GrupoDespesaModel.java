@@ -16,7 +16,7 @@ public class GrupoDespesaModel {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "codigo", nullable = false)
+    @Column(name = "codigo", nullable = false, unique = true)
     private Float codigo;
 
     @Column(name = "nome", length = 200, nullable = false)
