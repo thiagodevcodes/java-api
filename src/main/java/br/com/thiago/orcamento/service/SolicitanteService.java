@@ -45,15 +45,15 @@ public class SolicitanteService {
 
     public SolicitanteDto insert(SolicitanteForm solicitanteForm) {
         try {
-            SolicitanteModel SolicitanteNovo = modelMapper.map(solicitanteForm, SolicitanteModel.class);
+            SolicitanteModel solicitanteNovo = modelMapper.map(solicitanteForm, SolicitanteModel.class);
 
-            Optional<SolicitanteModel> byNome = solicitanteRepository.findByNome(SolicitanteNovo.getNome());
+            Optional<SolicitanteModel> byNome = solicitanteRepository.findByNome(solicitanteNovo.getNome());
 
             if (byNome.isPresent()) {
                 throw new DataIntegrityException("Solicitante já registrado.");
             }
-            SolicitanteNovo = solicitanteRepository.save(SolicitanteNovo);
-            return modelMapper.map(SolicitanteNovo, SolicitanteDto.class);
+            solicitanteNovo = solicitanteRepository.save(solicitanteNovo);
+            return modelMapper.map(solicitanteNovo, SolicitanteDto.class);
 
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Solicitante não foi(foram) preenchido(s).");

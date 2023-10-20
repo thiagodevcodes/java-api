@@ -45,15 +45,15 @@ public class ObjetivoEstrategicoService {
 
     public ObjetivoEstrategicoDto insert(ObjetivoEstrategicoForm objetivoEstrategicoForm) {
         try {
-            ObjetivoEstrategicoModel ObjetivoEstrategicoNovo = modelMapper.map(objetivoEstrategicoForm, ObjetivoEstrategicoModel.class);
+            ObjetivoEstrategicoModel objetivoEstrategicoNovo = modelMapper.map(objetivoEstrategicoForm, ObjetivoEstrategicoModel.class);
 
-            Optional<ObjetivoEstrategicoModel> byNome = objetivoEstrategicoRepository.findByNome(ObjetivoEstrategicoNovo.getNome());
+            Optional<ObjetivoEstrategicoModel> byNome = objetivoEstrategicoRepository.findByNome(objetivoEstrategicoNovo.getNome());
 
             if (byNome.isPresent()) {
                 throw new DataIntegrityException("Objetivo Estratégico já registrado.");
             }
-            ObjetivoEstrategicoNovo = objetivoEstrategicoRepository.save(ObjetivoEstrategicoNovo);
-            return modelMapper.map(ObjetivoEstrategicoNovo, ObjetivoEstrategicoDto.class);
+            objetivoEstrategicoNovo = objetivoEstrategicoRepository.save(objetivoEstrategicoNovo);
+            return modelMapper.map(objetivoEstrategicoNovo, ObjetivoEstrategicoDto.class);
 
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Objetivo Estratégico não foi(foram) preenchido(s).");

@@ -46,16 +46,16 @@ public class UnidadeService {
 
     public UnidadeDto insert(UnidadeForm unidadeForm) {
         try {
-            UnidadeModel UnidadeNovo = modelMapper.map(unidadeForm, UnidadeModel.class);
+            UnidadeModel unidadeNovo = modelMapper.map(unidadeForm, UnidadeModel.class);
 
-            Optional<UnidadeModel> byNome = unidadeRepository.findByNome(UnidadeNovo.getNome());
+            Optional<UnidadeModel> byNome = unidadeRepository.findByNome(unidadeNovo.getNome());
 
             if (byNome.isPresent()) {
                 throw new DataIntegrityException("Unidade já registrada.");
             }
             
-            UnidadeNovo = unidadeRepository.save(UnidadeNovo);
-            return modelMapper.map(UnidadeNovo, UnidadeDto.class);
+            unidadeNovo = unidadeRepository.save(unidadeNovo);
+            return modelMapper.map(unidadeNovo, UnidadeDto.class);
 
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Campo(s) obrigatório(s) de Unidade não foi(foram) preenchido(s).");

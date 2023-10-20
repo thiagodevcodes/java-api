@@ -35,7 +35,7 @@ public class GrupoDespesaService {
         }
     }
 
-        public List<GrupoDespesaDto> findAll(){
+    public List<GrupoDespesaDto> findAll(){
         List<GrupoDespesaModel> grupoDespesaList = grupoDespesaRepository.findAll();
 
         return grupoDespesaList.stream()

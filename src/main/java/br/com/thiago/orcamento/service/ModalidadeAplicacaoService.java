@@ -46,16 +46,16 @@ public class ModalidadeAplicacaoService {
 
     public ModalidadeAplicacaoDto insert(ModalidadeAplicacaoForm modalidadeAplicacaoForm) {
         try {
-            ModalidadeAplicacaoModel ModalidadeAplicacaoNovo = modelMapper.map(modalidadeAplicacaoForm, ModalidadeAplicacaoModel.class);
+            ModalidadeAplicacaoModel modalidadeAplicacaoNovo = modelMapper.map(modalidadeAplicacaoForm, ModalidadeAplicacaoModel.class);
 
-            Optional<ModalidadeAplicacaoModel> byNome = modalidadeAplicacaoRepository.findByNome(ModalidadeAplicacaoNovo.getNome());
+            Optional<ModalidadeAplicacaoModel> byNome = modalidadeAplicacaoRepository.findByNome(modalidadeAplicacaoNovo.getNome());
 
             if (byNome.isPresent()) {
                 throw new DataIntegrityException("Grupo Despesa já registrado.");
             }
             
-            ModalidadeAplicacaoNovo = modalidadeAplicacaoRepository.save(ModalidadeAplicacaoNovo);
-            return modelMapper.map(ModalidadeAplicacaoNovo, ModalidadeAplicacaoDto.class);
+            modalidadeAplicacaoNovo = modalidadeAplicacaoRepository.save(modalidadeAplicacaoNovo);
+            return modelMapper.map(modalidadeAplicacaoNovo, ModalidadeAplicacaoDto.class);
 
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Campo(s) obrigatório(s) da Modalidade da Aplicação não foi(foram) preenchido(s).");

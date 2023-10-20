@@ -45,17 +45,17 @@ public class ElementoDespesaService {
 
     public ElementoDespesaDto insert(ElementoDespesaForm elementoDespesaForm) {
         try {
-            ElementoDespesaModel ElementoDespesaNovo = modelMapper.map(elementoDespesaForm, ElementoDespesaModel.class);
+            ElementoDespesaModel elementoDespesaNovo = modelMapper.map(elementoDespesaForm, ElementoDespesaModel.class);
 
-            Optional<ElementoDespesaModel> byNome = elementoDespesaRepository.findByNome(ElementoDespesaNovo.getNome());
+            Optional<ElementoDespesaModel> byNome = elementoDespesaRepository.findByNome(elementoDespesaNovo.getNome());
             Optional<ElementoDespesaModel> byCodigo = elementoDespesaRepository.findByCodigo(elementoDespesaForm.getCodigo());
             
             if (byNome.isPresent() || byCodigo.isPresent()) {
                 throw new DataIntegrityException("Elemento Despesa já registrado.");
             }
 
-            ElementoDespesaNovo = elementoDespesaRepository.save(ElementoDespesaNovo);
-            return modelMapper.map(ElementoDespesaNovo, ElementoDespesaDto.class);
+            elementoDespesaNovo = elementoDespesaRepository.save(elementoDespesaNovo);
+            return modelMapper.map(elementoDespesaNovo, ElementoDespesaDto.class);
 
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Elemento Despesa não foi(foram) preenchido(s).");

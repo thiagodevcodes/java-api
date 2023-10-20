@@ -46,17 +46,17 @@ public class TipoLancamentoService {
 
     public TipoLancamentoDto insert(TipoLancamentoForm tipoLancamentoForm) {
         try {
-            TipoLancamentoModel TipoLancamentoNovo = modelMapper.map(tipoLancamentoForm, TipoLancamentoModel.class);
+            TipoLancamentoModel tipoLancamentoNovo = modelMapper.map(tipoLancamentoForm, TipoLancamentoModel.class);
 
-            Optional<TipoLancamentoModel> byNome = tipoLancamentoRepository.findByNome(TipoLancamentoNovo.getNome());
+            Optional<TipoLancamentoModel> byNome = tipoLancamentoRepository.findByNome(tipoLancamentoNovo.getNome());
 
             if (byNome.isPresent()) {
                 throw new DataIntegrityException("Tipo de Lançamento já registrado.");
             }
 
 
-            TipoLancamentoNovo = tipoLancamentoRepository.save(TipoLancamentoNovo);
-            return modelMapper.map(TipoLancamentoNovo, TipoLancamentoDto.class);
+            tipoLancamentoNovo = tipoLancamentoRepository.save(tipoLancamentoNovo);
+            return modelMapper.map(tipoLancamentoNovo, TipoLancamentoDto.class);
 
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Tipo de Lançamento não foi(foram) preenchido(s).");

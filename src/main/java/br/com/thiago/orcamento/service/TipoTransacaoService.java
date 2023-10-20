@@ -45,15 +45,15 @@ public class TipoTransacaoService {
 
     public TipoTransacaoDto insert(TipoTransacaoForm tipoTransacaoForm) {
         try {
-            TipoTransacaoModel TipoTransacaoNovo = modelMapper.map(tipoTransacaoForm, TipoTransacaoModel.class);
+            TipoTransacaoModel tipoTransacaoNovo = modelMapper.map(tipoTransacaoForm, TipoTransacaoModel.class);
 
-            Optional<TipoTransacaoModel> byNome = tipoTransacaoRepository.findByNome(TipoTransacaoNovo.getNome());
+            Optional<TipoTransacaoModel> byNome = tipoTransacaoRepository.findByNome(tipoTransacaoNovo.getNome());
 
             if (byNome.isPresent()) {
                 throw new DataIntegrityException("Tipo de Transação já registrado.");
             }
-            TipoTransacaoNovo = tipoTransacaoRepository.save(TipoTransacaoNovo);
-            return modelMapper.map(TipoTransacaoNovo, TipoTransacaoDto.class);
+            tipoTransacaoNovo = tipoTransacaoRepository.save(tipoTransacaoNovo);
+            return modelMapper.map(tipoTransacaoNovo, TipoTransacaoDto.class);
 
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Tipo de Transação não foi(foram) preenchido(s).");
