@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class UnidadeDto {
-
     private Integer id;
     private String nome;
 }

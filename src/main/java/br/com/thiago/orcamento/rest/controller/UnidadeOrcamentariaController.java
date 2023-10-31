@@ -1,5 +1,6 @@
 package br.com.thiago.orcamento.rest.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 
@@ -34,8 +35,14 @@ public class UnidadeOrcamentariaController {
 
     @PostMapping
     public ResponseEntity<UnidadeOrcamentariaDto> insert(@Valid @RequestBody UnidadeOrcamentariaForm unidadeOrcamentariaForm, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+        List<String> errors = new ArrayList<>();
+        
+        if (br.hasErrors()) {
+            br.getAllErrors().forEach(e -> {
+                errors.add(e.getDefaultMessage());
+            });
+            throw new ConstraintException("Erro de Validação", errors);
+        }
 
         UnidadeOrcamentariaDto unidadeOrcamentariaDto = unidadeOrcamentariaService.insert(unidadeOrcamentariaForm);
         return ResponseEntity.ok().body(unidadeOrcamentariaDto);
@@ -44,8 +51,14 @@ public class UnidadeOrcamentariaController {
     @PutMapping("/{id}")
     public ResponseEntity<UnidadeOrcamentariaDto> update(@Valid @RequestBody
         UnidadeOrcamentariaUpdateForm unidadeOrcamentariaUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+        List<String> errors = new ArrayList<>();
+        
+        if (br.hasErrors()) {
+            br.getAllErrors().forEach(e -> {
+                errors.add(e.getDefaultMessage());
+            });
+            throw new ConstraintException("Erro de Validação", errors);
+        }
         
         UnidadeOrcamentariaDto unidadeOrcamentariaDto = unidadeOrcamentariaService.updateById(unidadeOrcamentariaUpdateForm, id);
         return ResponseEntity.ok().body(unidadeOrcamentariaDto);

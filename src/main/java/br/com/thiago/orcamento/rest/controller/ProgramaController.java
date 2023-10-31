@@ -1,5 +1,6 @@
 package br.com.thiago.orcamento.rest.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 
@@ -34,8 +35,14 @@ public class ProgramaController {
 
     @PostMapping
     public ResponseEntity<ProgramaDto> insert(@Valid @RequestBody ProgramaForm programaForm, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+        List<String> errors = new ArrayList<>();
+        
+        if (br.hasErrors()) {
+            br.getAllErrors().forEach(e -> {
+                errors.add(e.getDefaultMessage());
+            });
+            throw new ConstraintException("Erro de Validação", errors);
+        }
 
         ProgramaDto programaDto = programaService.insert(programaForm);
         return ResponseEntity.ok().body(programaDto);
@@ -44,8 +51,14 @@ public class ProgramaController {
     @PutMapping("/{id}")
     public ResponseEntity<ProgramaDto> update(@Valid @RequestBody
         ProgramaUpdateForm programaUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+        List<String> errors = new ArrayList<>();
+        
+        if (br.hasErrors()) {
+            br.getAllErrors().forEach(e -> {
+                errors.add(e.getDefaultMessage());
+            });
+            throw new ConstraintException("Erro de Validação", errors);
+        }
         
         ProgramaDto programaDto = programaService.updateById(programaUpdateForm, id);
         return ResponseEntity.ok().body(programaDto);

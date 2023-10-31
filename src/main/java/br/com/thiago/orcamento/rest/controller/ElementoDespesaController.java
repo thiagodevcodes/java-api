@@ -1,5 +1,6 @@
 package br.com.thiago.orcamento.rest.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 
@@ -34,8 +35,14 @@ public class ElementoDespesaController {
 
     @PostMapping
     public ResponseEntity<ElementoDespesaDto> insert(@Valid @RequestBody ElementoDespesaForm elementoDespesaForm, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+        List<String> errors = new ArrayList<>();
+        
+        if (br.hasErrors()) {
+            br.getAllErrors().forEach(e -> {
+                errors.add(e.getDefaultMessage());
+            });
+            throw new ConstraintException("Erro de Validação", errors);
+        }
 
         ElementoDespesaDto elementoDespesaDto = elementoDespesaService.insert(elementoDespesaForm);
         return ResponseEntity.ok().body(elementoDespesaDto);
@@ -44,8 +51,14 @@ public class ElementoDespesaController {
     @PutMapping("/{id}")
     public ResponseEntity<ElementoDespesaDto> update(@Valid @RequestBody
         ElementoDespesaUpdateForm elementoDespesaUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+        List<String> errors = new ArrayList<>();
+        
+        if (br.hasErrors()) {
+            br.getAllErrors().forEach(e -> {
+                errors.add(e.getDefaultMessage());
+            });
+            throw new ConstraintException("Erro de Validação", errors);
+        }
         
         ElementoDespesaDto elementoDespesaDto = elementoDespesaService.updateById(elementoDespesaUpdateForm, id);
         return ResponseEntity.ok().body(elementoDespesaDto);

@@ -18,7 +18,7 @@ public class TipoLancamentoModel {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nome", length = 100, nullable = false)
+    @Column(name = "nome", length = 255, nullable = false)
     private String nome;
 
     @CreationTimestamp

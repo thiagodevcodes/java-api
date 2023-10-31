@@ -19,7 +19,7 @@ public class ElementoDespesaModel {
     @Column(name = "codigo", nullable = false, unique = true)
     private Integer codigo;
 
-    @Column(name = "nome", length = 200, nullable = false)
+    @Column(name = "nome", length = 255, nullable = false)
     private String nome;
 
     @CreationTimestamp

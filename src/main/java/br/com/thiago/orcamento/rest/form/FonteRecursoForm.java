@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class AcaoForm {
+public class FonteRecursoForm {
         @NotEmpty(message = "O nome não pode ser vazio")
         @NotBlank(message = "O nome não pode estar em branco")
         @Size(max = 255, message = "O nome pode ter no máximo 255 caracteres")

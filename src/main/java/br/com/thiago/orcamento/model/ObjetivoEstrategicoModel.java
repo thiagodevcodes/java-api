@@ -17,7 +17,7 @@ public class ObjetivoEstrategicoModel {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nome", length = 200, nullable = false)
+    @Column(name = "nome", length = 255, nullable = false)
     private String nome;
 
     @CreationTimestamp

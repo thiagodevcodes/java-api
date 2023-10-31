@@ -1,5 +1,6 @@
 package br.com.thiago.orcamento.rest.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 
@@ -35,8 +36,14 @@ public class SolicitanteController {
 
     @PostMapping
     public ResponseEntity<SolicitanteDto> insert(@Valid @RequestBody SolicitanteForm solicitanteForm, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+        List<String> errors = new ArrayList<>();
+        
+        if (br.hasErrors()) {
+            br.getAllErrors().forEach(e -> {
+                errors.add(e.getDefaultMessage());
+            });
+            throw new ConstraintException("Erro de Validação", errors);
+        }
 
         SolicitanteDto solicitanteDto = solicitanteService.insert(solicitanteForm);
         return ResponseEntity.ok().body(solicitanteDto);
@@ -45,8 +52,14 @@ public class SolicitanteController {
     @PutMapping("/{id}")
     public ResponseEntity<SolicitanteDto> update(@Valid @RequestBody SolicitanteUpdateForm solicitanteUpdateForm
             , @PathVariable("id") Integer id, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+        List<String> errors = new ArrayList<>();
+        
+        if (br.hasErrors()) {
+            br.getAllErrors().forEach(e -> {
+                errors.add(e.getDefaultMessage());
+            });
+            throw new ConstraintException("Erro de Validação", errors);
+        }
 
         SolicitanteDto solicitanteDto = solicitanteService.updateById(solicitanteUpdateForm, id);
         return ResponseEntity.ok().body(solicitanteDto);

@@ -1,11 +1,17 @@
 package br.com.thiago.orcamento.service.exceptions;
 
+import java.util.List;
+
 public class ConstraintException extends RuntimeException {
     private static final long serialVersionUID = 1L;
-    public ConstraintException(String msg) {
-        super(msg);
+    private List<String> errorMessages;
+
+    public ConstraintException(String message, List<String> errorMessages) {
+        super(message);
+        this.errorMessages = errorMessages;
     }
-    public ConstraintException(String msg, Throwable cause) {
-        super(msg, cause);
+
+    public List<String> getErrorMessages() {
+        return errorMessages;
     }
 }

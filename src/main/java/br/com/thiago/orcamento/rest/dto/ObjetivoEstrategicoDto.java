@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ObjetivoEstrategicoDto {
-
         private Integer id;
         private String nome;
 }

@@ -1,6 +1,8 @@
 package br.com.thiago.orcamento.rest.controller;
 
 import javax.validation.Valid;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +37,14 @@ public class ObjetivoEstrategicoController {
 
     @PostMapping
     public ResponseEntity<ObjetivoEstrategicoDto> insert(@Valid @RequestBody ObjetivoEstrategicoForm objetivoEstrategicoForm, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+        List<String> errors = new ArrayList<>();
+        
+        if (br.hasErrors()) {
+            br.getAllErrors().forEach(e -> {
+                errors.add(e.getDefaultMessage());
+            });
+            throw new ConstraintException("Erro de Validação", errors);
+        }
 
         ObjetivoEstrategicoDto objetivoEstrategicoDto = objetivoEstrategicoService.insert(objetivoEstrategicoForm);
         return ResponseEntity.ok().body(objetivoEstrategicoDto);
@@ -45,8 +53,14 @@ public class ObjetivoEstrategicoController {
     @PutMapping("/{id}")
     public ResponseEntity<ObjetivoEstrategicoDto> update(@Valid @RequestBody
         ObjetivoEstrategicoUpdateForm objetivoEstrategicoUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+        List<String> errors = new ArrayList<>();
+        
+        if (br.hasErrors()) {
+            br.getAllErrors().forEach(e -> {
+                errors.add(e.getDefaultMessage());
+            });
+            throw new ConstraintException("Erro de Validação", errors);
+        }
 
         ObjetivoEstrategicoDto objetivoEstrategicoDto = objetivoEstrategicoService.updateById(objetivoEstrategicoUpdateForm, id);
         return ResponseEntity.ok().body(objetivoEstrategicoDto);

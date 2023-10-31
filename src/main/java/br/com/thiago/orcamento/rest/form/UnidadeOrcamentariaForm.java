@@ -9,11 +9,12 @@ import lombok.Data;
 
 @Data
 public class UnidadeOrcamentariaForm {
-    @NotBlank
-    @NotEmpty
-    @Size(max = 100)
+    @NotEmpty(message = "O nome não pode ser vazio")
+    @NotBlank(message = "O nome não pode estar em branco")
+    @Size(max = 255, message = "O nome pode ter no máximo 255 caracteres")
+    @NotNull(message = "O nome não pode ser nulo")
     private String nome;
 
-    @NotNull
+    @NotNull(message = "O código não pode ser nulo")
     private Integer codigo;
 }

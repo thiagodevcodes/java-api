@@ -1,11 +1,17 @@
 package br.com.thiago.orcamento.service.exceptions;
 
+import java.util.List;
+
 public class BusinessRuleException extends RuntimeException {
     private static final long serialVersionUID = 1L;
-    public BusinessRuleException(String msg) {
-        super(msg);
+    private List<String> errorMessages;
+
+    public BusinessRuleException(String message, List<String> errorMessages) {
+        super(message);
+        this.errorMessages = errorMessages;
     }
-    public BusinessRuleException(String msg, Throwable cause) {
-        super(msg, cause);
+
+    public List<String> getErrorMessages() {
+        return errorMessages;
     }
 }

@@ -1,9 +1,13 @@
 package br.com.thiago.orcamento.rest.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -27,15 +31,21 @@ public class AcaoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AcaoDto> find(@PathVariable("id") Integer id) {
+    public ResponseEntity<AcaoDto> find(@PathVariable("id") Integer id) {        
         AcaoDto acaoDto = acaoService.findById(id);
         return ResponseEntity.ok().body(acaoDto);
     }
 
     @PostMapping
     public ResponseEntity<AcaoDto> insert(@Valid @RequestBody AcaoForm acaoForm, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+            
+        if (br.hasErrors()) {
+            List<String> errors = br.getAllErrors().stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .collect(Collectors.toList());
+
+            throw new ConstraintException("Restrição de Dados", errors);
+        }
 
         AcaoDto acaoDto = acaoService.insert(acaoForm);
         return ResponseEntity.ok().body(acaoDto);
@@ -44,8 +54,15 @@ public class AcaoController {
     @PutMapping("/{id}")
     public ResponseEntity<AcaoDto> update(@Valid @RequestBody
         AcaoUpdateForm acaoUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+       
+        if (br.hasErrors()) {
+            List<String> errors = new ArrayList<>();
+            br.getAllErrors().forEach(e -> {
+                errors.add(e.getDefaultMessage());
+            });
+            System.out.println(errors);
+            throw new ConstraintException("Restrição de Dados", errors);
+        }
         
         AcaoDto acaoDto = acaoService.updateById(acaoUpdateForm, id);
         return ResponseEntity.ok().body(acaoDto);

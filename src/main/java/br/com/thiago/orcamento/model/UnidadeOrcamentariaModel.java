@@ -19,7 +19,7 @@ public class UnidadeOrcamentariaModel {
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer codigo;
 
-    @Column(name="nome", length = 200, nullable = false)
+    @Column(name="nome", length = 255, nullable = false)
     private String nome;
 
     @CreationTimestamp

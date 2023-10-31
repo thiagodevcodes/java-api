@@ -1,27 +1,20 @@
 package br.com.thiago.orcamento.rest.form;
 
-import java.time.LocalDateTime;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 @Data
 public class GrupoDespesaUpdateForm {
-        @NotEmpty
-        @NotBlank
-        @Size(max = 100)
+        @NotEmpty(message = "O nome não pode ser vazio")
+        @NotBlank(message = "O nome não pode estar em branco")
+        @Size(max = 255, message = "O nome pode ter no máximo 255 caracteres")
+        @NotNull(message = "O nome não pode ser nulo")
         private String nome;
 
+        @NotNull(message = "O código não pode ser nulo")
         private Float codigo;
-
-        @JsonFormat(pattern = "dd/MM/yyyy")
-        private LocalDateTime dataCadastro;
-
-        @JsonFormat(pattern = "dd/MM/yyyy")
-        private LocalDateTime dataAlteracao;
-
 }

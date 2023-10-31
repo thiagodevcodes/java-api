@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class TipoLancamentoDto {
+public class FonteRecursoDto {
     private Integer id;
+    private Integer codigo;
     private String nome;
 }
