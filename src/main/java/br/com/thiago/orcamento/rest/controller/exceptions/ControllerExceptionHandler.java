@@ -54,16 +54,16 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<StandardError> handle(MethodArgumentNotValidException exception, HttpServletRequest request) {
 
-        List<String> dto = new ArrayList<>();
+        List<String> messagesList = new ArrayList<>();
     
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
     
         fieldErrors.forEach(e -> {
             String errorMessage = e.getDefaultMessage(); 
-            dto.add(errorMessage);
+            messagesList.add(errorMessage);
         });
     
-        StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Restrição de Dados", dto, request.getRequestURI());
+        StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Restrição de Dados", messagesList, request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
 }
