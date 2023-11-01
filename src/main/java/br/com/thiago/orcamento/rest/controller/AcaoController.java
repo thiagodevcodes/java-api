@@ -18,6 +18,7 @@ import br.com.thiago.orcamento.rest.form.AcaoUpdateForm;
 import br.com.thiago.orcamento.service.AcaoService;
 import br.com.thiago.orcamento.service.exceptions.ConstraintException;
 
+
 @RestController
 @RequestMapping("/acao")
 public class AcaoController {
@@ -60,10 +61,10 @@ public class AcaoController {
             br.getAllErrors().forEach(e -> {
                 errors.add(e.getDefaultMessage());
             });
-            System.out.println(errors);
+
             throw new ConstraintException("Restrição de Dados", errors);
         }
-        
+     
         AcaoDto acaoDto = acaoService.updateById(acaoUpdateForm, id);
         return ResponseEntity.ok().body(acaoDto);
     }

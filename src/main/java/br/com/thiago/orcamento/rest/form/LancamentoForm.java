@@ -43,32 +43,38 @@ public class LancamentoForm {
     private Integer anoOrcamento;
 
     @NotNull(message = "O id do tipo de lançamento não pode ser nulo")
-    private Integer idTipoLancamento;
+    private Integer tipoLancamento;
 
-    private Integer idLancamentoPai;
+    private Integer lancamentoPai;
 
     @NotNull(message = "O id da unidade não pode ser nulo")
-    private Integer idUnidade;
+    private Integer unidade;
 
     @NotNull(message = "O id da unidade orcamentaria não pode ser nulo")
-    private Integer idUnidadeOrcamentaria;
+    private Integer unidadeOrcamentaria;
 
     @NotNull(message = "O id do programa não pode ser nulo")
-    private Integer idPrograma;
+    private Integer programa;
 
     @NotNull(message = "O id da ação não pode ser nulo")
-    private Integer idAcao;
+    private Integer acao;
 
     @NotNull(message = "O id da fonte de recurso não pode ser nulo")
-    private Integer idFonteRecurso;
+    private Integer fonteRecurso;
 
     @NotNull(message = "O id do elemento despesa não pode ser nulo")
-    private Integer idElementoDespesa;
+    private Integer elementoDespesa;
 
-    private Integer idSolicitante;
+    private Integer solicitante;
 
-    private Integer idObjetivoEstrategico;
+    private Integer objetivoEstrategico;
 
     @NotNull(message = "O id do tipo de transação não pode ser nulo")
-    private Integer idTipoTransacao;
+    private Integer tipoTransacao;
+
+    @NotNull(message = "O id do grupo despesa não pode ser nulo")
+    private Integer grupoDespesa;
+
+    @NotNull(message = "O id da modalidade da aplicação não pode ser nulo")
+    private Integer modalidadeAplicacao;
 }

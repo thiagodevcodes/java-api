@@ -1,3 +1,7 @@
+-- Active: 1698781018641@@127.0.0.1@3308@orcamentodb
+
+USE orcamentodb;
+
 INSERT INTO unidade (nome, data_cadastro, data_alteracao) VALUES
 ('Diretoria Administrativa', localtimestamp, localtimestamp),
 ('Diretoria de Recursos Humanos', localtimestamp, localtimestamp),
@@ -184,7 +188,76 @@ INSERT INTO tipo_transacao (nome, data_cadastro, data_alteracao) VALUES
 ('Débito', localtimestamp, localtimestamp),
 ('Crédito', localtimestamp, localtimestamp);
 
-INSERT INTO grupo_despesa (nome, data_cadastro, data_alteracao) VALUES
-('Pessoal', localtimestamp, localtimestamp),
-('Outras Despesas Correntes', localtimestamp, localtimestamp);
-('Investimentos', localtimestamp, localtimestamp);
+INSERT INTO grupo_despesa (nome, codigo, data_cadastro, data_alteracao) VALUES
+('Pessoal', 3.1, localtimestamp, localtimestamp),
+('Outras Despesas Correntes', 3.3, localtimestamp, localtimestamp),
+('Investimentos', 4.4, localtimestamp, localtimestamp);
+
+INSERT INTO programa (nome, codigo, data_cadastro, data_alteracao) VALUES
+('Defesa da Ordem Jurídica e Social', 4, localtimestamp, localtimestamp),
+('Gestão e Manutenção do Ministério Público', 31, localtimestamp, localtimestamp);
+
+INSERT INTO unidade_orcamentaria (nome, codigo, data_cadastro, data_alteracao) VALUES
+('Procuradoria-Geral de Justiça', 11101, localtimestamp, localtimestamp),
+('Fundo para Reconstituição de Bens Lesados', 11402, localtimestamp, localtimestamp),
+('Fundo Especial do Ministério Público', 11401, localtimestamp, localtimestamp);
+
+INSERT INTO modadalidade_aplicacao (nome, codigo, data_cadastro, data_alteracao) VALUES
+('Transferências a Estados e ao Distrito Federal', 30, localtimestamp, localtimestamp),
+('Transferências a Municípios', 40, localtimestamp, localtimestamp),
+('Transferências a Instituições Privadas sem Fins Lucrativos', 50, localtimestamp, localtimestamp),
+('Aplicação Direta', 90, localtimestamp, localtimestamp),
+('Aplicação Indireta', 91, localtimestamp, localtimestamp);
+
+INSERT INTO elemento_despesa (nome, codigo, data_cadastro, data_alteracao) VALUES
+('Contribuição a Entidades Fechadas de Previdência', 7, localtimestamp, localtimestamp),
+('Outros Benefícios Assistenciais', 8, localtimestamp, localtimestamp),
+('Salário Família', 9, localtimestamp, localtimestamp),
+('Vencimentos e Vantagens Fixas - Pessoal Civil', 11, localtimestamp, localtimestamp),
+('Obrigações Patronais', 13, localtimestamp, localtimestamp),
+('Outras Despesa Variáveis - Pessoal Civil', 16, localtimestamp, localtimestamp),
+('Material de Consumo', 30, localtimestamp, localtimestamp),
+('Material de Distribuição Gratuita', 32, localtimestamp, localtimestamp),
+('Passagens e Despesas com Locomoção ', 33, localtimestamp, localtimestamp),
+('Serviços de Consultoria', 35, localtimestamp, localtimestamp),
+('Outros Serviços de Terceiros Pessoa Física', 36, localtimestamp, localtimestamp),
+('Locação de Mão de Obra', 37, localtimestamp, localtimestamp),
+('Outros Serviços de Terceiros Pessoa Jurídica', 39, localtimestamp, localtimestamp),
+('Serviços de Tecnologia da Informação e Comunicação - Pessoa Jurídica', 40, localtimestamp, localtimestamp),
+('Contribuições', 41, localtimestamp, localtimestamp),
+('Auxílio-Alimentação', 46, localtimestamp, localtimestamp),
+('Obrigações Tributárias e Contributivas', 47, localtimestamp, localtimestamp),
+('Outros Auxílios Financeiros a Pessoa Física', 48, localtimestamp, localtimestamp),
+('Obras e Instalações', 51, localtimestamp, localtimestamp),
+('Equipamentos e Material Permanente', 52, localtimestamp, localtimestamp),
+('Despesas de Exercícios Anteriores', 92, localtimestamp, localtimestamp),
+('Outras Restituições e Indenizações', 93, localtimestamp, localtimestamp),
+('Indenizações e Restituições Trabalhistas ', 94, localtimestamp, localtimestamp),
+('Ressarcimento de Despesas de Pessoal Requisitado', 96, localtimestamp, localtimestamp);
+
+INSERT INTO fonte_recurso (nome, codigo, data_cadastro, data_alteracao) VALUES 
+('Recursos do Tesouro do Estado', 1500, localtimestamp, localtimestamp),
+('Outros Recursos não Vinculados', 1501, localtimestamp, localtimestamp),
+('Recursos de Convênio - Governo Federal', 1700, localtimestamp, localtimestamp),
+('Recursos de Convênio - Privado', 1703, localtimestamp, localtimestamp),
+('Receita de Alienação de Bens', 1755, localtimestamp, localtimestamp),
+('Recursos Próprios (Fundos)', 1759, localtimestamp, localtimestamp);
+
+INSERT INTO acao (nome, codigo, data_cadastro, data_alteracao) VALUES
+('Modernização da Infraestrutura Tecnológica', 47, localtimestamp, localtimestamp),
+('Pagamento de Pessoal', 83, localtimestamp, localtimestamp),
+('Adequação da Infraestrutura Física das Unidades do Ministério Público', 87, localtimestamp, localtimestamp),
+('Auxílios para Membros e Servidores do Ministério Público', 88, localtimestamp, localtimestamp),
+('Operacionalização das Atividades do Ministério Público', 89, localtimestamp, localtimestamp),
+('Capacitação de Recursos Humanos', 91, localtimestamp, localtimestamp),
+('Ações Institucionais', 114, localtimestamp, localtimestamp),
+('Implementação da Política Institucional do Ministério Público', 115, localtimestamp, localtimestamp),
+('Reconstituição de Bens e Direitos Difusos Lesados', 777, localtimestamp, localtimestamp);
+
+SELECT * FROM acao;
+
+DROP DATABASE orcamentodb;
+
+CREATE DATABASE orcamentodb;
+
+USE orcamentodb;

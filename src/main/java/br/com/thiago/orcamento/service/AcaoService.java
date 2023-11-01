@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+
 import org.springframework.stereotype.Service;
 
 import br.com.thiago.orcamento.model.AcaoModel;
@@ -62,12 +63,13 @@ public class AcaoService {
         }
     }
 
-     public AcaoDto updateById(AcaoUpdateForm acaoUpdateForm, Integer id) {
+    public AcaoDto updateById(AcaoUpdateForm acaoUpdateForm, Integer id) {
         try {
             Optional<AcaoModel> acaoExistente = acaoRepository.findById(id);
 
             if (acaoExistente.isPresent()) {
                 AcaoModel acaoAtualizado = acaoExistente.get();
+
                 acaoAtualizado.setNome(acaoUpdateForm.getNome());
                 acaoAtualizado.setCodigo(acaoUpdateForm.getCodigo());
                 acaoAtualizado = acaoRepository.save(acaoAtualizado);

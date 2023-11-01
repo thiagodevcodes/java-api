@@ -12,7 +12,6 @@ public class AcaoUpdateForm {
         @NotEmpty(message = "O nome não pode estar vazio")
         @NotBlank(message = "O nome não pode estar em branco")
         @Size(max = 255, message = "O nome precisa ser no máximo 255 caracteres")
-        @NotNull(message = "O nome não pode ser nulo")
         private String nome;
 
         @NotNull(message = "O código não pode ser nulo")

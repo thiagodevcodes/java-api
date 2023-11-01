@@ -41,57 +41,44 @@ public class LancamentoModel {
     @Column(name = "valor", length = 4, nullable = false)
     private Float valor;
 
-    @ManyToOne
-    @JoinColumn(name = "id_tipo_lancamento", nullable = false)
-    private TipoLancamentoModel idTipoLancamento;
+    @Column(name = "id_tipo_lancamento", nullable = false)
+    private Integer tipoLancamento;
 
-    @ManyToOne
-    @JoinColumn(name = "id_lancamento_pai")
-    private LancamentoModel idLancamentoPai;
+    @Column(name = "id_lancamento_pai")
+    private Integer lancamentoPai;
     
-    @ManyToOne
-    @JoinColumn(name = "id_unidade", nullable = false)
-    private UnidadeModel idUnidade;
+    @Column(name = "id_unidade", nullable = false)
+    private Integer unidade;
 
-    @ManyToOne
-    @JoinColumn(name = "id_unidade_orcamentaria", nullable = false)
-    private UnidadeOrcamentariaModel idUnidadeOrcamentaria;
+    @Column(name = "id_unidade_orcamentaria", nullable = false)
+    private Integer unidadeOrcamentaria;
+ 
+    @Column(name = "id_programa", nullable = false)
+    private Integer programa;
 
-    @ManyToOne
-    @JoinColumn(name = "id_programa", nullable = false)
-    private ProgramaModel idPrograma;
+    @Column(name = "id_acao", nullable = false)
+    private Integer acao;
 
-    @ManyToOne
-    @JoinColumn(name = "id_acao", nullable = false)
-    private AcaoModel idAcao;
+    @Column(name = "id_fonte_recurso", nullable = false)
+    private Integer fonteRecurso;
 
-    @ManyToOne
-    @JoinColumn(name = "id_fonte_recurso", nullable = false)
-    private FonteRecursoModel idFonteRecurso;
+    @Column(name = "id_grupo_despesa", nullable = false)
+    private Integer grupoDespesa;
 
-    @ManyToOne
-    @JoinColumn(name = "id_grupo_despesa", nullable = false)
-    private GrupoDespesaModel idGrupoDespesa;
+    @Column(name = "id_modalidade_aplicacao", nullable = false)
+    private Integer modalidadeAplicacao;
 
-    @ManyToOne
-    @JoinColumn(name = "id_modalidade_aplicacao", nullable = false)
-    private ModalidadeAplicacaoModel idModalidadeAplicacao;
+    @Column(name = "id_elemento_despesa", nullable = false)
+    private Integer elementoDespesa;
 
-    @ManyToOne
-    @JoinColumn(name = "id_elemento_despesa", nullable = false)
-    private ElementoDespesaModel idElementoDespesa;
+    @Column(name = "id_solicitante")
+    private Integer solicitante;
 
-    @ManyToOne
-    @JoinColumn(name = "id_solicitante", referencedColumnName = "id")
-    private SolicitanteModel idSolicitante;
+    @Column(name = "id_objetivo_estrategico")
+    private Integer objetivoEstrategico;
 
-    @ManyToOne
-    @JoinColumn(name = "id_objetivo_estrategico")
-    private ObjetivoEstrategicoModel idObjetivoEstrategico;
-
-    @ManyToOne
-    @JoinColumn(name = "id_tipo_transacao", nullable = false)
-    private TipoTransacaoModel idTipoTransacao;
+    @Column(name = "id_tipo_transacao", nullable = false)
+    private Integer tipoTransacao;
 
     @CreationTimestamp
     @Column(name = "data_cadastro", nullable = false)

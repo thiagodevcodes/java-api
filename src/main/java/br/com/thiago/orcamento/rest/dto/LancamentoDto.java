@@ -19,15 +19,17 @@ public class LancamentoDto {
     private String contratado;
     private Float valor;
     private Integer anoOrcamento;
-    private Integer idTipoLancamento;
-    private Integer idLancamentoPai;
-    private Integer idUnidade;
-    private Integer idUnidadeOrcamentaria;
-    private Integer idPrograma;
-    private Integer idAcao;
-    private Integer idFonteRecurso;
-    private Integer idElementoDespesa;
-    private Integer idSolicitante;
-    private Integer idObjetivoEstrategico;
-    private Integer idTipoTransacao;
+    private Integer tipoLancamento;
+    private Integer lancamentoPai;
+    private Integer unidade;
+    private Integer unidadeOrcamentaria;
+    private Integer programa;
+    private Integer acao;
+    private Integer fonteRecurso;
+    private Integer grupoDespesa;
+    private Integer elementoDespesa;
+    private Integer solicitante;
+    private Integer objetivoEstrategico;
+    private Integer tipoTransacao;
+    private Integer modalidadeAplicacao;
 }
