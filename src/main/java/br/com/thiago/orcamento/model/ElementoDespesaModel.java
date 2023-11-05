@@ -13,7 +13,8 @@ import java.time.LocalDateTime;
 @Data
 @Table(name="elemento_despesa")
 public class ElementoDespesaModel {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "codigo", nullable = false, unique = true)

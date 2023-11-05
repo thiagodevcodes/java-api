@@ -16,9 +16,10 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "modadalidade_aplicacao")
+@Table(name = "modalidade_aplicacao")
 public class ModalidadeAplicacaoModel {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "codigo", nullable = false, unique = true)

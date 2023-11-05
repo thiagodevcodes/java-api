@@ -13,7 +13,8 @@ import java.time.LocalDateTime;
 @Data
 @Table(name="acao")
 public class AcaoModel {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "codigo", nullable = false, unique = true)

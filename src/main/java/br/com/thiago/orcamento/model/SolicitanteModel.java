@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 @Table(name="solicitante")
 
 public class SolicitanteModel {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "nome", length = 255, nullable = false)

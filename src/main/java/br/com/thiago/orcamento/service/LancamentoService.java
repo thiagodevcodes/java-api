@@ -47,7 +47,7 @@ public class LancamentoService {
     public LancamentoDto insert(LancamentoForm lancamentoForm) {
         try {
             LancamentoModel lancamentoNovo = modelMapper.map(lancamentoForm, LancamentoModel.class);
-
+            
             lancamentoNovo = lancamentoRepository.save(lancamentoNovo);
             return modelMapper.map(lancamentoNovo, LancamentoDto.class);
 

@@ -20,7 +20,7 @@ public class LancamentoForm {
     private Integer numeroLancamento;
      
     @NotNull(message = "A data de lançamento não pode ser nulo")
-    @FutureOrPresent(message = "A data só de ser de hoje em diante")
+    @FutureOrPresent(message = "A data tem que ser de hoje em diante")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataLancamento;
 
@@ -30,7 +30,7 @@ public class LancamentoForm {
     @NotNull(message = "A descrição não pode ser nula")
     private String descricao;
 
-    @Size(max = 255, message = "O GED pode conter no máximo 255 caracteres")
+    @Size(max = 27, message = "O GED pode conter no máximo 27 caracteres")
     private String ged;
    
     @Size(max = 255, message = "O contratado por conter no máximo 255 caracteres")
@@ -40,7 +40,7 @@ public class LancamentoForm {
     private Float valor;
 
     @NotNull(message = "O ano do orçamento não pode ser nulo")
-    private Integer anoOrcamento;
+    private Short anoOrcamento;
 
     @NotNull(message = "O id do tipo de lançamento não pode ser nulo")
     private Integer tipoLancamento;

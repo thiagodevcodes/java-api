@@ -12,9 +12,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name="lancamento")
+@Table(name="lancamentos")
 public class LancamentoModel {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "descricao", length = 255, nullable = false)
@@ -33,7 +34,7 @@ public class LancamentoModel {
     private String contratado;
 
     @Column(name = "ged", length = 27)
-    private Character ged;
+    private String ged;
 
     @Column(name = "ano_orcamento", nullable = false)
     private Short anoOrcamento;
@@ -50,7 +51,7 @@ public class LancamentoModel {
     @Column(name = "id_unidade", nullable = false)
     private Integer unidade;
 
-    @Column(name = "id_unidade_orcamentaria", nullable = false)
+    @Column(name = "id_unidadeOrcamentaria", nullable = false)
     private Integer unidadeOrcamentaria;
  
     @Column(name = "id_programa", nullable = false)

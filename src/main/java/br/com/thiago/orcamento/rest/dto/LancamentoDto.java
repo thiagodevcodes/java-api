@@ -18,7 +18,7 @@ public class LancamentoDto {
     private String ged;
     private String contratado;
     private Float valor;
-    private Integer anoOrcamento;
+    private Short anoOrcamento;
     private Integer tipoLancamento;
     private Integer lancamentoPai;
     private Integer unidade;

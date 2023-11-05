@@ -21,10 +21,10 @@ public class TipoTransacaoModel {
     private String nome;
 
     @CreationTimestamp
-    @Column(name = "dataCadastro", nullable = false)
+    @Column(name = "data_cadastro", nullable = false)
     private LocalDateTime dataCadastro;
 
     @UpdateTimestamp
-    @Column(name = "dataAlteracao")
+    @Column(name = "data_alteracao")
     private LocalDateTime dataAlteracao;
 }

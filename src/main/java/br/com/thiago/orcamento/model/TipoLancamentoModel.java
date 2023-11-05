@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 @Table(name="tipo_lancamento")
 
 public class TipoLancamentoModel {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "nome", length = 255, nullable = false)
