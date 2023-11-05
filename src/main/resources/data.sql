@@ -1,15 +1,5 @@
 -- Active: 1698781018641@@127.0.0.1@3308@orcamentodb
 
-USE orcamentodb;
- 
-SELECT * FROM tipo_lancamento; 
-
-SELECT * FROM lancamento;
-
-DROP DATABASE orcamentodb;
- 
-CREATE DATABASE orcamentodb;
-
 CREATE TABLE unidade (
   id int AUTO_INCREMENT NOT NULL,
   nome varchar(255) NOT NULL,
@@ -125,7 +115,7 @@ CREATE TABLE lancamentos (
   id_modalidade_aplicacao int NOT NULL,
   id_elemento_despesa int NOT NULL,
   id_solicitante int NULL,
-  ged char(27) NULL,
+  ged varchar(27) NULL,
   contratado varchar(255) NULL,
   id_objetivo_estrategico int NULL,
   valor real NOT NULL,

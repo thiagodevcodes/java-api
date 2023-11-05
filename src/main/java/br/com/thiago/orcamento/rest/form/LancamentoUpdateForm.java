@@ -23,6 +23,7 @@ public class LancamentoUpdateForm {
     @Size(max = 255, message = "A descrição pode conter no máximo 255 caracteres")
     private String descricao;
 
+    @NotBlank(message = "O GED não pode estar em branco")
     @Size(max = 27, message = "O GED pode conter no máximo 27 caracteres")
     private String ged;
    

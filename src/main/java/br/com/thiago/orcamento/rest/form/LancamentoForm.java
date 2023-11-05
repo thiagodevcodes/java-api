@@ -30,6 +30,7 @@ public class LancamentoForm {
     @NotNull(message = "A descrição não pode ser nula")
     private String descricao;
 
+    @NotBlank(message = "O GED não pode estar em branco")
     @Size(max = 27, message = "O GED pode conter no máximo 27 caracteres")
     private String ged;
    
