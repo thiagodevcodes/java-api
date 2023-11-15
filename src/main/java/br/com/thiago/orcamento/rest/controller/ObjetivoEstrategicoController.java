@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.thiago.orcamento.rest.dto.ObjetivoEstrategicoDto;
 import br.com.thiago.orcamento.rest.form.ObjetivoEstrategicoForm;
-import br.com.thiago.orcamento.rest.form.ObjetivoEstrategicoUpdateForm;
 import br.com.thiago.orcamento.service.ObjetivoEstrategicoService;
 import br.com.thiago.orcamento.service.exceptions.ConstraintException;
 
@@ -52,7 +51,7 @@ public class ObjetivoEstrategicoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ObjetivoEstrategicoDto> update(@Valid @RequestBody
-        ObjetivoEstrategicoUpdateForm objetivoEstrategicoUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
+        ObjetivoEstrategicoForm objetivoEstrategicoForm, @PathVariable("id") Integer id, BindingResult br) {
         List<String> errors = new ArrayList<>();
         
         if (br.hasErrors()) {
@@ -62,7 +61,7 @@ public class ObjetivoEstrategicoController {
             throw new ConstraintException("Erro de Validação", errors);
         }
 
-        ObjetivoEstrategicoDto objetivoEstrategicoDto = objetivoEstrategicoService.updateById(objetivoEstrategicoUpdateForm, id);
+        ObjetivoEstrategicoDto objetivoEstrategicoDto = objetivoEstrategicoService.updateById(objetivoEstrategicoForm, id);
         return ResponseEntity.ok().body(objetivoEstrategicoDto);
     }
 

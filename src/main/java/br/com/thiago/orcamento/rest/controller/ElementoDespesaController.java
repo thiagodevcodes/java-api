@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.thiago.orcamento.rest.dto.ElementoDespesaDto;
 import br.com.thiago.orcamento.rest.form.ElementoDespesaForm;
-import br.com.thiago.orcamento.rest.form.ElementoDespesaUpdateForm;
 import br.com.thiago.orcamento.service.ElementoDespesaService;
 import br.com.thiago.orcamento.service.exceptions.ConstraintException;
 
@@ -50,7 +49,7 @@ public class ElementoDespesaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ElementoDespesaDto> update(@Valid @RequestBody
-        ElementoDespesaUpdateForm elementoDespesaUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
+        ElementoDespesaForm elementoDespesaForm, @PathVariable("id") Integer id, BindingResult br) {
         List<String> errors = new ArrayList<>();
         
         if (br.hasErrors()) {
@@ -60,7 +59,7 @@ public class ElementoDespesaController {
             throw new ConstraintException("Erro de Validação", errors);
         }
         
-        ElementoDespesaDto elementoDespesaDto = elementoDespesaService.updateById(elementoDespesaUpdateForm, id);
+        ElementoDespesaDto elementoDespesaDto = elementoDespesaService.updateById(elementoDespesaForm, id);
         return ResponseEntity.ok().body(elementoDespesaDto);
     }
 

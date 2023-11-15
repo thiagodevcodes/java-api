@@ -14,7 +14,6 @@ import br.com.thiago.orcamento.model.UnidadeModel;
 import br.com.thiago.orcamento.repository.UnidadeRepository;
 import br.com.thiago.orcamento.rest.dto.UnidadeDto;
 import br.com.thiago.orcamento.rest.form.UnidadeForm;
-import br.com.thiago.orcamento.rest.form.UnidadeUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -62,13 +61,14 @@ public class UnidadeService {
         }
     }
 
-    public UnidadeDto updateById(UnidadeUpdateForm unidadeUpdateForm, Integer id) {
+    public UnidadeDto updateById(UnidadeForm unidadeForm, Integer id) {
         try {
             Optional<UnidadeModel> unidadeExistente = unidadeRepository.findById(id);
 
             if (unidadeExistente.isPresent()) {
                 UnidadeModel unidadeAtualizado = unidadeExistente.get();
-                unidadeAtualizado.setNome(unidadeUpdateForm.getNome());
+
+                modelMapper.map(unidadeForm, unidadeAtualizado);
                 unidadeAtualizado = unidadeRepository.save(unidadeAtualizado);
 
                 return modelMapper.map(unidadeAtualizado, UnidadeDto.class);

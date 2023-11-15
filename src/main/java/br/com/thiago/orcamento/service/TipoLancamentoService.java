@@ -14,7 +14,6 @@ import br.com.thiago.orcamento.rest.dto.TipoLancamentoDto;
 import br.com.thiago.orcamento.model.TipoLancamentoModel;
 import br.com.thiago.orcamento.repository.TipoLancamentoRepository;
 import br.com.thiago.orcamento.rest.form.TipoLancamentoForm;
-import br.com.thiago.orcamento.rest.form.TipoLancamentoUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -63,13 +62,14 @@ public class TipoLancamentoService {
         }
     }
 
-    public TipoLancamentoDto updateById(TipoLancamentoUpdateForm tipoLancamentoUpdateForm, Integer id) {
+    public TipoLancamentoDto updateById(TipoLancamentoForm tipoLancamentoForm, Integer id) {
         try {
             Optional<TipoLancamentoModel> tipoLancamentoExistente = tipoLancamentoRepository.findById(id);
 
             if (tipoLancamentoExistente.isPresent()) {
                 TipoLancamentoModel tipoLancamentoAtualizado = tipoLancamentoExistente.get();
-                tipoLancamentoAtualizado.setNome(tipoLancamentoUpdateForm.getNome());
+
+                modelMapper.map(tipoLancamentoForm, tipoLancamentoAtualizado);
                 tipoLancamentoAtualizado = tipoLancamentoRepository.save(tipoLancamentoAtualizado);
 
                 return modelMapper.map(tipoLancamentoAtualizado, TipoLancamentoDto.class);

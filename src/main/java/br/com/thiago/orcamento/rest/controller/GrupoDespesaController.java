@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.thiago.orcamento.rest.dto.GrupoDespesaDto;
 import br.com.thiago.orcamento.rest.form.GrupoDespesaForm;
-import br.com.thiago.orcamento.rest.form.GrupoDespesaUpdateForm;
 import br.com.thiago.orcamento.service.GrupoDespesaService;
 import br.com.thiago.orcamento.service.exceptions.ConstraintException;
 
@@ -50,7 +49,7 @@ public class GrupoDespesaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<GrupoDespesaDto> update(@Valid @RequestBody
-        GrupoDespesaUpdateForm grupoDespesaUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
+        GrupoDespesaForm grupoDespesaForm, @PathVariable("id") Integer id, BindingResult br) {
         List<String> errors = new ArrayList<>();
         
         if (br.hasErrors()) {
@@ -60,7 +59,7 @@ public class GrupoDespesaController {
             throw new ConstraintException("Erro de Validação", errors);
         }
         
-        GrupoDespesaDto grupoDespesaDto = grupoDespesaService.updateById(grupoDespesaUpdateForm, id);
+        GrupoDespesaDto grupoDespesaDto = grupoDespesaService.updateById(grupoDespesaForm, id);
         return ResponseEntity.ok().body(grupoDespesaDto);
     }
 

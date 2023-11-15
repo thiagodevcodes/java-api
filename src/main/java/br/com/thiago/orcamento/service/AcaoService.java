@@ -15,7 +15,6 @@ import br.com.thiago.orcamento.model.AcaoModel;
 import br.com.thiago.orcamento.repository.AcaoRepository;
 import br.com.thiago.orcamento.rest.dto.AcaoDto;
 import br.com.thiago.orcamento.rest.form.AcaoForm;
-import br.com.thiago.orcamento.rest.form.AcaoUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -63,15 +62,14 @@ public class AcaoService {
         }
     }
 
-    public AcaoDto updateById(AcaoUpdateForm acaoUpdateForm, Integer id) {
+    public AcaoDto updateById(AcaoForm acaoForm, Integer id) {
         try {
             Optional<AcaoModel> acaoExistente = acaoRepository.findById(id);
 
             if (acaoExistente.isPresent()) {
                 AcaoModel acaoAtualizado = acaoExistente.get();
 
-                acaoAtualizado.setNome(acaoUpdateForm.getNome());
-                acaoAtualizado.setCodigo(acaoUpdateForm.getCodigo());
+                modelMapper.map(acaoForm, acaoAtualizado);
                 acaoAtualizado = acaoRepository.save(acaoAtualizado);
 
                 return modelMapper.map(acaoAtualizado, AcaoDto.class);

@@ -14,7 +14,6 @@ import br.com.thiago.orcamento.model.ObjetivoEstrategicoModel;
 import br.com.thiago.orcamento.repository.ObjetivoEstrategicoRepository;
 import br.com.thiago.orcamento.rest.dto.ObjetivoEstrategicoDto;
 import br.com.thiago.orcamento.rest.form.ObjetivoEstrategicoForm;
-import br.com.thiago.orcamento.rest.form.ObjetivoEstrategicoUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -60,13 +59,14 @@ public class ObjetivoEstrategicoService {
         }
     }
 
-    public ObjetivoEstrategicoDto updateById(ObjetivoEstrategicoUpdateForm objetivoEstrategicoUpdateForm, Integer id) {
+    public ObjetivoEstrategicoDto updateById(ObjetivoEstrategicoForm objetivoEstrategicoForm, Integer id) {
         try {
             Optional<ObjetivoEstrategicoModel> objetivoEstrategicoExistente = objetivoEstrategicoRepository.findById(id);
 
             if (objetivoEstrategicoExistente.isPresent()) {
                 ObjetivoEstrategicoModel objetivoEstrategicoAtualizado = objetivoEstrategicoExistente.get();
-                objetivoEstrategicoAtualizado.setNome(objetivoEstrategicoUpdateForm.getNome());
+                
+                modelMapper.map(objetivoEstrategicoForm, objetivoEstrategicoAtualizado);
                 objetivoEstrategicoAtualizado = objetivoEstrategicoRepository.save(objetivoEstrategicoAtualizado);
 
                 return modelMapper.map(objetivoEstrategicoAtualizado, ObjetivoEstrategicoDto.class);

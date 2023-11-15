@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.thiago.orcamento.rest.dto.ProgramaDto;
 import br.com.thiago.orcamento.rest.form.ProgramaForm;
-import br.com.thiago.orcamento.rest.form.ProgramaUpdateForm;
 import br.com.thiago.orcamento.service.ProgramaService;
 import br.com.thiago.orcamento.service.exceptions.ConstraintException;
 
@@ -50,7 +49,7 @@ public class ProgramaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ProgramaDto> update(@Valid @RequestBody
-        ProgramaUpdateForm programaUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
+        ProgramaForm programaForm, @PathVariable("id") Integer id, BindingResult br) {
         List<String> errors = new ArrayList<>();
         
         if (br.hasErrors()) {
@@ -60,7 +59,7 @@ public class ProgramaController {
             throw new ConstraintException("Erro de Validação", errors);
         }
         
-        ProgramaDto programaDto = programaService.updateById(programaUpdateForm, id);
+        ProgramaDto programaDto = programaService.updateById(programaForm, id);
         return ResponseEntity.ok().body(programaDto);
     }
 

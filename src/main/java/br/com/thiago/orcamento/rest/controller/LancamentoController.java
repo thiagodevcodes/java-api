@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.thiago.orcamento.rest.dto.LancamentoDto;
 import br.com.thiago.orcamento.rest.form.LancamentoForm;
-import br.com.thiago.orcamento.rest.form.LancamentoUpdateForm;
 import br.com.thiago.orcamento.service.LancamentoService;
 import br.com.thiago.orcamento.service.exceptions.ConstraintException;
 
@@ -50,7 +49,7 @@ public class LancamentoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<LancamentoDto> update(@Valid @RequestBody LancamentoUpdateForm lancamentoUpdateForm
+    public ResponseEntity<LancamentoDto> update(@Valid @RequestBody LancamentoForm lancamentoUpdateForm
             , @PathVariable("id") Integer id, BindingResult br) {
         List<String> errors = new ArrayList<>();
         

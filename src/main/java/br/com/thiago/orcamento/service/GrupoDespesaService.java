@@ -14,7 +14,6 @@ import br.com.thiago.orcamento.model.GrupoDespesaModel;
 import br.com.thiago.orcamento.repository.GrupoDespesaRepository;
 import br.com.thiago.orcamento.rest.dto.GrupoDespesaDto;
 import br.com.thiago.orcamento.rest.form.GrupoDespesaForm;
-import br.com.thiago.orcamento.rest.form.GrupoDespesaUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -62,14 +61,14 @@ public class GrupoDespesaService {
         }
     }
 
-     public GrupoDespesaDto updateById(GrupoDespesaUpdateForm grupoDespesaUpdateForm, Integer id) {
+     public GrupoDespesaDto updateById(GrupoDespesaForm grupoDespesaForm, Integer id) {
         try {
             Optional<GrupoDespesaModel> grupoDespesaExistente = grupoDespesaRepository.findById(id);
 
             if (grupoDespesaExistente.isPresent()) {
                 GrupoDespesaModel grupoDespesaAtualizado = grupoDespesaExistente.get();
-                grupoDespesaAtualizado.setNome(grupoDespesaUpdateForm.getNome());
-                grupoDespesaAtualizado.setCodigo(grupoDespesaUpdateForm.getCodigo());
+
+                modelMapper.map(grupoDespesaForm, grupoDespesaAtualizado);
                 grupoDespesaAtualizado = grupoDespesaRepository.save(grupoDespesaAtualizado);
 
                 return modelMapper.map(grupoDespesaAtualizado, GrupoDespesaDto.class);

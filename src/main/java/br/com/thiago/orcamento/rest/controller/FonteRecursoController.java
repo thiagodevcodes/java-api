@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.thiago.orcamento.rest.dto.FonteRecursoDto;
 import br.com.thiago.orcamento.rest.form.FonteRecursoForm;
-import br.com.thiago.orcamento.rest.form.FonteRecursoUpdateForm;
 import br.com.thiago.orcamento.service.FonteRecursoService;
 import br.com.thiago.orcamento.service.exceptions.ConstraintException;
 
@@ -50,7 +49,7 @@ public class FonteRecursoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<FonteRecursoDto> update(@Valid @RequestBody
-        FonteRecursoUpdateForm fonteRecursoUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
+        FonteRecursoForm fonteRecursoForm, @PathVariable("id") Integer id, BindingResult br) {
         List<String> errors = new ArrayList<>();
         
         if (br.hasErrors()) {
@@ -60,7 +59,7 @@ public class FonteRecursoController {
             throw new ConstraintException("Erro de Validação", errors);
         }
         
-        FonteRecursoDto fonteRecursoDto = fonteRecursoService.updateById(fonteRecursoUpdateForm, id);
+        FonteRecursoDto fonteRecursoDto = fonteRecursoService.updateById(fonteRecursoForm, id);
         return ResponseEntity.ok().body(fonteRecursoDto);
     }
 

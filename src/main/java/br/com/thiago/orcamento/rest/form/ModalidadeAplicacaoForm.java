@@ -18,3 +18,4 @@ public class ModalidadeAplicacaoForm {
         @NotNull(message = "O código não pode ser nulo")
         private Float codigo;
 }
+                

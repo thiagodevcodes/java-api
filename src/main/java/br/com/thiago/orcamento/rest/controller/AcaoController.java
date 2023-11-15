@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.thiago.orcamento.rest.dto.AcaoDto;
 import br.com.thiago.orcamento.rest.form.AcaoForm;
-import br.com.thiago.orcamento.rest.form.AcaoUpdateForm;
 import br.com.thiago.orcamento.service.AcaoService;
 import br.com.thiago.orcamento.service.exceptions.ConstraintException;
 
@@ -54,7 +53,7 @@ public class AcaoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<AcaoDto> update(@Valid @RequestBody
-        AcaoUpdateForm acaoUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
+        AcaoForm acaoForm, @PathVariable("id") Integer id, BindingResult br) {
        
         if (br.hasErrors()) {
             List<String> errors = new ArrayList<>();
@@ -65,7 +64,7 @@ public class AcaoController {
             throw new ConstraintException("Restrição de Dados", errors);
         }
      
-        AcaoDto acaoDto = acaoService.updateById(acaoUpdateForm, id);
+        AcaoDto acaoDto = acaoService.updateById(acaoForm, id);
         return ResponseEntity.ok().body(acaoDto);
     }
 

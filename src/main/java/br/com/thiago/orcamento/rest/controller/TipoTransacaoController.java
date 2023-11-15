@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.thiago.orcamento.rest.dto.TipoTransacaoDto;
 import br.com.thiago.orcamento.rest.form.TipoTransacaoForm;
-import br.com.thiago.orcamento.rest.form.TipoTransacaoUpdateForm;
 import br.com.thiago.orcamento.service.TipoTransacaoService;
 import br.com.thiago.orcamento.service.exceptions.ConstraintException;
 
@@ -50,7 +49,7 @@ public class TipoTransacaoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TipoTransacaoDto> update(@Valid @RequestBody TipoTransacaoUpdateForm tipoTransacaoUpdateForm
+    public ResponseEntity<TipoTransacaoDto> update(@Valid @RequestBody TipoTransacaoForm tipoTransacaoForm
             , @PathVariable("id") Integer id, BindingResult br) {
         List<String> errors = new ArrayList<>();
         
@@ -61,7 +60,7 @@ public class TipoTransacaoController {
             throw new ConstraintException("Erro de Validação", errors);
         }
 
-        TipoTransacaoDto tipoTransacaoDto = tipoTransacaoService.updateById(tipoTransacaoUpdateForm, id);
+        TipoTransacaoDto tipoTransacaoDto = tipoTransacaoService.updateById(tipoTransacaoForm, id);
         return ResponseEntity.ok().body(tipoTransacaoDto);
     }
 

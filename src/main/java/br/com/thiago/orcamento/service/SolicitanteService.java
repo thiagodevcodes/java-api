@@ -14,7 +14,6 @@ import br.com.thiago.orcamento.model.SolicitanteModel;
 import br.com.thiago.orcamento.repository.SolicitanteRepository;
 import br.com.thiago.orcamento.rest.dto.SolicitanteDto;
 import br.com.thiago.orcamento.rest.form.SolicitanteForm;
-import br.com.thiago.orcamento.rest.form.SolicitanteUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -60,13 +59,14 @@ public class SolicitanteService {
         }
     }
 
-    public SolicitanteDto updateById(SolicitanteUpdateForm solicitanteUpdateForm, Integer id) {
+    public SolicitanteDto updateById(SolicitanteForm solicitanteForm, Integer id) {
         try {
             Optional<SolicitanteModel> solicitanteExistente = solicitanteRepository.findById(id);
 
             if (solicitanteExistente.isPresent()) {
                 SolicitanteModel solicitanteAtualizado = solicitanteExistente.get();
-                solicitanteAtualizado.setNome(solicitanteUpdateForm.getNome());
+
+                modelMapper.map(solicitanteForm, solicitanteAtualizado);
                 solicitanteAtualizado = solicitanteRepository.save(solicitanteAtualizado);
 
                 return modelMapper.map(solicitanteAtualizado, SolicitanteDto.class);

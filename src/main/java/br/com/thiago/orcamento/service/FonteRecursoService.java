@@ -14,7 +14,6 @@ import br.com.thiago.orcamento.model.FonteRecursoModel;
 import br.com.thiago.orcamento.repository.FonteRecursoRepository;
 import br.com.thiago.orcamento.rest.dto.FonteRecursoDto;
 import br.com.thiago.orcamento.rest.form.FonteRecursoForm;
-import br.com.thiago.orcamento.rest.form.FonteRecursoUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -62,14 +61,14 @@ public class FonteRecursoService {
         }
     }
 
-     public FonteRecursoDto updateById(FonteRecursoUpdateForm fonteRecursoUpdateForm, Integer id) {
+     public FonteRecursoDto updateById(FonteRecursoForm fonteRecursoForm, Integer id) {
         try {
             Optional<FonteRecursoModel> fonteRecursoExistente = fonteRecursoRepository.findById(id);
 
             if (fonteRecursoExistente.isPresent()) {
                 FonteRecursoModel fonteRecursoAtualizado = fonteRecursoExistente.get();
-                fonteRecursoAtualizado.setNome(fonteRecursoUpdateForm.getNome());
-                fonteRecursoAtualizado.setCodigo(fonteRecursoUpdateForm.getCodigo());
+
+                modelMapper.map(fonteRecursoForm, fonteRecursoAtualizado);
                 fonteRecursoAtualizado = fonteRecursoRepository.save(fonteRecursoAtualizado);
 
                 return modelMapper.map(fonteRecursoAtualizado, FonteRecursoDto.class);

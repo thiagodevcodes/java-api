@@ -13,7 +13,6 @@ import br.com.thiago.orcamento.service.UnidadeOrcamentariaService;
 import br.com.thiago.orcamento.service.exceptions.ConstraintException;
 import br.com.thiago.orcamento.rest.dto.UnidadeOrcamentariaDto;
 import br.com.thiago.orcamento.rest.form.UnidadeOrcamentariaForm;
-import br.com.thiago.orcamento.rest.form.UnidadeOrcamentariaUpdateForm;
 
 @RestController
 @RequestMapping("/unidade-orcamentaria")
@@ -50,7 +49,7 @@ public class UnidadeOrcamentariaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UnidadeOrcamentariaDto> update(@Valid @RequestBody
-        UnidadeOrcamentariaUpdateForm unidadeOrcamentariaUpdateForm, @PathVariable("id") Integer id, BindingResult br) {
+        UnidadeOrcamentariaForm unidadeOrcamentariaForm, @PathVariable("id") Integer id, BindingResult br) {
         List<String> errors = new ArrayList<>();
         
         if (br.hasErrors()) {
@@ -60,7 +59,7 @@ public class UnidadeOrcamentariaController {
             throw new ConstraintException("Erro de Validação", errors);
         }
         
-        UnidadeOrcamentariaDto unidadeOrcamentariaDto = unidadeOrcamentariaService.updateById(unidadeOrcamentariaUpdateForm, id);
+        UnidadeOrcamentariaDto unidadeOrcamentariaDto = unidadeOrcamentariaService.updateById(unidadeOrcamentariaForm, id);
         return ResponseEntity.ok().body(unidadeOrcamentariaDto);
     }
 

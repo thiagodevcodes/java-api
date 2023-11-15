@@ -14,10 +14,8 @@ import br.com.thiago.orcamento.model.LancamentoModel;
 import br.com.thiago.orcamento.repository.LancamentoRepository;
 import br.com.thiago.orcamento.rest.dto.LancamentoDto;
 import br.com.thiago.orcamento.rest.form.LancamentoForm;
-import br.com.thiago.orcamento.rest.form.LancamentoUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
-import br.com.thiago.orcamento.utils.Utils;
 
 @Service
 public class LancamentoService {
@@ -47,23 +45,33 @@ public class LancamentoService {
     public LancamentoDto insert(LancamentoForm lancamentoForm) {
         try {
             LancamentoModel lancamentoNovo = modelMapper.map(lancamentoForm, LancamentoModel.class);
-            
+
             lancamentoNovo = lancamentoRepository.save(lancamentoNovo);
             return modelMapper.map(lancamentoNovo, LancamentoDto.class);
 
         } catch (DataIntegrityViolationException e) {
+            
+            if (e.getMessage().contains("FK")) {
+                String mensagemDeErro = e.getMessage();
+
+                // Divide a mensagem pelo ponto e vírgula
+                String[] partes = mensagemDeErro.split(";\\s");
+                System.out.println(partes[2]);
+                String terceiraParte = partes[2];
+                throw new DataIntegrityException("Erro ocorrido pela " + terceiraParte);
+            }
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Lançamento não foi(foram) preenchido(s).");
         }
     }
 
-    public LancamentoDto updateById(LancamentoUpdateForm lancamentoUpdateForm, Integer id) {
+    public LancamentoDto updateById(LancamentoForm lancamentoForm, Integer id) {
         try {
             Optional<LancamentoModel> lancamentoExistente = lancamentoRepository.findById(id);
 
             if (lancamentoExistente.isPresent()) {
                 LancamentoModel lancamentoAtualizado = lancamentoExistente.get();
-
-                Utils.copyNonNullProperties(lancamentoUpdateForm, lancamentoAtualizado);
+                
+                modelMapper.map(lancamentoForm, lancamentoAtualizado);
                 lancamentoAtualizado = lancamentoRepository.save(lancamentoAtualizado);
 
                 return modelMapper.map(lancamentoAtualizado, LancamentoDto.class);

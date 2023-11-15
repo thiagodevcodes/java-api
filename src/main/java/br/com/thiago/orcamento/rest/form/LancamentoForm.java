@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,16 +25,19 @@ public class LancamentoForm {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataLancamento;
 
+    @NotEmpty
     @NotBlank(message = "A descrição não pode estar em branco")
     @NotNull(message = "A descrição não pode ser nula")
     @Size(max = 255, message = "A descrição pode conter no máximo 255 caracteres")
-    @NotNull(message = "A descrição não pode ser nula")
     private String descricao;
 
-    @NotBlank(message = "O GED não pode estar em branco")
+    @NotEmpty(message = "O nome não pode ser vazio")
+    @NotBlank(message = "O nome não pode estar em branco")
     @Size(max = 27, message = "O GED pode conter no máximo 27 caracteres")
     private String ged;
    
+    @NotBlank(message = "A descrição não pode estar em branco")
+    @NotNull(message = "A descrição não pode ser nula")
     @Size(max = 255, message = "O contratado por conter no máximo 255 caracteres")
     private String contratado;
 

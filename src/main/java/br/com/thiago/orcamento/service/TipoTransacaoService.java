@@ -14,7 +14,6 @@ import br.com.thiago.orcamento.model.TipoTransacaoModel;
 import br.com.thiago.orcamento.repository.TipoTransacaoRepository;
 import br.com.thiago.orcamento.rest.dto.TipoTransacaoDto;
 import br.com.thiago.orcamento.rest.form.TipoTransacaoForm;
-import br.com.thiago.orcamento.rest.form.TipoTransacaoUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -60,13 +59,14 @@ public class TipoTransacaoService {
         }
     }
 
-    public TipoTransacaoDto updateById(TipoTransacaoUpdateForm tipoTransacaoUpdateForm, Integer id) {
+    public TipoTransacaoDto updateById(TipoTransacaoForm tipoTransacaoForm, Integer id) {
         try {
             Optional<TipoTransacaoModel> tipoTransacaoExistente = tipoTransacaoRepository.findById(id);
 
             if (tipoTransacaoExistente.isPresent()) {
                 TipoTransacaoModel tipoTransacaoAtualizado = tipoTransacaoExistente.get();
-                tipoTransacaoAtualizado.setNome(tipoTransacaoUpdateForm.getNome());
+                
+                modelMapper.map(tipoTransacaoForm, tipoTransacaoAtualizado);
                 tipoTransacaoAtualizado = tipoTransacaoRepository.save(tipoTransacaoAtualizado);
 
                 return modelMapper.map(tipoTransacaoAtualizado, TipoTransacaoDto.class);

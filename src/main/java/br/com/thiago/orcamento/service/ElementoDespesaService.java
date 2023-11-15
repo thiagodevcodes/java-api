@@ -14,7 +14,6 @@ import br.com.thiago.orcamento.model.ElementoDespesaModel;
 import br.com.thiago.orcamento.repository.ElementoDespesaRepository;
 import br.com.thiago.orcamento.rest.dto.ElementoDespesaDto;
 import br.com.thiago.orcamento.rest.form.ElementoDespesaForm;
-import br.com.thiago.orcamento.rest.form.ElementoDespesaUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -62,14 +61,14 @@ public class ElementoDespesaService {
         }
     }
 
-     public ElementoDespesaDto updateById(ElementoDespesaUpdateForm elementoDespesaUpdateForm, Integer id) {
+     public ElementoDespesaDto updateById(ElementoDespesaForm elementoDespesaForm, Integer id) {
         try {
             Optional<ElementoDespesaModel> elementoDespesaExistente = elementoDespesaRepository.findById(id);
 
             if (elementoDespesaExistente.isPresent()) {
                 ElementoDespesaModel elementoDespesaAtualizado = elementoDespesaExistente.get();
-                elementoDespesaAtualizado.setNome(elementoDespesaUpdateForm.getNome());
-                elementoDespesaAtualizado.setCodigo(elementoDespesaUpdateForm.getCodigo());
+
+                modelMapper.map(elementoDespesaForm, elementoDespesaAtualizado);
                 elementoDespesaAtualizado = elementoDespesaRepository.save(elementoDespesaAtualizado);
 
                 return modelMapper.map(elementoDespesaAtualizado, ElementoDespesaDto.class);

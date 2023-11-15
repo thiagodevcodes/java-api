@@ -15,7 +15,6 @@ import br.com.thiago.orcamento.model.ModalidadeAplicacaoModel;
 import br.com.thiago.orcamento.repository.ModalidadeAplicacaoRepository;
 import br.com.thiago.orcamento.rest.dto.ModalidadeAplicacaoDto;
 import br.com.thiago.orcamento.rest.form.ModalidadeAplicacaoForm;
-import br.com.thiago.orcamento.rest.form.ModalidadeAplicacaoUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -62,14 +61,14 @@ public class ModalidadeAplicacaoService {
         }
     }
 
-     public ModalidadeAplicacaoDto updateById(ModalidadeAplicacaoUpdateForm modalidadeAplicacaoUpdateForm, Integer id) {
+     public ModalidadeAplicacaoDto updateById(ModalidadeAplicacaoForm modalidadeAplicacaoForm, Integer id) {
         try {
             Optional<ModalidadeAplicacaoModel> modalidadeAplicacaoExistente = modalidadeAplicacaoRepository.findById(id);
 
             if (modalidadeAplicacaoExistente.isPresent()) {
                 ModalidadeAplicacaoModel modalidadeAplicacaoAtualizado = modalidadeAplicacaoExistente.get();
-                modalidadeAplicacaoAtualizado.setNome(modalidadeAplicacaoUpdateForm.getNome());
-                modalidadeAplicacaoAtualizado.setCodigo(modalidadeAplicacaoUpdateForm.getCodigo());
+
+                modelMapper.map(modalidadeAplicacaoForm, modalidadeAplicacaoAtualizado);
                 modalidadeAplicacaoAtualizado = modalidadeAplicacaoRepository.save(modalidadeAplicacaoAtualizado);
 
                 return modelMapper.map(modalidadeAplicacaoAtualizado, ModalidadeAplicacaoDto.class);

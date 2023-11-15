@@ -14,7 +14,6 @@ import br.com.thiago.orcamento.model.UnidadeOrcamentariaModel;
 import br.com.thiago.orcamento.repository.UnidadeOrcamentariaRepository;
 import br.com.thiago.orcamento.rest.dto.UnidadeOrcamentariaDto;
 import br.com.thiago.orcamento.rest.form.UnidadeOrcamentariaForm;
-import br.com.thiago.orcamento.rest.form.UnidadeOrcamentariaUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -62,14 +61,14 @@ public class UnidadeOrcamentariaService {
         }
     }
 
-    public UnidadeOrcamentariaDto updateById(UnidadeOrcamentariaUpdateForm unidadeOrcamentariaForm, Integer id) {
+    public UnidadeOrcamentariaDto updateById(UnidadeOrcamentariaForm unidadeOrcamentariaForm, Integer id) {
         try {
             Optional<UnidadeOrcamentariaModel> unidadeOrcamentariaExistente = unidadeOrcamentariaRepository.findById(id);
 
             if(unidadeOrcamentariaExistente.isPresent()) {
                 UnidadeOrcamentariaModel unidadeOrcamentariaAtualizado = unidadeOrcamentariaExistente.get();
-                unidadeOrcamentariaAtualizado.setNome(unidadeOrcamentariaForm.getNome());
-                unidadeOrcamentariaAtualizado.setCodigo(unidadeOrcamentariaForm.getCodigo());
+                
+                modelMapper.map(unidadeOrcamentariaForm, unidadeOrcamentariaAtualizado);
                 unidadeOrcamentariaAtualizado = unidadeOrcamentariaRepository.save(unidadeOrcamentariaAtualizado);
                 
                 return modelMapper.map(unidadeOrcamentariaAtualizado, UnidadeOrcamentariaDto.class);

@@ -14,7 +14,6 @@ import br.com.thiago.orcamento.model.ProgramaModel;
 import br.com.thiago.orcamento.repository.ProgramaRepository;
 import br.com.thiago.orcamento.rest.dto.ProgramaDto;
 import br.com.thiago.orcamento.rest.form.ProgramaForm;
-import br.com.thiago.orcamento.rest.form.ProgramaUpdateForm;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -62,14 +61,14 @@ public class ProgramaService {
         }
     }
 
-     public ProgramaDto updateById(ProgramaUpdateForm programaUpdateForm, Integer id) {
+     public ProgramaDto updateById(ProgramaForm programaForm, Integer id) {
         try {
             Optional<ProgramaModel> programaExistente = programaRepository.findById(id);
 
             if (programaExistente.isPresent()) {
                 ProgramaModel programaAtualizado = programaExistente.get();
-                programaAtualizado.setNome(programaUpdateForm.getNome());
-                programaAtualizado.setCodigo(programaUpdateForm.getCodigo());
+
+                modelMapper.map(programaForm, programaAtualizado);
                 programaAtualizado = programaRepository.save(programaAtualizado);
 
                 return modelMapper.map(programaAtualizado, ProgramaDto.class);
