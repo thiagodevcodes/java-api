@@ -1,0 +1,83 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.table {
+    border-collapse: collapse;
+    background-color: #ffffff;
+    font-size: 11pt;
+    box-shadow: 0px 0px 5px;
+    border-radius: 10px;
+    width: 70%;
+}
+
+.table th {
+    background-color: #000000;
+    color: white;
+    padding: 12px;
+    text-align: center;
+}
+
+.table th:nth-child(1) {
+    border-radius: 10px 0 0 0;
+}
+
+.table th:nth-last-child(1) {
+    border-radius: 0 10px 0 0;
+}
+
+.table td {
+    padding: 5px;
+    text-align: center;    
+}
+  
+.table tr:nth-child(even) {
+    background-color: #b1b1b1;
+
+}
+
+.table a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.link img {
+    width: 20px;
+    margin: 0 3px;
+}
+
+.headerTable {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.headerTable h2 {
+    margin: 20px 0px;
+}
+
+.headerTable button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.headerTable button:hover {
+    background-color: #b1b1b1;
+}
+
+.actionButton {
+    border: none;
+    background-color: #00000000;
+}
+
+.actionButton:hover {
+    cursor: pointer;
+}
