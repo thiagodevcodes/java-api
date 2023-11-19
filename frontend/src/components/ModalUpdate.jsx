@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/Modal.module.css";
 import axios from "axios";
-import { useRouter } from 'next/router';
 import InputForm from "./InputForm";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
-export default function ModalUpdate(props) {
-    const [acao, setAcao] = useState({})
-    const [codigo, setCodigo] = useState(acao?.codigo || "");
-    const [nome, setNome] = useState(acao?.nome || "");
-    const router = useRouter();
+
+export default function ModalUpdate({ title, id, onClose }) {
+    const [acao, setAcao] = useState({
+        codigo: "",
+        nome: ""
+    });
+
+    const [codigo, setCodigo] = useState(acao.codigo);
+    const [nome, setNome] = useState(acao.nome);
 
 
     const fetchDataById = async (id) => {
@@ -20,19 +22,17 @@ export default function ModalUpdate(props) {
         } catch (error) {
           //console.error('Erro ao buscar dados da ação:', error);
           toast.error("Erro ao sincronizar dados da ação!")
-          setAcao(null);
+          setAcao({ codigo: "", nome: "" });
         }
     };
 
     const handleUpdate = async (id, data) => {
         try {
+            
             if(data) {
                 await axios
                 .put(`http://localhost:8080/api/orcamento/acao/${id}`, data)
                 .then((response) => {
-                    setTimeout(() => {
-                        router.reload();
-                    }, 3000);
                     toast.success("Ação atualizada com sucesso!")
                     //console.log(response);
                 })
@@ -48,8 +48,8 @@ export default function ModalUpdate(props) {
     }
 
     useEffect(() => {
-        fetchDataById(props.id);
-    }, [props.id])
+        fetchDataById(id);
+    }, [id])
 
     useEffect(() => {
         if (acao && acao.codigo && acao.nome) {
@@ -61,7 +61,7 @@ export default function ModalUpdate(props) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <h2>{props.title}</h2>
+                <h2>{title}</h2>
  
                 <InputForm 
                     id="inputCodigo" 
@@ -82,11 +82,9 @@ export default function ModalUpdate(props) {
                 </InputForm>
         
                 <div className={styles.buttons}>
-                    <button onClick={props.onClose}>Fechar</button>
-                    <button onClick={() => handleUpdate(props.id, { nome, codigo })}>Salvar</button>
+                    <button onClick={onClose}>Fechar</button>
+                    <button onClick={() => handleUpdate(id, { nome, codigo })}>Salvar</button>
                 </div>
-
-                <ToastContainer/>
             </div>
         </div>
     );

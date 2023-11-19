@@ -2,25 +2,12 @@
     height: 100vh;
     display: grid;
     grid-template-columns: 200px 100px;
-    grid-template-rows: 60px;
+    grid-template-rows: 50px;
     grid-template-areas: 
         "header header header"
         "sidebar main main"
-        "sidebar main main"
+        "sidebar footer footer"
     ;
-    
-}
-
-.linkContainer {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    cursor: pointer;
-}
-
-.linkContainer img {
-    width: 20px;
 }
 
 .nav {
@@ -39,7 +26,9 @@
     display: flex;
     grid-area: header;
     padding: 10px;
-    background-color: black;
+    background-color: #2d31ff;
+    box-shadow: 0 0 5px;
+    z-index: 2;
 }
 
 .container header a {
@@ -59,97 +48,57 @@
 
 .container aside {
     display: flex;
+    box-shadow: 0px 0px 2px;
+    z-index: 1;
+
     flex-direction: column;
     align-items: center;
     grid-area: sidebar;
-    background-color: #b1b1b1;
+    background-color: #ffffff;
+    
 }
 
 .container aside a {
     text-decoration: none;
     color: black;
     padding: 10px;
-    font-weight: bold;
-    text-align: center;
-    font-size: 11pt;
+    font-size: 10pt;
+    width: 100%;
 }
 
 .container main {
     grid-area: main;
     height: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(218, 218, 218);
 
 }
 
 .container footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(218, 218, 218);
     grid-area: footer;
-    background-color: black;
+    font-size: 11pt;
+    color: rgb(0, 0, 0);
+
+}
+
+.linkContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.linkContainer img {
+    width: 20px;
+    padding-left: 20px;
 }
 
 .linkContainer:hover {
     background-color: rgba(0, 0, 0, 0.082);
-    
+
 }
-
-
-/*
-.container {
-    background-color: #333;
-    border: 2px solid red;
-    padding: 15px;
-    display: grid;
-    grid-template-columns: 50px auto 10% 10%;
-    height: 35vh;
-    grid-template-rows: 70% 30%;
-    gap: 5px;
-}
-
-.layout {
-    background-color: #CCC;
-    padding: 20px;
-    border: 1px solid blue;
-}
-*/
-
-
-
-
-/*
-.header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #000000;
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 1.4rem;
-    color: white;
-}
-
-.header a {
-    color: white;
-    padding: 5px 12px;
-    border-radius: 5px;
-    font-size: 12pt;
-    text-decoration: none;
-}
-
-.header button {
-    background-color: crimson;
-    padding: 5px 12px;
-    border-radius: 5px;
-    font-size: 12pt;
-    border: none;
-    cursor: pointer;
-    color: white;
-}
-
-.content {
-    padding: 25px;
-    height: 100%;
-}
-*/
-
 

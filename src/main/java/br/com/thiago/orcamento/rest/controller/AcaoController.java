@@ -8,6 +8,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +27,8 @@ public class AcaoController {
     AcaoService acaoService;
 
     @GetMapping
-    public ResponseEntity<List<AcaoDto>> findAll() {
-        List<AcaoDto> acaoDtoList = acaoService.findAll();
+    public ResponseEntity<Page<AcaoDto>> findAll(Pageable page) {
+        Page<AcaoDto> acaoDtoList = acaoService.findAll(page);
         return ResponseEntity.ok().body(acaoDtoList);
     }
 

@@ -3,14 +3,14 @@ import styles from "../styles/Layout.module.css";
 import { useRouter } from 'next/router';
 import Options from "./Options";
 
-export default function Layout(props) {
+export default function Layout({ title, children}) {
     const router = useRouter();
 
     return (
         <div className={styles.container}>
             <header className={styles.layout}>
                 <nav className={styles.nav}>
-                    <h1>{props.titulo ?? "Orçamento Público"}</h1>
+                    <h1>{title ?? "Orçamento Público"}</h1>
                     <div>
                         <Link style={{margin: "20px"}} href="/">Home</Link>
                         <button onClick={() => router.back()}>Voltar</button>
@@ -19,18 +19,17 @@ export default function Layout(props) {
             </header>
 
             <aside className={styles.layout}>
-                <Options title="Home" img="/icons/Home.png" href="/"/>
-                <Options title="Acão" img="/icons/Home.png" href="/acao"/>
+                <Options title="Home" img="/icons/Home.svg" href="/"/>
+                <Options title="Acão" img="/icons/Action.svg" href="/acao"/>
             </aside>
 
             <main className={styles.layout}>
-                {props.children} 
+                {children} 
             </main>
-            {/*
+            
             <footer className={styles.layout}>
-                Footer
+                Created By Thiago Silva Rodrigues
             </footer>
-            */}
         </div>
     )
 }

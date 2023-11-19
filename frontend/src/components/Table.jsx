@@ -4,20 +4,15 @@ import { useState } from "react";
 import Modal from "./Modal";
 import ModalUpdate from "./ModalUpdate";
 import axios from "axios";
-import { useRouter } from "next/router";
-import { ToastContainer ,toast } from "react-toastify";
+import { toast } from "react-toastify";
 
-export default function Table(props) {
+export default function Table({ acao }) {
     const [modalOpen, setModalOpen] = useState({ post: false, update: false });
-    const router = useRouter();
     const [id, setId] = useState(null);
 
     const handleDelete = async(id) => {
         try {
             await axios.delete(`http://localhost:8080/api/orcamento/acao/${id}`);
-            setTimeout(() => {
-                router.reload();
-            }, 3000);
             toast.success("Ação deletada com sucesso!");
         } catch (error) {
             //console.error('Erro ao buscar dados:', error);
@@ -41,7 +36,11 @@ export default function Table(props) {
     return (
         <div className={styles.container}>
             <div className={styles.headerTable}>
-                <h2>Tela de Ações</h2>
+                <div className={styles.headerButton}>
+                    <img src="/icons/Action.svg" alt="" />
+                    <h2>Tela de Ações</h2>
+                </div>
+                
                 <button onClick={() => abrirModal("post")}>Adicionar</button>
                 {modalOpen.post && <Modal title="Adicionar Ação" onClose={fecharModal} />}
                 {modalOpen.update && <ModalUpdate id={id} title="Editar Ação" onClose={fecharModal}/>}
@@ -57,31 +56,31 @@ export default function Table(props) {
                 </tr>
                 </thead>
                 <tbody>
-                {props.acao.map((item) => (
+                
+                {acao.map((item) => (
                     <tr key={item.id}>
                         <td>{item.id}</td>
                         <td>{item.nome}</td>
                         <td>{item.codigo}</td>
                         <td className={styles.link}>
                             <Link href={`/acao/${item.id}`}>
-                                <img src="/icons/Eye.png" alt="" />
+                                <img src="/icons/Eye.svg" alt="" />
                             </Link>
 
                             <button className={styles.actionButton} onClick={() => {abrirModal("update"); setId(item.id); }}>
-                                <img src="/icons/Edit.png" alt="" />     
+                                <img src="/icons/Edit.svg" alt="" />     
                             </button>
                             
                             <button onClick={() => handleDelete(item.id)} className={styles.actionButton}>
-                                <img src="/icons/Delete.png" alt="" />
+                                <img src="/icons/Delete.svg" alt="" />
                             </button>
                         </td>
                     </tr>
                 ))}
-                
-                
                 </tbody>
             </table>
-            <ToastContainer/>
+
+            
         </div>
 
     )

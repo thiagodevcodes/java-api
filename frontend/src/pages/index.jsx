@@ -10,6 +10,7 @@ export default function Home(props) {
             height: "100vh"
         }}>
             <Nav text="Acão" destino="/acao"/>
+            
         </div>
     )
 }

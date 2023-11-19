@@ -15,7 +15,7 @@
 }
 
 .table th {
-    background-color: #000000;
+    background-color: #2d31ff;
     color: white;
     padding: 12px;
     text-align: center;
@@ -35,13 +35,19 @@
 }
   
 .table tr:nth-child(even) {
-    background-color: #b1b1b1;
+    background-color: #c5c5c5;
 
 }
 
 .table a {
     color: rgb(0, 0, 0);
     text-decoration: none;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .link img {
@@ -61,16 +67,25 @@
 }
 
 .headerTable button {
-    background-color: black;
+    background-color: #2d31ff;
     color: white;
     border: none;
-    padding: 8px;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 15px;
     cursor: pointer;
+    box-shadow: 0 0 3px black;
+    z-index: 1;
 }
 
 .headerTable button:hover {
-    background-color: #b1b1b1;
+    background-color: rgb(3, 5, 155);
+}
+
+.headerButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .actionButton {

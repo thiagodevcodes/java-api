@@ -1,10 +1,10 @@
 import styles from "../styles/Modal.module.css";
 
-export default function InputForm(props) {
+export default function InputForm({htmlFor, title, id, onChange, type, value}) {
     return (
         <div className={styles.inputContainer}>
-            <label htmlFor={props.htmlFor}>{props.title} </label>
-            <input id={props.id} onChange={props.onChange} type={props.type} value={props.value}/>
+            <label htmlFor={htmlFor}>{title} </label>
+            <input id={id} onChange={onChange} type={type} value={value}/>
         </div>
     )
 }

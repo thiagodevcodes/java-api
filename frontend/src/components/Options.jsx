@@ -1,11 +1,11 @@
 import Link from "next/link";
 import styles from "../styles/Layout.module.css";
 
-export default function Options(props) {
+export default function Options({ img, href, title }) {
     return (
         <div className={styles.linkContainer}>
-            <img src={props.img} alt="" />
-            <Link href={props.href}>{props.title}</Link>
+            <img src={img} alt="" />
+            <Link href={href}>{title}</Link>
         </div>
     )
 }

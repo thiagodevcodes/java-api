@@ -1,29 +1,22 @@
 import { useState } from "react";
 import styles from "../styles/Modal.module.css";
 import axios from "axios";
-import { useRouter } from 'next/router';
 import InputForm from "./InputForm";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
-export default function Modal(props) {
+export default function Modal({ title, onClose }) {
     const [codigo, setCodigo] = useState(null);
     const [nome, setNome] = useState("");
-    const router = useRouter();
 
     const handleCreate = async (data) => {
         try {
             await axios
                 .post("http://localhost:8080/api/orcamento/acao", data)
-                .then((response) => {
-                    setTimeout(() => {
-                        router.reload();
-                    }, 3000);
+                .then(() => {
                     toast.success('Ação foi cadastrada.')
-                    //timeoutId();
                     //console.log(response);
               })
-              .catch((error) => {
+              .catch(() => {
                 //console.log(error);
                 toast.error('Ocorreu um erro ao cadastrar!')
                 
@@ -37,7 +30,7 @@ export default function Modal(props) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <h2>{props.title}</h2>
+                <h2>{title}</h2>
 
                 <InputForm 
                     id="inputNome" 
@@ -56,11 +49,9 @@ export default function Modal(props) {
                 </InputForm>
                 
                 <div className={styles.buttons}>
-                    <button onClick={props.onClose}>Fechar</button>
+                    <button onClick={onClose}>Fechar</button>
                     <button onClick={() => handleCreate({nome, codigo})}>Salvar</button>
                 </div>
-
-                <ToastContainer/>
             </div>
         </div>
     );

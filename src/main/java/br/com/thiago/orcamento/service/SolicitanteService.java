@@ -1,13 +1,14 @@
 package br.com.thiago.orcamento.service;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.thiago.orcamento.model.SolicitanteModel;
@@ -34,12 +35,11 @@ public class SolicitanteService {
         }
     }
 
-    public List<SolicitanteDto> findAll(){
-        List<SolicitanteModel> solicitanteList = solicitanteRepository.findAll();
 
-        return solicitanteList.stream()
-                .map(solicitante -> modelMapper.map(solicitante, SolicitanteDto.class))
-                .collect(Collectors.toList());
+    public Page<SolicitanteDto> findAll(Pageable pageable){
+        Page<SolicitanteModel> solicitantePage = solicitanteRepository.findAll(pageable);
+
+        return solicitantePage.map(solicitante -> modelMapper.map(solicitante, SolicitanteDto.class));       
     }
 
     public SolicitanteDto insert(SolicitanteForm solicitanteForm) {

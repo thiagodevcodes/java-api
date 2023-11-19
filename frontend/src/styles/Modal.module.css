@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 5;
 }
   
 .modal {
@@ -26,11 +27,12 @@
 }
 
 .modal h2 {
+    margin: 10px;
     text-align: center;
 }
 
 .modal button:hover {
-    background-color: #b1b1b1;
+    background-color: rgb(3, 5, 155);
 }
 
 .inputContainer {

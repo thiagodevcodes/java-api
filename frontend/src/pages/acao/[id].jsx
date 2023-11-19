@@ -22,10 +22,10 @@ export default function AcaoById() {
   };
 
   useEffect( () => {
-    if(router.query.id) {
+    if(id) {
       fetchDataById(id)
     }
-  }, [router.query.id])
+  }, [id])
 
   if (!acao) {
       return <div>Ação não encontrada</div>;
@@ -36,7 +36,6 @@ export default function AcaoById() {
           <p>Id: {acao.id}</p>
           <p>Nome: {acao.nome}</p>
           <p>Email: {acao.codigo}</p>
-          <ToastContainer/>
       </Layout>
   );
 };
