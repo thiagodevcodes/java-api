@@ -46,4 +46,12 @@
     justify-content: flex-end;
     margin-top: 15px;
 }
-  
+
+.buttons button {
+    background-color: #2d31ff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}

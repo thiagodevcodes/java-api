@@ -10,7 +10,11 @@ export default function Layout({ title, children}) {
         <div className={styles.container}>
             <header className={styles.layout}>
                 <nav className={styles.nav}>
-                    <h1>{title ?? "Orçamento Público"}</h1>
+                    <div className={styles.logoContainer}>
+                        <img src="/icons/favicon.svg" alt="" />
+                        <h1>{title ?? "Orçamento Público"}</h1>
+                    </div>
+                    
                     <div>
                         <Link style={{margin: "20px"}} href="/">Home</Link>
                         <button onClick={() => router.back()}>Voltar</button>
@@ -28,7 +32,7 @@ export default function Layout({ title, children}) {
             </main>
             
             <footer className={styles.layout}>
-                Created By Thiago Silva Rodrigues
+            
             </footer>
         </div>
     )

@@ -1,15 +1,9 @@
 import styles from "../styles/Table.module.css"
 import Link from "next/link"
-import { useState } from "react";
-import Modal from "./Modal";
-import ModalUpdate from "./ModalUpdate";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export default function Table({ acao }) {
-    const [modalOpen, setModalOpen] = useState({ post: false, update: false });
-    const [id, setId] = useState(null);
-
+export default function Table({ acao, controlModal, setId }) {
     const handleDelete = async(id) => {
         try {
             await axios.delete(`http://localhost:8080/api/orcamento/acao/${id}`);
@@ -20,32 +14,8 @@ export default function Table({ acao }) {
         }
     }
 
-    const abrirModal = (modal) => {
-        if(modal == "post") {
-            setModalOpen({ post: true, update: false });
-        }
-        if(modal == "update") {
-            setModalOpen({ post: false, update: true });
-        }
-    };
-  
-    const fecharModal = () => {
-        setModalOpen({ post: false, update: false });
-    };
-
     return (
         <div className={styles.container}>
-            <div className={styles.headerTable}>
-                <div className={styles.headerButton}>
-                    <img src="/icons/Action.svg" alt="" />
-                    <h2>Tela de Ações</h2>
-                </div>
-                
-                <button onClick={() => abrirModal("post")}>Adicionar</button>
-                {modalOpen.post && <Modal title="Adicionar Ação" onClose={fecharModal} />}
-                {modalOpen.update && <ModalUpdate id={id} title="Editar Ação" onClose={fecharModal}/>}
-            </div>
-            
             <table className={styles.table}>
                 <thead>
                 <tr>
@@ -56,8 +26,16 @@ export default function Table({ acao }) {
                 </tr>
                 </thead>
                 <tbody>
-                
-                {acao.map((item) => (
+
+                {
+                acao.length == 0 ? 
+                <tr style={{}}>
+                    <td colSpan={4}>
+                        Não possui dados!
+                    </td>
+                </tr>
+                    : 
+                acao.map((item) => (
                     <tr key={item.id}>
                         <td>{item.id}</td>
                         <td>{item.nome}</td>
@@ -67,7 +45,7 @@ export default function Table({ acao }) {
                                 <img src="/icons/Eye.svg" alt="" />
                             </Link>
 
-                            <button className={styles.actionButton} onClick={() => {abrirModal("update"); setId(item.id); }}>
+                            <button className={styles.actionButton} onClick={() => {controlModal("update", true); setId(item.id); }}>
                                 <img src="/icons/Edit.svg" alt="" />     
                             </button>
                             
@@ -79,10 +57,7 @@ export default function Table({ acao }) {
                 ))}
                 </tbody>
             </table>
-
-            
         </div>
-
     )
 }
 

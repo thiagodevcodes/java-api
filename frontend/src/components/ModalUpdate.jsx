@@ -3,9 +3,10 @@ import styles from "../styles/Modal.module.css";
 import axios from "axios";
 import InputForm from "./InputForm";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 
-export default function ModalUpdate({ title, id, onClose }) {
+export default function ModalUpdate({ title, id, controlModal }) {
     const [acao, setAcao] = useState({
         codigo: "",
         nome: ""
@@ -13,7 +14,7 @@ export default function ModalUpdate({ title, id, onClose }) {
 
     const [codigo, setCodigo] = useState(acao.codigo);
     const [nome, setNome] = useState(acao.nome);
-
+    const router = useRouter();
 
     const fetchDataById = async (id) => {
         try {
@@ -28,11 +29,16 @@ export default function ModalUpdate({ title, id, onClose }) {
 
     const handleUpdate = async (id, data) => {
         try {
-            
-            if(data) {
-                await axios
+            if(!data.nome || !data.codigo) return toast.warn("Insira os campos corretamente!")
+
+            await axios
                 .put(`http://localhost:8080/api/orcamento/acao/${id}`, data)
                 .then((response) => {
+                    controlModal("update", false)
+                    setTimeout(() => {
+                        router.reload();
+                    }, 3000)  
+
                     toast.success("Ação atualizada com sucesso!")
                     //console.log(response);
                 })
@@ -40,7 +46,6 @@ export default function ModalUpdate({ title, id, onClose }) {
                 //console.log(error);
                 toast.error("Ocorreu um eror ao atualizar!")
               });
-            }
             } catch (error) {
             //console.error(error);
             toast.error("Ocorreu um eror ao atualizar!")
@@ -82,7 +87,7 @@ export default function ModalUpdate({ title, id, onClose }) {
                 </InputForm>
         
                 <div className={styles.buttons}>
-                    <button onClick={onClose}>Fechar</button>
+                    <button onClick={() => controlModal("update", false)}>Fechar</button>
                     <button onClick={() => handleUpdate(id, { nome, codigo })}>Salvar</button>
                 </div>
             </div>

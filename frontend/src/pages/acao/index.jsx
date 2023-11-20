@@ -3,41 +3,60 @@ import axios from "axios";
 import Table from "@/components/Table";
 import Layout from "@/components/Layout";
 import Pagination from "@/components/Pagination";
+import Header from "@/components/Header";
+import Modal from "@/components/Modal";
+import ModalUpdate from "@/components/ModalUpdate";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LIMIT = 10;
 
 export default function Acao() {
-    const [acao, setAcao] = useState([]);
-    const [currentPage, setCurrentPage] = useState(0);
-    const [totalPages, setTotalPages] = useState(0);
+  const [acao, setAcao] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [modalOpen, setModalOpen] = useState({ post: false, update: false });
+  const [id, setId] = useState(null);
 
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8080/api/orcamento/acao?size=${LIMIT}&page=${currentPage}`);
-        //console.log(response.data)
-        setAcao(response.data.content);
-        setTotalPages(response.data.totalPages);
-      } catch (error) {
-        //console.error('Erro ao buscar dados:', error);
-        toast.error("Erro ao buscar dados!")
-      }
-    };   
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/orcamento/acao?size=${LIMIT}&page=${currentPage}`);
+      //console.log(response.data)
+      setAcao(response.data.content);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      //console.error('Erro ao buscar dados:', error);
+      toast.error("Erro ao buscar dados!")
+    }
+  };   
 
-    useEffect(() => {
-        fetchData();
-    }, [currentPage]);
+  const controlModal = (modal, isOpen) => {
+    setModalOpen({
+      post: modal === "post" ? isOpen : false,
+      update: modal === "update" ? isOpen : false
+    });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [currentPage]);
     
-    return (
-        <Layout title="Orçamento Público">
-          <Table acao={acao} title="acao"/>
-          <Pagination 
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                totalPages={totalPages}
-            />
-            <ToastContainer/>
-        </Layout>
-    )
+  return (
+    <Layout title="Orçamento Público">
+      <Header controlModal={controlModal}/>
+      <Table acao={acao} controlModal={controlModal} setId={setId} title="acao"/>
+        
+      {acao.length == 0 ? null : 
+        <Pagination 
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
+      }
+
+      {modalOpen.post && <Modal title="Adicionar Ação" controlModal={controlModal} />}
+      {modalOpen.update && <ModalUpdate id={id} title="Editar Ação" controlModal={controlModal}/>}
+      <ToastContainer/>
+    </Layout>
+  )
 }

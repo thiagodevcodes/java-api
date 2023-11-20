@@ -1,6 +1,6 @@
-import Nav from "@/components/Nav"
+import Link from "next/link"
 
-export default function Home(props) {
+export default function Home() {
     return (
         <div style={{
             display: "flex",
@@ -9,8 +9,12 @@ export default function Home(props) {
             flexWrap: "wrap",
             height: "100vh"
         }}>
-            <Nav text="Acão" destino="/acao"/>
-            
+
+            <Link href="/acao">
+                <div style={{backgroundColor: "dodgerblue", padding: "30px", margin: "10", borderRadius: "8px"}}>
+                    Ação
+                </div>
+            </Link>
         </div>
     )
 }
