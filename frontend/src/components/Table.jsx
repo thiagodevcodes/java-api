@@ -1,60 +1,62 @@
 import styles from "../styles/Table.module.css"
 import Link from "next/link"
-import axios from "axios";
-import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import { handleDelete } from "@/services/axios";
 
-export default function Table({ acao, controlModal, setId }) {
-    const handleDelete = async(id) => {
-        try {
-            await axios.delete(`http://localhost:8080/api/orcamento/acao/${id}`);
-            toast.success("Ação deletada com sucesso!");
-        } catch (error) {
-            //console.error('Erro ao buscar dados:', error);
-            toast.error("Erro ao deletar a ação!");
-        }
+export default function Table({ model, controlModal, setId, path }) {
+    const router = useRouter();
+
+    if (!model || model.length === 0) {
+        return 
     }
+
+    const columns = Object.keys(model[0]);
 
     return (
         <div className={styles.container}>
             <table className={styles.table}>
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nome da Ação</th>
-                    <th>Código</th>
-                    <th>Ações</th>
+                {columns.map((column) => (
+
+                    <th key={column}>{column.charAt(0).toUpperCase() + column.slice(1)}</th>
+                ))}
+                <th>Ações</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 {
-                acao.length == 0 ? 
-                <tr style={{}}>
+                model.length == 0 ? 
+                <tr>
                     <td colSpan={4}>
                         Não possui dados!
                     </td>
                 </tr>
                     : 
-                acao.map((item) => (
-                    <tr key={item.id}>
-                        <td>{item.id}</td>
-                        <td>{item.nome}</td>
-                        <td>{item.codigo}</td>
+                model.map((row, index) => (
+                    <tr key={index}>
+                        {columns.map((column) => (
+
+                            <td key={column}>{row[column]}</td>
+                        ))}
                         <td className={styles.link}>
-                            <Link href={`/acao/${item.id}`}>
+                            <Link href={`/${path}/${row.id}`}>
                                 <img src="/icons/Eye.svg" alt="" />
                             </Link>
 
-                            <button className={styles.actionButton} onClick={() => {controlModal("update", true); setId(item.id); }}>
+                            <button className={styles.actionButton} onClick={() => {controlModal("update", true); setId(row.id); }}>
                                 <img src="/icons/Edit.svg" alt="" />     
                             </button>
-                            
-                            <button onClick={() => handleDelete(item.id)} className={styles.actionButton}>
+                                
+                            <button onClick={() => handleDelete(row.id, path, router)} className={styles.actionButton}>
                                 <img src="/icons/Delete.svg" alt="" />
                             </button>
                         </td>
                     </tr>
-                ))}
+                    ))
+                }
+
                 </tbody>
             </table>
         </div>

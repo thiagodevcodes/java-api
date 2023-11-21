@@ -1,5 +1,5 @@
-import Link from "next/link";
 import styles from "../styles/Layout.module.css";
+import Link from "next/link";
 
 export default function Options({ img, href, title }) {
     return (

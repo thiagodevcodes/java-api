@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react"
-import axios from "axios";
 import Table from "@/components/Table";
 import Layout from "@/components/Layout";
 import Pagination from "@/components/Pagination";
@@ -7,28 +5,16 @@ import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import ModalUpdate from "@/components/ModalUpdate";
 import { ToastContainer, toast } from "react-toastify";
+import { useState, useEffect } from "react"
+import { fetchData } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 
-const LIMIT = 10;
-
 export default function Acao() {
-  const [acao, setAcao] = useState([]);
+  const [model, setModel] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [modalOpen, setModalOpen] = useState({ post: false, update: false });
   const [id, setId] = useState(null);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8080/api/orcamento/acao?size=${LIMIT}&page=${currentPage}`);
-      //console.log(response.data)
-      setAcao(response.data.content);
-      setTotalPages(response.data.totalPages);
-    } catch (error) {
-      //console.error('Erro ao buscar dados:', error);
-      toast.error("Erro ao buscar dados!")
-    }
-  };   
 
   const controlModal = (modal, isOpen) => {
     setModalOpen({
@@ -38,15 +24,21 @@ export default function Acao() {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(10, currentPage, "acao").then((response) => {
+      setModel(response.content);
+      setTotalPages(response.totalPages);
+    }).catch((error) => {
+      console.error(error)
+    })
   }, [currentPage]);
+  
     
   return (
     <Layout title="Orçamento Público">
-      <Header controlModal={controlModal}/>
-      <Table acao={acao} controlModal={controlModal} setId={setId} title="acao"/>
+      <Header controlModal={controlModal} title="Ações"/>
+      <Table model={model} controlModal={controlModal} setId={setId} title="acao" path="acao"/>
         
-      {acao.length == 0 ? null : 
+      {model.length == 0 ? null : 
         <Pagination 
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
@@ -54,8 +46,8 @@ export default function Acao() {
         />
       }
 
-      {modalOpen.post && <Modal title="Adicionar Ação" controlModal={controlModal} />}
-      {modalOpen.update && <ModalUpdate id={id} title="Editar Ação" controlModal={controlModal}/>}
+      {modalOpen.post && <Modal model={model} title="Adicionar Ação" controlModal={controlModal} path={"acao"} />}
+      {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Ação" controlModal={controlModal} path={"acao"} />}
       <ToastContainer/>
     </Layout>
   )

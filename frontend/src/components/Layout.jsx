@@ -1,7 +1,8 @@
-import Link from "next/link"
 import styles from "../styles/Layout.module.css";
-import { useRouter } from 'next/router';
+import Link from "next/link"
 import Options from "./Options";
+import { useRouter } from 'next/router';
+
 
 export default function Layout({ title, children}) {
     const router = useRouter();
@@ -25,6 +26,7 @@ export default function Layout({ title, children}) {
             <aside className={styles.layout}>
                 <Options title="Home" img="/icons/Home.svg" href="/"/>
                 <Options title="Acão" img="/icons/Action.svg" href="/acao"/>
+                <Options title="Solicitante" img="/icons/Requesting.svg" href="/solicitante"/>
             </aside>
 
             <main className={styles.layout}>
