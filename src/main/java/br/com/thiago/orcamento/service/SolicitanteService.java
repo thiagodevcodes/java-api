@@ -38,7 +38,6 @@ public class SolicitanteService {
 
     public Page<SolicitanteDto> findAll(Pageable pageable){
         Page<SolicitanteModel> solicitantePage = solicitanteRepository.findAll(pageable);
-
         return solicitantePage.map(solicitante -> modelMapper.map(solicitante, SolicitanteDto.class));       
     }
 

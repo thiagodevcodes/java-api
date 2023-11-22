@@ -35,7 +35,7 @@ export default function Acao() {
     
   return (
     <Layout title="Orçamento Público">
-      <Header controlModal={controlModal} title="Ações"/>
+      <Header controlModal={controlModal} title="Ações" img="/icons/Action.svg"/>
       <Table model={model} controlModal={controlModal} setId={setId} title="acao" path="acao"/>
         
       {model.length == 0 ? null : 

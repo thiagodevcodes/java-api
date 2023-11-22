@@ -1,13 +1,13 @@
 package br.com.thiago.orcamento.service;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import br.com.thiago.orcamento.rest.dto.TipoLancamentoDto;
 
@@ -35,12 +35,9 @@ public class TipoLancamentoService {
         }
     }
 
-    public List<TipoLancamentoDto> findAll(){
-        List<TipoLancamentoModel> tipoLancamentoList = tipoLancamentoRepository.findAll();
-
-        return tipoLancamentoList.stream()
-                .map(tipoLancamento -> modelMapper.map(tipoLancamento, TipoLancamentoDto.class))
-                .collect(Collectors.toList());
+    public Page<TipoLancamentoDto> findAll(Pageable pageable){
+        Page<TipoLancamentoModel> tipoLancamentoPage = tipoLancamentoRepository.findAll(pageable);
+        return tipoLancamentoPage.map(tipoLancamento -> modelMapper.map(tipoLancamento, TipoLancamentoDto.class));
     }
 
     public TipoLancamentoDto insert(TipoLancamentoForm tipoLancamentoForm) {

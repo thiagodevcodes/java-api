@@ -1,13 +1,13 @@
 package br.com.thiago.orcamento.service;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.thiago.orcamento.model.ObjetivoEstrategicoModel;
@@ -34,12 +34,9 @@ public class ObjetivoEstrategicoService {
         }
     }
 
-    public List<ObjetivoEstrategicoDto> findAll(){
-        List<ObjetivoEstrategicoModel> objetivoEstrategicoList = objetivoEstrategicoRepository.findAll();
-
-        return objetivoEstrategicoList.stream()
-                .map(objetivoEstrategico -> modelMapper.map(objetivoEstrategico, ObjetivoEstrategicoDto.class))
-                .collect(Collectors.toList());
+    public Page<ObjetivoEstrategicoDto> findAll(Pageable pageable){
+        Page<ObjetivoEstrategicoModel> objetivoEstrategicoPage = objetivoEstrategicoRepository.findAll(pageable);
+        return objetivoEstrategicoPage.map(objetivoEstrategico -> modelMapper.map(objetivoEstrategico, ObjetivoEstrategicoDto.class));
     }
 
     public ObjetivoEstrategicoDto insert(ObjetivoEstrategicoForm objetivoEstrategicoForm) {

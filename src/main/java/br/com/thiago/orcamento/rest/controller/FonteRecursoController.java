@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +23,9 @@ public class FonteRecursoController {
     FonteRecursoService fonteRecursoService;
 
     @GetMapping
-    public ResponseEntity<List<FonteRecursoDto>> findAll() {
-        List<FonteRecursoDto> fonteRecursoDtoList = fonteRecursoService.findAll();
-        return ResponseEntity.ok().body(fonteRecursoDtoList);
+    public ResponseEntity<Page<FonteRecursoDto>> findAll(Pageable page) {
+        Page<FonteRecursoDto> fonteRecursoDtoPage = fonteRecursoService.findAll(page);
+        return ResponseEntity.ok().body(fonteRecursoDtoPage);
     }
 
     @GetMapping("/{id}")

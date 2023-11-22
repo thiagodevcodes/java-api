@@ -1,13 +1,13 @@
 package br.com.thiago.orcamento.service;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.thiago.orcamento.model.UnidadeModel;
@@ -35,12 +35,9 @@ public class UnidadeService {
         }
     }
 
-    public List<UnidadeDto> findAll(){
-        List<UnidadeModel> unidadeList = unidadeRepository.findAll();
-
-        return unidadeList.stream()
-                .map(unidade -> modelMapper.map(unidade, UnidadeDto.class))
-                .collect(Collectors.toList());
+    public Page<UnidadeDto> findAll(Pageable pageable){
+        Page<UnidadeModel> unidadePage = unidadeRepository.findAll(pageable);
+        return unidadePage.map(unidade -> modelMapper.map(unidade, UnidadeDto.class));
     }
 
     public UnidadeDto insert(UnidadeForm unidadeForm) {

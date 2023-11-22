@@ -28,8 +28,8 @@ public class AcaoController {
 
     @GetMapping
     public ResponseEntity<Page<AcaoDto>> findAll(Pageable page) {
-        Page<AcaoDto> acaoDtoList = acaoService.findAll(page);
-        return ResponseEntity.ok().body(acaoDtoList);
+        Page<AcaoDto> acaoDtoPage = acaoService.findAll(page);
+        return ResponseEntity.ok().body(acaoDtoPage);
     }
 
     @GetMapping("/{id}")

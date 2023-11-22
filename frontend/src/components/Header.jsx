@@ -1,10 +1,10 @@
 import styles from "../styles/Table.module.css";
 
-export default function Header({ controlModal, title }) {
+export default function Header({ controlModal, title, img }) {
     return (
         <div className={styles.headerTable}>
             <div className={styles.headerButton}>
-                <img src="/icons/Action.svg" alt="" />
+                <img src={img} alt="" />
                 <h2>Tela de {title}</h2>
             </div>
             

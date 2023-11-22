@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +23,9 @@ public class ProgramaController {
     ProgramaService programaService;
 
     @GetMapping
-    public ResponseEntity<List<ProgramaDto>> findAll() {
-        List<ProgramaDto> programaDtoList = programaService.findAll();
-        return ResponseEntity.ok().body(programaDtoList);
+    public ResponseEntity<Page<ProgramaDto>> findAll(Pageable page) {
+        Page<ProgramaDto> programaDtoPage = programaService.findAll(page);
+        return ResponseEntity.ok().body(programaDtoPage);
     }
 
     @GetMapping("/{id}")

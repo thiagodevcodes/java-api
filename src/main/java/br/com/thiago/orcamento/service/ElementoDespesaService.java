@@ -35,9 +35,7 @@ public class ElementoDespesaService {
     }
 
     public Page<ElementoDespesaDto> findAll(Pageable pageable){
-        Page<ElementoDespesaModel> elementoDespesaPage;
-        elementoDespesaPage = elementoDespesaRepository.findAll(pageable);
-
+        Page<ElementoDespesaModel> elementoDespesaPage = elementoDespesaRepository.findAll(pageable);
         return elementoDespesaPage.map(elementoDespesa -> modelMapper.map(elementoDespesa, ElementoDespesaDto.class));
     }
 

@@ -24,7 +24,7 @@ export default function Solicitante() {
     };
   
     useEffect(() => {
-      fetchData(10, currentPage, "solicitante").then((response) => {
+      fetchData(10, currentPage, "unidade").then((response) => {
         setModel(response.content);
         setTotalPages(response.totalPages);
       }).catch((error) => {
@@ -34,8 +34,8 @@ export default function Solicitante() {
       
     return (
       <Layout title="Orçamento Público">
-        <Header controlModal={controlModal} title="Solicitantes" img="/icons/Requesting.svg"/>
-        <Table model={model} controlModal={controlModal} setId={setId} title="solicitante" path="solicitante"/>
+        <Header controlModal={controlModal} title="Unidades" img="/icons/Unit.svg"/>
+        <Table model={model} controlModal={controlModal} setId={setId} title="unidade" path="unidade"/>
           
         {model.length == 0 ? null : 
           <Pagination 
@@ -45,8 +45,8 @@ export default function Solicitante() {
           />
         }
 
-        {modalOpen.post && <Modal model={model} title="Adicionar Solicitante" controlModal={controlModal} path="solicitante" />}
-        {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Solicitante" controlModal={controlModal} path="solicitante" />}
+        {modalOpen.post && <Modal model={model} title="Adicionar Unidade" controlModal={controlModal} path="unidade" />}
+        {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Unidade" controlModal={controlModal} path="unidade" />}
         <ToastContainer/>
       </Layout>
     )

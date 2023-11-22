@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +23,9 @@ public class UnidadeOrcamentariaController {
     UnidadeOrcamentariaService unidadeOrcamentariaService;
 
     @GetMapping
-    public ResponseEntity<List<UnidadeOrcamentariaDto>> findAll() {
-        List<UnidadeOrcamentariaDto> unidadeOrcamentariaDtoList = unidadeOrcamentariaService.findAll();
-        return ResponseEntity.ok().body(unidadeOrcamentariaDtoList);
+    public ResponseEntity<Page<UnidadeOrcamentariaDto>> findAll(Pageable page) {
+        Page<UnidadeOrcamentariaDto> unidadeOrcamentariaDtoPage = unidadeOrcamentariaService.findAll(page);
+        return ResponseEntity.ok().body(unidadeOrcamentariaDtoPage);
     }
 
     @GetMapping("/{id}")

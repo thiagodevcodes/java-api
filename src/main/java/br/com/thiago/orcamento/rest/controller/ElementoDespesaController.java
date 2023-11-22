@@ -24,9 +24,8 @@ public class ElementoDespesaController {
 
     @GetMapping
     public ResponseEntity<Page<ElementoDespesaDto>> findAll(Pageable page) {
-        
-        Page<ElementoDespesaDto> elementoDespesaDtoList = elementoDespesaService.findAll(page);
-        return ResponseEntity.ok().body(elementoDespesaDtoList);
+        Page<ElementoDespesaDto> elementoDespesaDtoPage = elementoDespesaService.findAll(page);
+        return ResponseEntity.ok().body(elementoDespesaDtoPage);
     }
 
     @GetMapping("/{id}")

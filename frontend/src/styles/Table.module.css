@@ -88,6 +88,10 @@
     gap: 5px;
 }
 
+.headerButton img {
+    width: 25px;
+}
+
 .actionButton {
     border: none;
     background-color: #00000000;

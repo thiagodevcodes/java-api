@@ -1,13 +1,13 @@
 package br.com.thiago.orcamento.service;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.thiago.orcamento.model.GrupoDespesaModel;
@@ -35,12 +35,9 @@ public class ModalidadeAplicacaoService {
         }
     }
 
-        public List<ModalidadeAplicacaoDto> findAll(){
-        List<ModalidadeAplicacaoModel> modalidadeAplicacaoList = modalidadeAplicacaoRepository.findAll();
-
-        return modalidadeAplicacaoList.stream()
-                .map(modalidadeAplicacao -> modelMapper.map(modalidadeAplicacao, ModalidadeAplicacaoDto.class))
-                .collect(Collectors.toList());
+    public Page<ModalidadeAplicacaoDto> findAll(Pageable pageable){
+        Page<ModalidadeAplicacaoModel> modalidadeAplicacaoPage = modalidadeAplicacaoRepository.findAll(pageable);
+        return modalidadeAplicacaoPage.map(modalidadeAplicacao -> modelMapper.map(modalidadeAplicacao, ModalidadeAplicacaoDto.class));
     }
 
     public ModalidadeAplicacaoDto insert(ModalidadeAplicacaoForm modalidadeAplicacaoForm) {

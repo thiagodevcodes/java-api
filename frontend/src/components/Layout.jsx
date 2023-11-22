@@ -27,6 +27,9 @@ export default function Layout({ title, children}) {
                 <Options title="Home" img="/icons/Home.svg" href="/"/>
                 <Options title="Acão" img="/icons/Action.svg" href="/acao"/>
                 <Options title="Solicitante" img="/icons/Requesting.svg" href="/solicitante"/>
+                <Options title="Programa" img="/icons/Program.svg" href="/programa"/>
+                <Options title="Unidade" img="/icons/Unit.svg" href="/unidade"/>
+                <Options title="Tipo de Lançamento" img="/icons/Posting.svg" href="/tipo-lancamento"/>
             </aside>
 
             <main className={styles.layout}>
