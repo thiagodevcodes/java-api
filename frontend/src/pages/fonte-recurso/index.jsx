@@ -36,7 +36,7 @@ export default function FonteRecurso() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Fontes de Recurso" img="/icons/Action.svg"/>
-      <Table model={model} controlModal={controlModal} setId={setId} title="fonte-recurso" path="fonte-recurso"/>
+      <Table columns={["id", "nome", "codigo"]} model={model} controlModal={controlModal} setId={setId} title="fonte-recurso" path="fonte-recurso"/>
         
       {model.length == 0 ? null : 
         <Pagination 
@@ -46,7 +46,7 @@ export default function FonteRecurso() {
         />
       }
 
-      {modalOpen.post && <Modal model={model} title="Adicionar Fonte de Recurso" controlModal={controlModal} path={"fonte-recurso"} />}
+      {modalOpen.post && <Modal columns={["nome", "codigo"]} title="Adicionar Fonte de Recurso" controlModal={controlModal} path={"fonte-recurso"} />}
       {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Fonte de Recurso" controlModal={controlModal} path={"fonte-recurso"} />}
       <ToastContainer/>
     </Layout>

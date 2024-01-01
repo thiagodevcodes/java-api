@@ -36,7 +36,7 @@ export default function ModalidadeAplicacao() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Modalidades de Aplicação" img="/icons/Action.svg"/>
-      <Table model={model} controlModal={controlModal} setId={setId} title="modalidade-aplicacao" path="modalidade-aplicacao"/>
+      <Table columns={["id", "nome", "codigo"]} model={model} controlModal={controlModal} setId={setId} title="modalidade-aplicacao" path="modalidade-aplicacao"/>
         
       {model.length == 0 ? null : 
         <Pagination 
@@ -46,7 +46,7 @@ export default function ModalidadeAplicacao() {
         />
       }
 
-      {modalOpen.post && <Modal model={model} title="Adicionar Modalidade Apliacação" controlModal={controlModal} path={"modalidade-aplicacao"} />}
+      {modalOpen.post && <Modal columns={["nome", "codigo"]} title="Adicionar Modalidade Apliacação" controlModal={controlModal} path={"modalidade-aplicacao"} />}
       {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Modalidade Aplicação" controlModal={controlModal} path={"modalidade-aplicacao"} />}
       <ToastContainer/>
     </Layout>

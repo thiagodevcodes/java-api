@@ -36,7 +36,7 @@ export default function GrupoDespesa() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Grupos de Despesa" img="/icons/Action.svg"/>
-      <Table model={model} controlModal={controlModal} setId={setId} title="grupo-despesa" path="grupo-despesa"/>
+      <Table columns={["id", "nome", "codigo"]} model={model} controlModal={controlModal} setId={setId} title="grupo-despesa" path="grupo-despesa"/>
         
       {model.length == 0 ? null : 
         <Pagination 
@@ -46,8 +46,8 @@ export default function GrupoDespesa() {
         />
       }
 
-      {modalOpen.post && <Modal model={model} title="Adicionar Grupo Despesa" controlModal={controlModal} path={"fonte-recurso"} />}
-      {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Grupo Despesa" controlModal={controlModal} path={"fonte-recurso"} />}
+      {modalOpen.post && <Modal columns={["nome", "codigo"]} title="Adicionar Grupo Despesa" controlModal={controlModal} path={"grupo-despesa"} />}
+      {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Grupo Despesa" controlModal={controlModal} path={"grupo-despesa"} />}
       <ToastContainer/>
     </Layout>
   )

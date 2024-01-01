@@ -35,7 +35,7 @@ export default function UnidadeOrcamentaria() {
     return (
       <Layout title="Orçamento Público">
         <Header controlModal={controlModal} title="Unidades Orçamentarias" img="/icons/Unit.svg"/>
-        <Table model={model} controlModal={controlModal} setId={setId} title="unidade-orcamentaria" path="unidade-orcamentaria"/>
+        <Table columns={["id", "nome", "codigo"]} model={model} controlModal={controlModal} setId={setId} title="unidade-orcamentaria" path="unidade-orcamentaria"/>
           
         {model.length == 0 ? null : 
           <Pagination 
@@ -45,7 +45,7 @@ export default function UnidadeOrcamentaria() {
           />
         }
 
-        {modalOpen.post && <Modal model={model} title="Adicionar Unidade Orçamentaria" controlModal={controlModal} path="unidade-orcamentaria" />}
+        {modalOpen.post && <Modal columns={["nome", "codigo"]} title="Adicionar Unidade Orçamentaria" controlModal={controlModal} path="unidade-orcamentaria" />}
         {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Unidade Orçamentaria" controlModal={controlModal} path="unidade-orcamentaria" />}
         <ToastContainer/>
       </Layout>

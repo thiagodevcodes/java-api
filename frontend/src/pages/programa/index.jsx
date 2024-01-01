@@ -35,7 +35,7 @@ export default function Programa() {
     return (
       <Layout title="Orçamento Público">
         <Header controlModal={controlModal} title="Programas" img="/icons/Program.svg"/>
-        <Table model={model} controlModal={controlModal} setId={setId} title="solicitante" path="programa"/>
+        <Table columns={["id", "nome", "codigo"]} model={model} controlModal={controlModal} setId={setId} title="solicitante" path="programa"/>
           
         {model.length == 0 ? null : 
           <Pagination 
@@ -45,7 +45,7 @@ export default function Programa() {
           />
         }
 
-        {modalOpen.post && <Modal model={model} title="Adicionar Programa" controlModal={controlModal} path="programa" />}
+        {modalOpen.post && <Modal columns={["nome", "codigo"]} title="Adicionar Programa" controlModal={controlModal} path="programa" />}
         {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Programa" controlModal={controlModal} path="programa" />}
         <ToastContainer/>
       </Layout>

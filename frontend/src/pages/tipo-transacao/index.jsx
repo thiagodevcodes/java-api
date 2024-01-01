@@ -36,7 +36,7 @@ export default function TipoTransacao() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Tipos de Transação" img="/icons/Action.svg"/>
-      <Table model={model} controlModal={controlModal} setId={setId} title="tipo-transacao" path="tipo-transacao"/>
+      <Table columns={["id", "nome"]} model={model} controlModal={controlModal} setId={setId} title="tipo-transacao" path="tipo-transacao"/>
         
       {model.length == 0 ? null : 
         <Pagination 
@@ -46,7 +46,7 @@ export default function TipoTransacao() {
         />
       }
 
-      {modalOpen.post && <Modal model={model} title="Adicionar Tipo Transação" controlModal={controlModal} path={"tipo-transacao"} />}
+      {modalOpen.post && <Modal columns={["nome"]} model={model} title="Adicionar Tipo Transação" controlModal={controlModal} path={"tipo-transacao"} />}
       {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Tipo Transação" controlModal={controlModal} path={"tipo-transacao"} />}
       <ToastContainer/>
     </Layout>

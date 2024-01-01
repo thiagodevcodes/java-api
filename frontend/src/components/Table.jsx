@@ -3,14 +3,8 @@ import Link from "next/link"
 import { useRouter } from "next/router";
 import { handleDelete } from "@/services/axios";
 
-export default function Table({ model, controlModal, setId, path }) {
+export default function Table({ model, controlModal, setId, path, columns }) {
     const router = useRouter();
-
-    if (!model || model.length === 0) {
-        return 
-    }
-
-    const columns = Object.keys(model[0]);
 
     return (
         <div className={styles.container}>

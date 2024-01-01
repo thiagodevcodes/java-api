@@ -19,7 +19,7 @@ export default function TipoTransacaoById() {
     }
   }, [id])
 
-  if (!acao) {
+  if (!tipoTransacao) {
       return <div>Tipo de Transação não encontrada</div>;
   }
 

@@ -36,7 +36,7 @@ export default function ObjetivoEstrategico() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Objetivos Estratégicos" img="/icons/Action.svg"/>
-      <Table model={model} controlModal={controlModal} setId={setId} title="objetivo-estrategico" path="objetivo-estrategico"/>
+      <Table columns={["id", "nome"]} model={model} controlModal={controlModal} setId={setId} title="objetivo-estrategico" path="objetivo-estrategico"/>
         
       {model.length == 0 ? null : 
         <Pagination 
@@ -46,7 +46,7 @@ export default function ObjetivoEstrategico() {
         />
       }
 
-      {modalOpen.post && <Modal model={model} title="Adicionar Objetivo Estratégico" controlModal={controlModal} path={"objetivo-estrategico"} />}
+      {modalOpen.post && <Modal columns={["nome"]} title="Adicionar Objetivo Estratégico" controlModal={controlModal} path={"objetivo-estrategico"} />}
       {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Objetivo Estratégico" controlModal={controlModal} path={"objetivo-estrategico"} />}
       <ToastContainer/>
     </Layout>

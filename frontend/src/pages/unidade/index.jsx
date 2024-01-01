@@ -35,7 +35,7 @@ export default function Unidade() {
     return (
       <Layout title="Orçamento Público">
         <Header controlModal={controlModal} title="Unidades" img="/icons/Unit.svg"/>
-        <Table model={model} controlModal={controlModal} setId={setId} title="unidade" path="unidade"/>
+        <Table columns={["id", "nome"]} model={model} controlModal={controlModal} setId={setId} title="unidade" path="unidade"/>
           
         {model.length == 0 ? null : 
           <Pagination 
@@ -45,7 +45,7 @@ export default function Unidade() {
           />
         }
 
-        {modalOpen.post && <Modal model={model} title="Adicionar Unidade" controlModal={controlModal} path="unidade" />}
+        {modalOpen.post && <Modal columns={["nome"]} title="Adicionar Unidade" controlModal={controlModal} path="unidade" />}
         {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Unidade" controlModal={controlModal} path="unidade" />}
         <ToastContainer/>
       </Layout>

@@ -35,7 +35,7 @@ export default function TipoLancamento() {
     return (
       <Layout title="Orçamento Público">
         <Header controlModal={controlModal} title="Tipos de Lançamentos" img="/icons/Posting.svg"/>
-        <Table model={model} controlModal={controlModal} setId={setId} title="tipo-lancamento" path="tipo-lancamento"/>
+        <Table columns={["id", "nome"]} model={model} controlModal={controlModal} setId={setId} title="tipo-lancamento" path="tipo-lancamento"/>
           
         {model.length == 0 ? null : 
           <Pagination 
@@ -45,7 +45,7 @@ export default function TipoLancamento() {
           />
         }
 
-        {modalOpen.post && <Modal model={model} title="Adicionar Tipo de Lançamento" controlModal={controlModal} path="tipo-lancamento" />}
+        {modalOpen.post && <Modal columns={["nome"]} title="Adicionar Tipo de Lançamento" controlModal={controlModal} path="tipo-lancamento" />}
         {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Tipo de Lançamento" controlModal={controlModal} path="tipo-lancamento" />}
         <ToastContainer/>
       </Layout>

@@ -5,17 +5,10 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { handleCreate } from "@/services/axios";
 
-export default function Modal({ title, controlModal, path, model }) {
+export default function Modal({ title, controlModal, path, columns }) {
     const [codigo, setCodigo] = useState(null);
     const [nome, setNome] = useState("");
     const router = useRouter();
-
-    if (!model || model.length === 0) {
-        return 
-    }
-
-    const columns = Object.keys(model[0]);
-    columns.shift();
 
     return (
         <div className={styles.modalOverlay}>

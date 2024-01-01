@@ -36,7 +36,7 @@ export default function ElementoDespesa() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Elementos Despesas" img="/icons/Action.svg"/>
-      <Table model={model} controlModal={controlModal} setId={setId} title="elemento-despesa" path="elemento-despesa"/>
+      <Table columns={["id", "nome", "codigo"]} model={model} controlModal={controlModal} setId={setId} title="elemento-despesa" path="elemento-despesa"/>
         
       {model.length == 0 ? null : 
         <Pagination 
@@ -46,7 +46,7 @@ export default function ElementoDespesa() {
         />
       }
 
-      {modalOpen.post && <Modal model={model} title="Adicionar Elemento Despesa" controlModal={controlModal} path={"elemento-despesa"} />}
+      {modalOpen.post && <Modal columns={["nome", "codigo"]} title="Adicionar Elemento Despesa" controlModal={controlModal} path={"elemento-despesa"} />}
       {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Elemento Despesa" controlModal={controlModal} path={"elemento-despesa"} />}
       <ToastContainer/>
     </Layout>

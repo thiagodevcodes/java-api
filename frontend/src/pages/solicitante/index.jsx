@@ -35,7 +35,7 @@ export default function Solicitante() {
     return (
       <Layout title="Orçamento Público">
         <Header controlModal={controlModal} title="Solicitantes" img="/icons/Requesting.svg"/>
-        <Table model={model} controlModal={controlModal} setId={setId} title="solicitante" path="solicitante"/>
+        <Table columns={["id", "nome"]} model={model} controlModal={controlModal} setId={setId} title="solicitante" path="solicitante"/>
           
         {model.length == 0 ? null : 
           <Pagination 
@@ -45,7 +45,7 @@ export default function Solicitante() {
           />
         }
 
-        {modalOpen.post && <Modal model={model} title="Adicionar Solicitante" controlModal={controlModal} path="solicitante" />}
+        {modalOpen.post && <Modal columns={["nome"]} title="Adicionar Solicitante" controlModal={controlModal} path="solicitante" />}
         {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Solicitante" controlModal={controlModal} path="solicitante" />}
         <ToastContainer/>
       </Layout>

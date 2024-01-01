@@ -36,7 +36,7 @@ export default function Acao() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Ações" img="/icons/Action.svg"/>
-      <Table model={model} controlModal={controlModal} setId={setId} title="acao" path="acao"/>
+      <Table columns={["id", "nome", "codigo"]} model={model} controlModal={controlModal} setId={setId} title="acao" path="acao"/>
         
       {model.length == 0 ? null : 
         <Pagination 
@@ -46,7 +46,7 @@ export default function Acao() {
         />
       }
 
-      {modalOpen.post && <Modal model={model} title="Adicionar Ação" controlModal={controlModal} path={"acao"} />}
+      {modalOpen.post && <Modal columns={["nome", "codigo"]} title="Adicionar Ação" controlModal={controlModal} path={"acao"} />}
       {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Ação" controlModal={controlModal} path={"acao"} />}
       <ToastContainer/>
     </Layout>
