@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react"
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Unidade() {
+export default function UnidadeOrcamentaria() {
     const [model, setModel] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
@@ -24,7 +24,7 @@ export default function Unidade() {
     };
   
     useEffect(() => {
-      fetchData(10, currentPage, "unidade").then((response) => {
+      fetchData(10, currentPage, "unidade-orcamentaria").then((response) => {
         setModel(response.content);
         setTotalPages(response.totalPages);
       }).catch((error) => {
@@ -34,8 +34,8 @@ export default function Unidade() {
       
     return (
       <Layout title="Orçamento Público">
-        <Header controlModal={controlModal} title="Unidades" img="/icons/Unit.svg"/>
-        <Table model={model} controlModal={controlModal} setId={setId} title="unidade" path="unidade"/>
+        <Header controlModal={controlModal} title="Unidades Orçamentarias" img="/icons/Unit.svg"/>
+        <Table model={model} controlModal={controlModal} setId={setId} title="unidade-orcamentaria" path="unidade-orcamentaria"/>
           
         {model.length == 0 ? null : 
           <Pagination 
@@ -45,8 +45,8 @@ export default function Unidade() {
           />
         }
 
-        {modalOpen.post && <Modal model={model} title="Adicionar Unidade" controlModal={controlModal} path="unidade" />}
-        {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Unidade" controlModal={controlModal} path="unidade" />}
+        {modalOpen.post && <Modal model={model} title="Adicionar Unidade Orçamentaria" controlModal={controlModal} path="unidade-orcamentaria" />}
+        {modalOpen.update && <ModalUpdate model={model} id={id} title="Editar Unidade Orçamentaria" controlModal={controlModal} path="unidade-orcamentaria" />}
         <ToastContainer/>
       </Layout>
     )

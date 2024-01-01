@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { fetchDataById } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function SolicitanteById() {
+export default function UnidadeById() {
   const router = useRouter();
   const [unidade, setUnidade] = useState({});
   const id = router.query.id;
@@ -20,14 +20,13 @@ export default function SolicitanteById() {
   }, [id])
 
   if (!unidade) {
-      return <div>Ação não encontrada</div>;
+      return <div>Unidade não encontrada</div>;
   }
 
   return (
       <Layout>
           <p>Id: {unidade.id}</p>
           <p>Nome: {unidade.nome}</p>
-          <p>Email: {unidade.codigo}</p>
       </Layout>
   );
 };

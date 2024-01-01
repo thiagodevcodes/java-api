@@ -4,30 +4,29 @@ import { useRouter } from "next/router";
 import { fetchDataById } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function AcaoById() {
+export default function ObjetivoEstrategicoById() {
   const router = useRouter();
-  const [acao, setAcao] = useState({});
+  const [objetivoEstrategico, setObjetivoEstrategico] = useState({});
   const id = router.query.id;
 
   useEffect( () => {
     if(id) {
-      fetchDataById(id, "acao").then((response) => {
-        setAcao(response);
+      fetchDataById(id, "objetivo-estrategico").then((response) => {
+        setObjetivoEstrategico(response);
     }).catch((error) => {
         console.error(error)
     })
     }
   }, [id])
 
-  if (!acao) {
-      return <div>Ação não encontrada</div>;
+  if (!objetivoEstrategico) {
+      return <div>Objetivo Estratégico não encontrado</div>;
   }
 
   return (
       <Layout>
-          <p>Id: {acao.id}</p>
-          <p>Nome: {acao.nome}</p>
-          <p>Código: {acao.codigo}</p>
+          <p>Id: {objetivoEstrategico.id}</p>
+          <p>Nome: {objetivoEstrategico.nome}</p>
       </Layout>
   );
 };

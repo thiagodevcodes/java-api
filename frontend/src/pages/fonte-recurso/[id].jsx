@@ -4,30 +4,30 @@ import { useRouter } from "next/router";
 import { fetchDataById } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function AcaoById() {
+export default function FonteRecursoById() {
   const router = useRouter();
-  const [acao, setAcao] = useState({});
+  const [fonteRecurso, setFonteRecurso] = useState({});
   const id = router.query.id;
 
   useEffect( () => {
     if(id) {
-      fetchDataById(id, "acao").then((response) => {
-        setAcao(response);
+      fetchDataById(id, "fonte-recurso").then((response) => {
+        setFonteRecurso(response);
     }).catch((error) => {
         console.error(error)
     })
     }
   }, [id])
 
-  if (!acao) {
-      return <div>Ação não encontrada</div>;
+  if (!fonteRecurso) {
+      return <div>Fonte Recurso não encontrada</div>;
   }
 
   return (
       <Layout>
-          <p>Id: {acao.id}</p>
-          <p>Nome: {acao.nome}</p>
-          <p>Código: {acao.codigo}</p>
+          <p>Id: {fonteRecurso.id}</p>
+          <p>Nome: {fonteRecurso.nome}</p>
+          <p>Código: {fonteRecurso.codigo}</p>
       </Layout>
   );
 };

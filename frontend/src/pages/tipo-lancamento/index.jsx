@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react"
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Solicitante() {
+export default function TipoLancamento() {
     const [model, setModel] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);

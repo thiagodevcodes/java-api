@@ -4,30 +4,30 @@ import { useRouter } from "next/router";
 import { fetchDataById } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function AcaoById() {
+export default function GrupoDespesaById() {
   const router = useRouter();
-  const [acao, setAcao] = useState({});
+  const [grupoDespesa, setGrupoDespesa] = useState({});
   const id = router.query.id;
 
   useEffect( () => {
     if(id) {
-      fetchDataById(id, "acao").then((response) => {
-        setAcao(response);
+      fetchDataById(id, "grupo-despesa").then((response) => {
+        setGrupoDespesa(response);
     }).catch((error) => {
         console.error(error)
     })
     }
   }, [id])
 
-  if (!acao) {
-      return <div>Ação não encontrada</div>;
+  if (!grupoDespesa) {
+      return <div>Grupo Despesa não encontrada</div>;
   }
 
   return (
       <Layout>
-          <p>Id: {acao.id}</p>
-          <p>Nome: {acao.nome}</p>
-          <p>Código: {acao.codigo}</p>
+          <p>Id: {grupoDespesa.id}</p>
+          <p>Nome: {grupoDespesa.nome}</p>
+          <p>Código: {grupoDespesa.codigo}</p>
       </Layout>
   );
 };

@@ -20,14 +20,14 @@ export default function ProgramaById() {
   }, [id])
 
   if (!programa) {
-      return <div>Ação não encontrada</div>;
+      return <div>Programa não encontrado</div>;
   }
 
   return (
       <Layout>
           <p>Id: {programa.id}</p>
           <p>Nome: {programa.nome}</p>
-          <p>Email: {programa.codigo}</p>
+          <p>Código: {programa.codigo}</p>
       </Layout>
   );
 };

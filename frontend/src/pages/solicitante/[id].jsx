@@ -20,14 +20,13 @@ export default function SolicitanteById() {
   }, [id])
 
   if (!solicitante) {
-      return <div>Ação não encontrada</div>;
+      return <div>Solicitante não encontrado</div>;
   }
 
   return (
       <Layout>
           <p>Id: {solicitante.id}</p>
           <p>Nome: {solicitante.nome}</p>
-          <p>Email: {solicitante.codigo}</p>
       </Layout>
   );
 };
