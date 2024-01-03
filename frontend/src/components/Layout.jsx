@@ -30,13 +30,13 @@ export default function Layout({ title, children}) {
                 <Options title="Programa" img="/icons/Program.svg" href="/programa"/>
                 <Options title="Unidade" img="/icons/Unit.svg" href="/unidade"/>
                 <Options title="Tipo de Lançamento" img="/icons/Posting.svg" href="/tipo-lancamento"/>
-                <Options title="Elemento Despesa" img="/icons/Posting.svg" href="/elemento-despesa"/>
-                <Options title="Fonte Recurso" img="/icons/Posting.svg" href="/fonte-recurso"/>
-                <Options title="Grupo Despesa" img="/icons/Posting.svg" href="/grupo-despesa"/>
-                <Options title="Modalidade Aplicação" img="/icons/Posting.svg" href="/modalidade-aplicacao"/>
-                <Options title="Objetivo Estratégico" img="/icons/Posting.svg" href="/objetivo-estrategico"/>
-                <Options title="Tipo de Transação" img="/icons/Posting.svg" href="/tipo-transacao"/>
-                <Options title="Unidade Orçamentaria" img="/icons/Posting.svg" href="/unidade-orcamentaria"/>
+                <Options title="Elemento Despesa" img="/icons/Cost.svg" href="/elemento-despesa"/>
+                <Options title="Fonte Recurso" img="/icons/Bonds.svg" href="/fonte-recurso"/>
+                <Options title="Grupo Despesa" img="/icons/People.svg" href="/grupo-despesa"/>
+                <Options title="Modalidade Aplicação" img="/icons/Transfer.svg" href="/modalidade-aplicacao"/>
+                <Options title="Objetivo Estratégico" img="/icons/Strategy.svg" href="/objetivo-estrategico"/>
+                <Options title="Tipo de Transação" img="/icons/Transaction.svg" href="/tipo-transacao"/>
+                <Options title="Unidade Orçamentaria" img="/icons/Unity.svg" href="/unidade-orcamentaria"/>
             </aside>
 
             <main className={styles.layout}>
