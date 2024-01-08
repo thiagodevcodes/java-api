@@ -12,10 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.thiago.orcamento.model.GrupoDespesaModel;
 import br.com.thiago.orcamento.model.LancamentoModel;
 import br.com.thiago.orcamento.repository.LancamentoRepository;
-import br.com.thiago.orcamento.rest.dto.GrupoDespesaDto;
 import br.com.thiago.orcamento.rest.dto.LancamentoDto;
 import br.com.thiago.orcamento.rest.form.LancamentoForm;
 import br.com.thiago.orcamento.service.exceptions.BusinessRuleException;

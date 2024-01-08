@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.thiago.orcamento.rest.dto.GrupoDespesaDto;
 import br.com.thiago.orcamento.rest.dto.LancamentoDto;
 import br.com.thiago.orcamento.rest.form.LancamentoForm;
 import br.com.thiago.orcamento.service.LancamentoService;
