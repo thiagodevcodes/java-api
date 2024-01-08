@@ -1,7 +1,9 @@
 package br.com.thiago.orcamento.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +12,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
 import br.com.thiago.orcamento.model.FonteRecursoModel;
 import br.com.thiago.orcamento.repository.FonteRecursoRepository;
 import br.com.thiago.orcamento.rest.dto.FonteRecursoDto;
 import br.com.thiago.orcamento.rest.form.FonteRecursoForm;
+import br.com.thiago.orcamento.service.exceptions.BusinessRuleException;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -32,6 +34,18 @@ public class FonteRecursoService {
             return modelMapper.map(fonteRecursoModel, FonteRecursoDto.class);
         } catch (NoSuchElementException e) {
             throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + FonteRecursoModel.class.getName());
+        }
+    }
+
+    public List<FonteRecursoDto> findAllData() {
+        try {
+            List<FonteRecursoModel> fonteRecursoList = fonteRecursoRepository.findAll();
+
+            return fonteRecursoList.stream()
+                    .map(fonteRecurso -> modelMapper.map(fonteRecurso, FonteRecursoDto.class))
+                    .collect(Collectors.toList());
+        } catch (BusinessRuleException e) {
+            throw new BusinessRuleException("Não é possível consultar as Ações!", e.getErrorMessages());
         }
     }
 

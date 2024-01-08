@@ -34,6 +34,12 @@ public class GrupoDespesaController {
         return ResponseEntity.ok().body(grupoDespesaDto);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<GrupoDespesaDto>> findAllData() {
+        List<GrupoDespesaDto> grupoDespesaDtoList = grupoDespesaService.findAllData();
+        return ResponseEntity.ok().body(grupoDespesaDtoList);
+    }
+
     @PostMapping
     public ResponseEntity<GrupoDespesaDto> insert(@Valid @RequestBody GrupoDespesaForm grupoDespesaForm, BindingResult br) {
         List<String> errors = new ArrayList<>();

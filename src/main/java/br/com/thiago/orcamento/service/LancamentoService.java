@@ -8,12 +8,17 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.thiago.orcamento.model.GrupoDespesaModel;
 import br.com.thiago.orcamento.model.LancamentoModel;
 import br.com.thiago.orcamento.repository.LancamentoRepository;
+import br.com.thiago.orcamento.rest.dto.GrupoDespesaDto;
 import br.com.thiago.orcamento.rest.dto.LancamentoDto;
 import br.com.thiago.orcamento.rest.form.LancamentoForm;
+import br.com.thiago.orcamento.service.exceptions.BusinessRuleException;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -34,12 +39,21 @@ public class LancamentoService {
         }
     }
 
-    public List<LancamentoDto> findAll(){
-        List<LancamentoModel> lancamentoList = lancamentoRepository.findAll();
+    public List<LancamentoDto> findAllData() {
+        try {
+            List<LancamentoModel> lancamentoList = lancamentoRepository.findAll();
 
-        return lancamentoList.stream()
-                .map(lancamento -> modelMapper.map(lancamento, LancamentoDto.class))
-                .collect(Collectors.toList());
+            return lancamentoList.stream()
+                    .map(lancamento -> modelMapper.map(lancamento, LancamentoDto.class))
+                    .collect(Collectors.toList());
+        } catch (BusinessRuleException e) {
+            throw new BusinessRuleException("Não é possível consultar as Ações!", e.getErrorMessages());
+        }
+    }
+
+    public Page<LancamentoDto> findAll(Pageable pageable){
+        Page<LancamentoModel> lancamentoPage = lancamentoRepository.findAll(pageable);
+        return lancamentoPage.map(lancamento -> modelMapper.map(lancamento, LancamentoDto.class));
     }
 
     public LancamentoDto insert(LancamentoForm lancamentoForm) {

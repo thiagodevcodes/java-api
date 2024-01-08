@@ -1,7 +1,9 @@
 package br.com.thiago.orcamento.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import br.com.thiago.orcamento.repository.AcaoRepository;
 import br.com.thiago.orcamento.rest.dto.AcaoDto;
 
 import br.com.thiago.orcamento.rest.form.AcaoForm;
+import br.com.thiago.orcamento.service.exceptions.BusinessRuleException;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -33,6 +36,18 @@ public class AcaoService {
             return modelMapper.map(acaoModel, AcaoDto.class);
         } catch (NoSuchElementException e) {
             throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + AcaoModel.class.getName());
+        }
+    }
+
+    public List<AcaoDto> findAllData() {
+        try {
+            List<AcaoModel> acaoModelList = acaoRepository.findAll();
+
+            return acaoModelList.stream()
+                    .map(acao -> modelMapper.map(acao, AcaoDto.class))
+                    .collect(Collectors.toList());
+        } catch (BusinessRuleException e) {
+            throw new BusinessRuleException("Não é possível consultar as Ações!", e.getErrorMessages());
         }
     }
 

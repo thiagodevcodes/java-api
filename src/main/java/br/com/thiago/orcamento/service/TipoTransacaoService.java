@@ -1,7 +1,9 @@
 package br.com.thiago.orcamento.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import br.com.thiago.orcamento.model.TipoTransacaoModel;
 import br.com.thiago.orcamento.repository.TipoTransacaoRepository;
 import br.com.thiago.orcamento.rest.dto.TipoTransacaoDto;
 import br.com.thiago.orcamento.rest.form.TipoTransacaoForm;
+import br.com.thiago.orcamento.service.exceptions.BusinessRuleException;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -31,6 +34,18 @@ public class TipoTransacaoService {
             return modelMapper.map(tipoTransacaoModel, TipoTransacaoDto.class);
         } catch (NoSuchElementException e) {
             throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + TipoTransacaoModel.class.getName());
+        }
+    }
+
+    public List<TipoTransacaoDto> findAllData() {
+        try {
+            List<TipoTransacaoModel> tipoTransacaoDtoList = tipoTransacaoRepository.findAll();
+
+            return tipoTransacaoDtoList.stream()
+                    .map(tipoTransacao -> modelMapper.map(tipoTransacao, TipoTransacaoDto.class))
+                    .collect(Collectors.toList());
+        } catch (BusinessRuleException e) {
+            throw new BusinessRuleException("Não é possível consultar as Ações!", e.getErrorMessages());
         }
     }
 

@@ -28,6 +28,12 @@ public class ElementoDespesaController {
         return ResponseEntity.ok().body(elementoDespesaDtoPage);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<ElementoDespesaDto>> findAllData() {
+        List<ElementoDespesaDto> elementoDespesaDtoList = elementoDespesaService.findAllData();
+        return ResponseEntity.ok().body(elementoDespesaDtoList);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ElementoDespesaDto> find(@PathVariable("id") Integer id) {
         ElementoDespesaDto elementoDespesaDto = elementoDespesaService.findById(id);

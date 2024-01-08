@@ -1,7 +1,9 @@
 package br.com.thiago.orcamento.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +11,12 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import br.com.thiago.orcamento.rest.dto.TipoLancamentoDto;
 
+import br.com.thiago.orcamento.rest.dto.TipoLancamentoDto;
 import br.com.thiago.orcamento.model.TipoLancamentoModel;
 import br.com.thiago.orcamento.repository.TipoLancamentoRepository;
 import br.com.thiago.orcamento.rest.form.TipoLancamentoForm;
+import br.com.thiago.orcamento.service.exceptions.BusinessRuleException;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -39,6 +42,19 @@ public class TipoLancamentoService {
         Page<TipoLancamentoModel> tipoLancamentoPage = tipoLancamentoRepository.findAll(pageable);
         return tipoLancamentoPage.map(tipoLancamento -> modelMapper.map(tipoLancamento, TipoLancamentoDto.class));
     }
+
+    public List<TipoLancamentoDto> findAllData() {
+        try {
+            List<TipoLancamentoModel> tipoLancamentoDtoList = tipoLancamentoRepository.findAll();
+
+            return tipoLancamentoDtoList.stream()
+                    .map(solicitante -> modelMapper.map(solicitante, TipoLancamentoDto.class))
+                    .collect(Collectors.toList());
+        } catch (BusinessRuleException e) {
+            throw new BusinessRuleException("Não é possível consultar as Ações!", e.getErrorMessages());
+        }
+    }
+
 
     public TipoLancamentoDto insert(TipoLancamentoForm tipoLancamentoForm) {
         try {

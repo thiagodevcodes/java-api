@@ -1,7 +1,9 @@
 package br.com.thiago.orcamento.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import br.com.thiago.orcamento.model.ProgramaModel;
 import br.com.thiago.orcamento.repository.ProgramaRepository;
 import br.com.thiago.orcamento.rest.dto.ProgramaDto;
 import br.com.thiago.orcamento.rest.form.ProgramaForm;
+import br.com.thiago.orcamento.service.exceptions.BusinessRuleException;
 import br.com.thiago.orcamento.service.exceptions.DataIntegrityException;
 import br.com.thiago.orcamento.service.exceptions.ObjectNotFoundException;
 
@@ -31,6 +34,18 @@ public class ProgramaService {
             return modelMapper.map(programaModel, ProgramaDto.class);
         } catch (NoSuchElementException e) {
             throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + ProgramaModel.class.getName());
+        }
+    }
+
+    public List<ProgramaDto> findAllData() {
+        try {
+            List<ProgramaModel> objetivoEstrategicoDtoList = programaRepository.findAll();
+
+            return objetivoEstrategicoDtoList.stream()
+                    .map(programaDto -> modelMapper.map(programaDto, ProgramaDto.class))
+                    .collect(Collectors.toList());
+        } catch (BusinessRuleException e) {
+            throw new BusinessRuleException("Não é possível consultar as Ações!", e.getErrorMessages());
         }
     }
 

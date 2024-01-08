@@ -28,6 +28,12 @@ public class ProgramaController {
         return ResponseEntity.ok().body(programaDtoPage);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<ProgramaDto>> findAllData() {
+        List<ProgramaDto> programaDtoList = programaService.findAllData();
+        return ResponseEntity.ok().body(programaDtoList);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ProgramaDto> find(@PathVariable("id") Integer id) {
         ProgramaDto programaDto = programaService.findById(id);

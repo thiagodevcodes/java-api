@@ -25,6 +25,7 @@ export default function Layout({ title, children}) {
 
             <aside className={styles.layout}>
                 <Options title="Home" img="/icons/Home.svg" href="/"/>
+                <Options title="Lançamento" img="/icons/Unity.svg" href="/lancamento"/>
                 <Options title="Acão" img="/icons/Action.svg" href="/acao"/>
                 <Options title="Solicitante" img="/icons/Requesting.svg" href="/solicitante"/>
                 <Options title="Programa" img="/icons/Program.svg" href="/programa"/>

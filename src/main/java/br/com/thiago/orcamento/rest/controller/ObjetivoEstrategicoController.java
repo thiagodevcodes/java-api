@@ -30,6 +30,12 @@ public class ObjetivoEstrategicoController {
         return ResponseEntity.ok().body(objetivoEstrategicoDtoPage);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<ObjetivoEstrategicoDto>> findAllData() {
+        List<ObjetivoEstrategicoDto> objetivoEstrategicoDtoList = objetivoEstrategicoService.findAllData();
+        return ResponseEntity.ok().body(objetivoEstrategicoDtoList);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ObjetivoEstrategicoDto> find(@PathVariable("id") Integer id) {
         ObjetivoEstrategicoDto objetivoEstrategicoDto = objetivoEstrategicoService.findById(id);

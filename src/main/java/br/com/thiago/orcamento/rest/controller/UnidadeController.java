@@ -29,6 +29,12 @@ public class UnidadeController {
         return ResponseEntity.ok().body(unidadeDtoPage);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<UnidadeDto>> findAllData() {
+        List<UnidadeDto> uidadeDtoList = unidadeService.findAllData();
+        return ResponseEntity.ok().body(uidadeDtoList);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<UnidadeDto> find(@PathVariable("id") Integer id) {
         UnidadeDto unidadeDto = unidadeService.findById(id);

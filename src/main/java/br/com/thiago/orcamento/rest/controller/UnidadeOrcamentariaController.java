@@ -28,6 +28,12 @@ public class UnidadeOrcamentariaController {
         return ResponseEntity.ok().body(unidadeOrcamentariaDtoPage);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<UnidadeOrcamentariaDto>> findAllData() {
+        List<UnidadeOrcamentariaDto> uidadeOrcamentariaDtoList = unidadeOrcamentariaService.findAllData();
+        return ResponseEntity.ok().body(uidadeOrcamentariaDtoList);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<UnidadeOrcamentariaDto> find(@PathVariable("id") Integer id) {
         UnidadeOrcamentariaDto unidadeOrcamentariaDto = unidadeOrcamentariaService.findById(id);

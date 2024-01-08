@@ -5,10 +5,13 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import br.com.thiago.orcamento.rest.dto.GrupoDespesaDto;
 import br.com.thiago.orcamento.rest.dto.LancamentoDto;
 import br.com.thiago.orcamento.rest.form.LancamentoForm;
 import br.com.thiago.orcamento.service.LancamentoService;
@@ -22,9 +25,15 @@ public class LancamentoController {
     LancamentoService lancamentoService;
 
     @GetMapping
-    public ResponseEntity<List<LancamentoDto>> findAll() {
-        List<LancamentoDto> lancamentoDtoList = lancamentoService.findAll();
-        return ResponseEntity.ok().body(lancamentoDtoList);
+    public ResponseEntity<Page<LancamentoDto>> findAll(Pageable page) {
+        Page<LancamentoDto> lancamentoDtoPage = lancamentoService.findAll(page);
+        return ResponseEntity.ok().body(lancamentoDtoPage);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<LancamentoDto>> findAllData() {
+        List<LancamentoDto> lancamentoDtoDtoList = lancamentoService.findAllData();
+        return ResponseEntity.ok().body(lancamentoDtoDtoList);
     }
 
     @GetMapping("/{id}")

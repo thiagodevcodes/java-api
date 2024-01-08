@@ -10,6 +10,16 @@ export const fetchData = async (limit, currentPage, path) => {
     }
 };   
 
+export const fetchDataAll = async (path) => {
+    try {
+        if(!path) return
+        const response = await axios.get(`http://localhost:8080/api/orcamento/${path}/all`);
+        return response.data
+    } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+    }
+};   
+
 export const fetchDataById = async (id, path) => {
     try {
         const response = await axios.get(`http://localhost:8080/api/orcamento/${path}/${id}`);
@@ -72,6 +82,37 @@ export const handleDelete = async(id, path, router) => {
         console.error('Erro ao buscar dados:', error);
         toast.error("Erro ao deletar a ação!");
     }
+}
+
+export const getAllData = async() => {
+    const paths = [
+        "acao",
+        "elemento-despesa",
+        "programa",
+        "unidade",
+        "grupo-despesa",
+        "unidade-orcamentaria",
+        "solicitante",
+        "tipo-lancamento",
+        "tipo-transacao",
+        "objetivo-estrategico",
+        "fonte-recurso",
+        "modalidade-aplicacao",
+        "lancamento"
+    ]
+
+    try {
+        const dataArray = await Promise.all(
+          paths.map(async (path) => {
+            const data = await fetchDataAll(path);
+            // console.log(`Data from ${path}:`, data); // Adicione esta linha
+            return data;
+          })
+        );
+        return dataArray;
+      } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+    }  
 }
 
 

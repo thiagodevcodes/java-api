@@ -1,14 +1,26 @@
 import styles from "../styles/Modal.module.css";
 import ModalButtons from "./ModalButtons";
+import { handleUpdate, getAllData, fetchDataById} from "@/services/axios";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { handleCreate } from "@/services/axios";
 
-export default function Modal({ title, controlModal, path, children, formData }) {
+
+export default function ModalUpdate({ title, id, controlModal, path, model, formData, setFormData, children}) {
+    if (!model || model.length == 0) {
+        return
+    }
+
     const router = useRouter();
+
+    useEffect(() => {
+        getAllData().then((response) => {
+            setFormData(response)
+        })        
+    },[])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleCreate(formData , path, router, controlModal);
+        handleUpdate(id, formData, path, router, controlModal);
     };
 
     return (

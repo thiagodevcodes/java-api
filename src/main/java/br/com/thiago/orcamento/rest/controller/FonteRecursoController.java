@@ -28,6 +28,12 @@ public class FonteRecursoController {
         return ResponseEntity.ok().body(fonteRecursoDtoPage);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<FonteRecursoDto>> findAllData() {
+        List<FonteRecursoDto> fonteRecursoDtoList = fonteRecursoService.findAllData();
+        return ResponseEntity.ok().body(fonteRecursoDtoList);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<FonteRecursoDto> find(@PathVariable("id") Integer id) {
         FonteRecursoDto fonteRecursoDto = fonteRecursoService.findById(id);

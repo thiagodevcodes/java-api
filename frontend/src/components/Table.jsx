@@ -8,12 +8,15 @@ export default function Table({ model, controlModal, setId, path, columns }) {
 
     return (
         <div className={styles.container}>
+            <div className={styles.container2}>
+
+            
             <table className={styles.table}>
                 <thead>
                 <tr>
                 {columns.map((column) => (
 
-                    <th key={column}>{column.charAt(0).toUpperCase() + column.slice(1)}</th>
+                    <th key={column.cod}>{column.name}</th>
                 ))}
                 <th>Ações</th>
                 </tr>
@@ -23,7 +26,7 @@ export default function Table({ model, controlModal, setId, path, columns }) {
                 {
                 model.length == 0 ? 
                 <tr>
-                    <td colSpan={4}>
+                    <td colSpan={50}>
                         Não possui dados!
                     </td>
                 </tr>
@@ -31,8 +34,8 @@ export default function Table({ model, controlModal, setId, path, columns }) {
                 model.map((row, index) => (
                     <tr key={index}>
                         {columns.map((column) => (
-
-                            <td key={column}>{row[column]}</td>
+                            
+                            <td key={column.cod}>{row[column.cod]}</td>
                         ))}
                         <td className={styles.link}>
                             <Link href={`/${path}/${row.id}`}>
@@ -53,6 +56,7 @@ export default function Table({ model, controlModal, setId, path, columns }) {
 
                 </tbody>
             </table>
+            </div>
         </div>
     )
 }

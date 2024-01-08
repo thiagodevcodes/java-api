@@ -32,6 +32,12 @@ public class AcaoController {
         return ResponseEntity.ok().body(acaoDtoPage);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<AcaoDto>> findAllData() {
+        List<AcaoDto> acaoDtoList = acaoService.findAllData();
+        return ResponseEntity.ok().body(acaoDtoList);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<AcaoDto> find(@PathVariable("id") Integer id) {        
         AcaoDto acaoDto = acaoService.findById(id);

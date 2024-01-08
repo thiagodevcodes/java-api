@@ -28,6 +28,12 @@ public class ModalidadeAplicacaoController {
         return ResponseEntity.ok().body(modalidadeAplicacaoDtoPage);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<ModalidadeAplicacaoDto>> findAllData() {
+        List<ModalidadeAplicacaoDto> modalidadeAplicacaoDtoList = modalidadeAplicacaoService.findAllData();
+        return ResponseEntity.ok().body(modalidadeAplicacaoDtoList);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ModalidadeAplicacaoDto> find(@PathVariable("id") Integer id) {
         ModalidadeAplicacaoDto modalidadeAplicacaoDto = modalidadeAplicacaoService.findById(id);

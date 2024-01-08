@@ -22,7 +22,6 @@ public class LancamentoForm {
      
     @NotNull(message = "A data de lançamento não pode ser nulo")
     @FutureOrPresent(message = "A data tem que ser de hoje em diante")
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataLancamento;
 
     @NotEmpty
@@ -31,13 +30,13 @@ public class LancamentoForm {
     @Size(max = 255, message = "A descrição pode conter no máximo 255 caracteres")
     private String descricao;
 
-    @NotEmpty(message = "O nome não pode ser vazio")
-    @NotBlank(message = "O nome não pode estar em branco")
+    @NotEmpty(message = "O ged não pode ser vazio")
+    @NotBlank(message = "O ged não pode estar em branco")
     @Size(max = 27, message = "O GED pode conter no máximo 27 caracteres")
     private String ged;
    
-    @NotBlank(message = "A descrição não pode estar em branco")
-    @NotNull(message = "A descrição não pode ser nula")
+    @NotBlank(message = "A contratado não pode estar em branco")
+    @NotNull(message = "A contratado não pode ser nula")
     @Size(max = 255, message = "O contratado por conter no máximo 255 caracteres")
     private String contratado;
 

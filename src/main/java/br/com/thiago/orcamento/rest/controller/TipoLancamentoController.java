@@ -29,6 +29,12 @@ public class TipoLancamentoController {
         return ResponseEntity.ok().body(tipoLancamentoDtoPage);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<TipoLancamentoDto>> findAllData() {
+        List<TipoLancamentoDto> tipoLancamentoDtoList = tipoLancamentoService.findAllData();
+        return ResponseEntity.ok().body(tipoLancamentoDtoList);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<TipoLancamentoDto> find(@PathVariable("id") Integer id) {
         TipoLancamentoDto tipoLancamentoDto = tipoLancamentoService.findById(id);

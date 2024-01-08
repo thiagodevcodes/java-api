@@ -6,60 +6,37 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 
-export default function ModalUpdate({ title, id, controlModal, path, model}) {
-    const [codigo, setCodigo] = useState("");
-    const [nome, setNome] = useState("");
-
+export default function ModalUpdate({ title, id, controlModal, path, model, children, setFormData, formData }) {
     if (!model || model.length == 0) {
         return 
     }
 
     const router = useRouter();
 
-    const columns = Object.keys(model[0]);
-    columns.shift();
-
     useEffect(() => {
         fetchDataById(id, path).then((response) => {
-            if(columns.includes("codigo")) setCodigo(response.codigo);
-            setNome(response.nome);
-                
+            setFormData( response )
+            console.log(response);
         }).catch((error) => {
             console.error(error)
         })
-
     }, [id]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData)
+        handleUpdate(id, formData, path, router, controlModal);
+    };
 
     return (
         <div className={styles.modalOverlay}>
-            <div className={styles.modal}>
+            <form className={styles.modal} onSubmit={handleSubmit}>
                 <h2>{title}</h2>
- 
-                {columns.map((column) => (
-                    <InputForm         
-                        key={column}    
-                        id={column}
-                        type={typeof(column) == "number" ? "number" : "text"}
-                        title={column.charAt(0).toUpperCase() + column.slice(1) + ":"}
-                        htmlFor={column}
-                          
-                        onChange={(e) => {
-                            if (column === 'codigo') {
-                              setCodigo(e.target.value);
-                            } else if (column === 'nome') {
-                              setNome(e.target.value);
-                            }
-                        }}
-                        value={ column === 'nome' ? nome : codigo}
-                    >
-                    </InputForm>
-                ))}
 
-                <ModalButtons 
-                    handle={() => handleUpdate(id, { nome, codigo }, path, router, controlModal)} 
-                    controlModal={() => controlModal("update", false)}
-                />
-            </div>
+                { children }
+
+                <ModalButtons  controlModal={() => controlModal("update", false)}/>
+            </form>
         </div>
     );
 }

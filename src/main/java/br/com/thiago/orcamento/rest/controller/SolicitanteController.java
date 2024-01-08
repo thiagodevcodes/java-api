@@ -29,6 +29,12 @@ public class SolicitanteController {
         return ResponseEntity.ok().body(solicitanteDtoPage);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<SolicitanteDto>> findAllData() {
+        List<SolicitanteDto> solicitanteDtoList = solicitanteService.findAllData();
+        return ResponseEntity.ok().body(solicitanteDtoList);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<SolicitanteDto> find(@PathVariable("id") Integer id) {
         SolicitanteDto solicitanteDto = solicitanteService.findById(id);
