@@ -114,6 +114,7 @@
 
 .linkContainer:hover {
     background-color: rgb(196, 196, 196);
-    transition: ease 500ms;
+    transition: 
+    ease 500ms;
 }
 
