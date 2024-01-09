@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { fetchDataById } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
+import styles from "../../styles/Details.module.css";
 
 export default function ElementoDespesaById() {
   const router = useRouter();
@@ -25,9 +26,12 @@ export default function ElementoDespesaById() {
 
   return (
       <Layout>
-          <p>Id: {elementoDespesa.id}</p>
-          <p>Nome: {elementoDespesa.nome}</p>
-          <p>Código: {elementoDespesa.codigo}</p>
+          <div className={styles.container}>
+            <h1>Detalhes de Elemento Desepsa</h1>
+            <p>Id: {elementoDespesa.id}</p>
+            <p>Nome: {elementoDespesa.nome}</p>
+            <p>Código: {elementoDespesa.codigo}</p>
+          </div>
       </Layout>
   );
 };

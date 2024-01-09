@@ -1,0 +1,23 @@
+.containerSelect {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.selectDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.select {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.optionSelect {
+    width: 100px;
+    
+}
+

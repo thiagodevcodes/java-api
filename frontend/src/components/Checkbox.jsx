@@ -1,18 +1,20 @@
-import styles from "../styles/Modal.module.css";
-import { useState } from "react";
+import styles from "../styles/Lancamento.module.css";
+import { useState, useEffect } from "react";
 
-export default function Checkbox({ title, onChange, nameObject }) {
+export default function Checkbox({ title, onChange, nameObject, value }) {
     const [isChecked, setIsChecked] = useState(false);
 
     const handleCheckboxChange = (event) => {
         const novoValor = event.target.checked;
         setIsChecked(novoValor);
-  
-        // Chama a função de callback fornecida pelo componente pai
         if (onChange) {
             onChange(nameObject, novoValor);
         }
     };
+
+    useEffect(() => {
+        setIsChecked(value);
+    }, [value]);
 
     return (
         <div>

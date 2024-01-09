@@ -11,28 +11,6 @@
     z-index: 5;
 }
   
-.containerSelect {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.selectDiv {
-    display: flex;
-    flex-direction: column;
-    
-}
-
-.select {
-    width: 250px;
-}
-
-.optionSelect {
-    width: 100px;
-    
-}
-
 .modal {
     background: white;
     padding: 20px;

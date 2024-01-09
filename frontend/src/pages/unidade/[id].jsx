@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { fetchDataById } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
+import styles from "../../styles/Details.module.css";
 
 export default function UnidadeById() {
   const router = useRouter();
@@ -25,8 +26,12 @@ export default function UnidadeById() {
 
   return (
       <Layout>
+        <div className={styles.container}>
+          <h1>Detalhes de Unidade</h1>
           <p>Id: {unidade.id}</p>
           <p>Nome: {unidade.nome}</p>
+        </div>
+
       </Layout>
   );
 };

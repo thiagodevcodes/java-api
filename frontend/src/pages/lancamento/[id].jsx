@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { fetchDataById, getAllData } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
+import styles from "../../styles/Details.module.css";
 
 export default function GrupoDespesaById() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function GrupoDespesaById() {
   const [tipoTransacao, setTipoTransacao] = useState([]);
   const [unidade, setUnidade] = useState([]);
   const [unidadeOrcamentaria, setUnidadeOrcamentaria] = useState([]);
+  const [data, setData] = useState([]);
   const [lancamentoPai, setLancamentoPai] = useState([]);
   const id = router.query.id;
 
@@ -118,19 +120,26 @@ export default function GrupoDespesaById() {
       return <div>Lançamento não encontrado</div>;
   }
 
-  console.log(lancamentoPai)
+  if(!lancamento.dataLancamento) return
+
+  var dataOriginal = lancamento.dataLancamento;
+  var partes = dataOriginal.split("-");
+  var dataFormatada = partes[2] + "/" + partes[1] + "/" + partes[0];
+
 
   return (
       <Layout>
+        <div className={styles.container}>
+          <h1>Detalhes de Lançamentos</h1>
           <p>Id: {lancamento.id}</p>
-          <p>Número Lançamento: {lancamento.numeroLancamento}</p>
+          <p>Número Lançamento: {lancamento.numeroLancamento }</p>
           <p>Ano Orçamento: {lancamento.anoOrcamento}</p>
           <p>Contratado: {lancamento.contratado}</p>
           <p>Descrição: {lancamento.descricao}</p>
           <p>Valor: R${lancamento.valor}</p>
           <p>GED: {lancamento.ged}</p>
           <p>Lançamento Inválido: {lancamento.lancamentoInvalido ? "Sim" : "Não"}</p>
-          <p>Data de Lançamento: {lancamento.dataLancamento}</p>
+          <p>Data de Lançamento: {dataFormatada}</p>
           <p>Lançamento Pai: {lancamento.lancamentoPai ? lancamentoPai.descricao : "Não possui"}</p>
           <p>Elemento Despesa: {elementoDespesa.nome ? elementoDespesa.nome : null}</p>
           <p>Fonte Recurso: {fonteRecurso.nome ? fonteRecurso.nome : null}</p>         
@@ -144,6 +153,7 @@ export default function GrupoDespesaById() {
           <p>Tipo de Transação: {tipoTransacao.nome ? tipoTransacao.nome : null}</p>
           <p>Unidade: {unidade.nome ? unidade.nome : null}</p>
           <p>Unidade Orçamentária: {unidadeOrcamentaria.nome ? unidadeOrcamentaria.nome : null}</p>  
+        </div>
       </Layout>
   );
 };

@@ -113,7 +113,7 @@
 }
 
 .linkContainer:hover {
-    background-color: rgba(0, 0, 0, 0.082);
-
+    background-color: rgb(196, 196, 196);
+    transition: ease 500ms;
 }
 
