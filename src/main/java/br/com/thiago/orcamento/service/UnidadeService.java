@@ -103,7 +103,7 @@ public class UnidadeService {
                 throw new DataIntegrityException("O Id da Unidade não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir uma Unidade!");
+            throw new DataIntegrityException("Não é possível excluir a Unidade!");
         }
     }
 }

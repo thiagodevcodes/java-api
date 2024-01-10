@@ -102,7 +102,7 @@ public class SolicitanteService {
                 throw new DataIntegrityException("O Id da Solicitante não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir uma Solicitante!");
+            throw new DataIntegrityException("Não é possível excluir o Solicitante!");
         }
     }
 }

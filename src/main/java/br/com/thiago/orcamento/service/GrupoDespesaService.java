@@ -102,7 +102,7 @@ public class GrupoDespesaService {
                 throw new DataIntegrityException("O Id do Grupo Despesa não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir um Grupo Despesa!");
+            throw new DataIntegrityException("Não é possível excluir o Grupo Despesa!");
         }
     }
 }

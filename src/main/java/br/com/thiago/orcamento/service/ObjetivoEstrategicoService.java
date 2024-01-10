@@ -100,7 +100,7 @@ public class ObjetivoEstrategicoService {
                 throw new DataIntegrityException("O Id do Objetivo Estratégico não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir um Objetivo Estratégico!");
+            throw new DataIntegrityException("Não é possível excluir o Objetivo Estratégico!");
         }
     }
 }

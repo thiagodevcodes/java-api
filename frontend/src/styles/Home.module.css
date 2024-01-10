@@ -21,15 +21,18 @@
   align-items: center;
   flex-direction: column;
   gap: 10px;
-  width: 120px;
+  width: 350px;
   height: 120px;
   text-align: center;
   box-shadow: 1px 2px 3px black;
 }
 
-.chield:hover {
-  background-color: #1e20a7;
-  transition: ease-in-out 300ms;
+.chield p {
+  font-size: 18pt;
+}
+
+.chield h2 {
+  font-size: 20pt;
 }
 
 .chield img {

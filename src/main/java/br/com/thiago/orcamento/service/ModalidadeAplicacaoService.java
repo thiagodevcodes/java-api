@@ -102,7 +102,7 @@ public class ModalidadeAplicacaoService {
                 throw new DataIntegrityException("O Id da Modalidade da Aplicação não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir uma Modalidade da Aplicação!");
+            throw new DataIntegrityException("Não é possível excluir a Modalidade da Aplicação!");
         }
     }
 }

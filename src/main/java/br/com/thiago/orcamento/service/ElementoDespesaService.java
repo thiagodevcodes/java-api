@@ -102,7 +102,7 @@ public class ElementoDespesaService {
                 throw new DataIntegrityException("O Id do Elemento Despesa não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir um Elemento Despesa!");
+            throw new DataIntegrityException("Não é possível excluir o Elemento Despesa!");
         }
     }
 }

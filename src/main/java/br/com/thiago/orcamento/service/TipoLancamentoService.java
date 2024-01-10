@@ -104,7 +104,7 @@ public class TipoLancamentoService {
                 throw new DataIntegrityException("O Id Tipo de Lançamento não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir um Tipo de Lançamento!");
+            throw new DataIntegrityException("Não é possível excluir o Tipo de Lançamento!");
         }
     }
 }

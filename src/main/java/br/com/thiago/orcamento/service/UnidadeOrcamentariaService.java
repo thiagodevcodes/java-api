@@ -99,7 +99,7 @@ public class UnidadeOrcamentariaService {
                 unidadeOrcamentariaRepository.deleteById(id);
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir um Unidade Orçamentaria!");
+            throw new DataIntegrityException("Não é possível excluir a Unidade Orçamentaria!");
         }
     }
 }

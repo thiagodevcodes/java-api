@@ -100,7 +100,7 @@ public class TipoTransacaoService {
                 throw new DataIntegrityException("O Id Tipo de Transação não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir um Tipo de Transação!");
+            throw new DataIntegrityException("Não é possível excluir o Tipo de Transação!");
         }
     }
 }

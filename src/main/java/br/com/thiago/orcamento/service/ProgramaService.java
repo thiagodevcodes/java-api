@@ -102,7 +102,7 @@ public class ProgramaService {
                 throw new DataIntegrityException("O Id do Programa não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir um Programa!");
+            throw new DataIntegrityException("Não é possível excluir o Programa!");
         }
     }
 }

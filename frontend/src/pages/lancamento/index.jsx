@@ -60,6 +60,11 @@ export default function GrupoDespesa() {
   const dia = String(date.getDate()).padStart(2, '0');
 
   const dataFormatada = `${ano}-${mes}-${dia}`;
+  let arrayAnos = []
+
+  for (let index = 0; index < 30; index++) {
+    arrayAnos.push(date.getFullYear() + index)
+  }
 
   //["id", "inválido", "número", "descrição", "ged", "contratado", "valor", "ano", "tipo",  "Data Lançamento"]
 
@@ -179,7 +184,7 @@ const handleInputChange = (nameObject, e) => {
 
                 <div className={styles.containerSelect}>
                     <InputForm title={"Número Lançamento *"} type="number" onChange={(e) => handleInputChange("numeroLancamento", e)} nameObject="numeroLancamento"/>
-                    <InputForm title={"Ano Orçamento *"} type="number" onChange={(e) => handleInputChange("anoOrcamento", e)} nameObject="anoOrcamento"/>
+                    <Select year={true} defaultValue={date.getFullYear()} model={arrayAnos} title={"Ano Orçamento *"} type="number" onChange={(e) => handleSelectChange("anoOrcamento", e)} nameObject="anoOrcamento"/>
                     <InputForm title={"Contratado *"} type="text" onChange={(e) => handleInputChange("contratado", e)} nameObject="contratado"/>
                 </div>
 
@@ -222,21 +227,22 @@ const handleInputChange = (nameObject, e) => {
                 </div>
 
                 <div className={styles.containerSelect}>
-                    <InputForm value={formData.numeroLancamento} title={"Número Lançamento *"} type="number" onChange={(e) => handleInputChange("numeroLancamento", e)} nameObject="numeroLancamento"/>
-                    <InputForm value={formData.anoOrcamento} title={"Ano Orçamento *"} type="number" onChange={(e) => handleInputChange("anoOrcamento", e)} nameObject="anoOrcamento"/>
-                    <InputForm  value={formData.contratado} title={"Contratado *"} type="text" onChange={(e) => handleInputChange("contratado", e)} nameObject="contratado"/>
+                    <Select year={true} defaultValue={date.getFullYear()} model={arrayAnos} title={"Ano Orçamento *"} type="number" onChange={(e) => handleSelectChange("anoOrcamento", e)} nameObject="anoOrcamento"/>
+
+                    <InputForm value={formData.dataLancamento} title={"Data Lançamento *"} type="date" onChange={(e) => handleInputChange("dataLancamento", e)} nameObject="dataLancamento"/>
+                    <Select defaultValue={formData.lancamentoPai} model={data[12]} title={"Lançamento Pai"} onChange={(e) => handleInputChange("lancamentoPai", e)} nameObject={"lancamentoPai"}/>
                 </div>
 
                 <div className={styles.containerSelect}>
                     <Checkbox value={formData.lancamentoInvalido} title={"Lançamento Inválido *"} onChange={handleCheckboxChange} nameObject="lancamentoInvalido"/>
-                    <Select defaultValue={formData.lancamentoPai} model={data[12]} title={"Lançamento Pai"} onChange={(e) => handleInputChange("lancamentoPai", e)} nameObject={"lancamentoPai"}/>
+                    <InputForm value={formData.numeroLancamento} title={"Número Lançamento *"} type="number" onChange={(e) => handleInputChange("numeroLancamento", e)} nameObject="numeroLancamento"/>
                     <InputForm value={formData.descricao} title={"Descrição *"} type="text" onChange={(e) => handleInputChange("descricao", e)} nameObject="descricao"/>
                 </div>
 
                 <div className={styles.containerSelect}>
                     <InputForm value={formData.valor} title={"Valor *"} type="number" onChange={(e) => handleInputChange("valor", e)} nameObject="valor"/>
                     <InputForm value={formData.ged} title={"GED *"} type="text" onChange={(e) => handleInputChange("ged", e)} nameObject="ged"/>
-                    <InputForm value={formData.dataLancamento} title={"Data Lançamento *"} type="date" onChange={(e) => handleInputChange("dataLancamento", e)} nameObject="dataLancamento"/>
+                    <InputForm  value={formData.contratado} title={"Contratado *"} type="text" onChange={(e) => handleInputChange("contratado", e)} nameObject="contratado"/> 
                 </div>
         </ModalUpdate>
        : null}

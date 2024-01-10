@@ -42,11 +42,11 @@ export const handleCreate = async(data, path, router, controlModal) => {
                 controlModal("post", false)
                 toast.success('Cadastrado com sucesso!')
                 //console.log(response);
-          })
-          .catch((error) => {
+        })
+        .catch((error) => {
             console.log(error);
-            toast.error('Dados inválidos, tente novamente!')
-          });
+            toast.error('Ocorreu um erro ao cadastrar!')
+        });
         } catch (error) {
         //console.error(error);
         toast.error('Ocorreu um erro ao cadastrar!')
@@ -80,7 +80,7 @@ export const handleDelete = async(id, path, router) => {
         router.reload();
     } catch (error) {
         console.error('Erro ao buscar dados:', error);
-        toast.error("Erro ao deletar a ação!");
+        toast.error("Erro ao deletar: " + error.response.data.messages);
     }
 }
 
@@ -112,6 +112,7 @@ export const getAllData = async() => {
         return dataArray;
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
+    
     }  
 }
 

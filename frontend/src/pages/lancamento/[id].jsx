@@ -67,7 +67,7 @@ export default function GrupoDespesaById() {
     }
 
     if(lancamento.modalidadeAplicacao) {
-      fetchDataById(lancamento.tipoLancamento, "modalidade-aplicacao").then((response) => {
+      fetchDataById(lancamento.modalidadeAplicacao, "modalidade-aplicacao").then((response) => {
         setModalidadeAplicacao(response)
       })
     }
@@ -126,17 +126,16 @@ export default function GrupoDespesaById() {
   var partes = dataOriginal.split("-");
   var dataFormatada = partes[2] + "/" + partes[1] + "/" + partes[0];
 
-
   return (
       <Layout>
         <div className={styles.container}>
-          <h1>Detalhes de Lançamentos</h1>
+          <h1>Detalhes do Lançamento</h1>
           <p>Id: {lancamento.id}</p>
           <p>Número Lançamento: {lancamento.numeroLancamento }</p>
           <p>Ano Orçamento: {lancamento.anoOrcamento}</p>
           <p>Contratado: {lancamento.contratado}</p>
           <p>Descrição: {lancamento.descricao}</p>
-          <p>Valor: R${lancamento.valor}</p>
+          <p>Valor: {lancamento.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
           <p>GED: {lancamento.ged}</p>
           <p>Lançamento Inválido: {lancamento.lancamentoInvalido ? "Sim" : "Não"}</p>
           <p>Data de Lançamento: {dataFormatada}</p>

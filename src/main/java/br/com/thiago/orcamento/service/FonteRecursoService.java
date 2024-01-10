@@ -102,7 +102,7 @@ public class FonteRecursoService {
                 throw new DataIntegrityException("O Id do Ação não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir um Ação!");
+            throw new DataIntegrityException("Não é possível excluir a Fonte de Recurso!");
         }
     }
 }
