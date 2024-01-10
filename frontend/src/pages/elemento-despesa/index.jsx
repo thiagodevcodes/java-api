@@ -18,7 +18,7 @@ export default function ElementoDespesa() {
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "", nome: "" });
 
-  const data = [
+  const columns = [
     { name: "Id", cod: "id" },
     { name: "Código", cod: "codigo" },
     { name: "Nome", cod: "nome" },
@@ -55,7 +55,7 @@ export default function ElementoDespesa() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Elementos Despesas" img="/icons/Cost.svg"/>
-      <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="elemento-despesa" path="elemento-despesa"/>
+      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="elemento-despesa" path="elemento-despesa"/>
         
       {model.length == 0 ? null : 
         <Pagination 

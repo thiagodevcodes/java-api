@@ -18,7 +18,7 @@ export default function TipoTransacao() {
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "", nome: "" });
 
-  const data = [
+  const columns = [
     { name: "Id", cod: "id" },
     { name: "Nome", cod: "nome" }
   ]
@@ -56,7 +56,7 @@ export default function TipoTransacao() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Tipo Transação" img="/icons/Transaction.svg"/>
-      <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="tipo-transacao" path="tipo-transacao" />
+      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="tipo-transacao" path="tipo-transacao" />
         
       {model.length == 0 ? null : 
         <Pagination 

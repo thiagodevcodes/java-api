@@ -18,7 +18,7 @@ export default function ObjetivoEstrategico() {
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "" });
 
-  const data = [
+  const columns = [
     { name: "Id", cod: "id" },
     { name: "Nome", cod: "nome" }
   ]
@@ -54,7 +54,7 @@ export default function ObjetivoEstrategico() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Objetivos Estratégicos" img="/icons/Strategy.svg"/>
-      <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="objetivo-estrategico" path="objetivo-estrategico"/>
+      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="objetivo-estrategico" path="objetivo-estrategico"/>
         
       {model.length == 0 ? null : 
         <Pagination 

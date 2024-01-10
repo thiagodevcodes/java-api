@@ -42,7 +42,7 @@ export default function GrupoDespesa() {
     numeroLancamento: ""
   });
 
-  const datas = [
+  const columns = [
     { name: "Id", cod: "id" },
     { name: "Número", cod: "numeroLancamento" },
     { name: "Descrição", cod: "descricao" },
@@ -56,7 +56,7 @@ export default function GrupoDespesa() {
   const date = new Date()
 
   const ano = date.getFullYear();
-  const mes = String(date.getMonth() + 1).padStart(2, '0'); // Adicionando 1 ao mês porque os meses começam do zero
+  const mes = String(date.getMonth() + 1).padStart(2, '0'); 
   const dia = String(date.getDate()).padStart(2, '0');
 
   const dataFormatada = `${ano}-${mes}-${dia}`;
@@ -66,8 +66,6 @@ export default function GrupoDespesa() {
     arrayAnos.push(date.getFullYear() + index)
   }
 
-  //["id", "inválido", "número", "descrição", "ged", "contratado", "valor", "ano", "tipo",  "Data Lançamento"]
-
   const controlModal = (modal, isOpen) => {
     setModalOpen({
       post: modal === "post" ? isOpen : false,
@@ -76,7 +74,6 @@ export default function GrupoDespesa() {
   };
 
   const handleSelectChange = (nameObject, e) => {
-    // Atualiza o estado com os valores selecionados
     setFormData((prevValues) => ({
       ...prevValues,
       [nameObject]: e.target.value,
@@ -84,15 +81,10 @@ export default function GrupoDespesa() {
 };
 
 const handleCheckboxChange = (nameObject, novoValor) => {
-  // Atualiza o estado ou realiza outras ações necessárias no componente pai
   setFormData((prevValues) => ({
       ...prevValues,
       [nameObject]: novoValor,
   }));
-
-  // Obtém o valor atual do checkbox
-  const valorCheckbox = novoValor;
-  console.log("Valor do checkbox:", valorCheckbox);
 };
 
 const handleInputChange = (nameObject, e) => {
@@ -141,12 +133,11 @@ const handleInputChange = (nameObject, e) => {
         setData(response)
     })        
   },[])
-
-  console.log(formData)
+  
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Lançamentos" img="/icons/Unity.svg"/>
-      <Table columns={datas} model={model} controlModal={controlModal} setId={setId} title="lancamento" path="lancamento"/>
+      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="lancamento" path="lancamento"/>
         
       {model.length == 0 ? null : 
         <Pagination 

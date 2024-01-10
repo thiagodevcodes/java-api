@@ -11,11 +11,10 @@ export default function ModalUpdate({ title, id, controlModal, path, model, chil
     useEffect(() => {
         fetchDataById(id, path).then((response) => {
             setFormData( response )
-            console.log(response);
         }).catch((error) => {
             console.error(error)
         })
-    }, [id]);
+    }, [id, setFormData, path]);
 
     if (!model || model.length == 0) {
         return 

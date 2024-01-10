@@ -18,7 +18,7 @@ export default function ModalidadeAplicacao() {
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "", nome: "" });
 
-  const data = [
+  const columns = [
     { name: "Id", cod: "id" },
     { name: "Código", cod: "codigo" },
     { name: "Nome", cod: "nome" },
@@ -57,7 +57,7 @@ export default function ModalidadeAplicacao() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Modalidades de Aplicação" img="/icons/Transfer.svg"/>
-      <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="modalidade-aplicacao" path="modalidade-aplicacao"/>
+      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="modalidade-aplicacao" path="modalidade-aplicacao"/>
         
       {model.length == 0 ? null : 
         <Pagination 

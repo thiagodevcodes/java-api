@@ -37,7 +37,6 @@ export default function GrupoDespesaById() {
     if(lancamento.acao) {
       fetchDataById(lancamento.acao, "acao").then((response) => {
         setAcao(response);
-        console.log(response)
       })
     }
 

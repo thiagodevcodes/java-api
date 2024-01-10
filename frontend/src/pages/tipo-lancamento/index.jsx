@@ -18,7 +18,7 @@ export default function TipoLancamento() {
     const [id, setId] = useState(null);
     const [formData, setFormData] = useState({ codigo: "", nome: "" });
   
-    const data = [
+    const columns = [
       { name: "Id", cod: "id" },
       { name: "Nome", cod: "nome" }
     ]
@@ -54,7 +54,7 @@ export default function TipoLancamento() {
     return (
       <Layout title="Orçamento Público">
         <Header controlModal={controlModal} title="Tipo Lançamento" img="/icons/Posting.svg"/>
-        <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="tipo-lancamento" path="tipo-lancamento"/>
+        <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="tipo-lancamento" path="tipo-lancamento"/>
           
         {model.length == 0 ? null : 
           <Pagination 

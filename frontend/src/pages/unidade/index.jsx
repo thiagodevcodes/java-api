@@ -18,7 +18,7 @@ export default function Unidade() {
     const [id, setId] = useState(null);
     const [formData, setFormData] = useState({  nome: "" });
 
-    const data = [
+    const columns = [
       { name: "Id", cod: "id" },
       { name: "Nome", cod: "nome" }
     ]
@@ -54,7 +54,7 @@ export default function Unidade() {
     return (
       <Layout title="Orçamento Público">
         <Header controlModal={controlModal} title="Unidades" img="/icons/Unit.svg"/>
-        <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="unidade" path="unidade"/>
+        <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="unidade" path="unidade"/>
           
         {model.length == 0 ? null : 
           <Pagination 

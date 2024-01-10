@@ -18,7 +18,7 @@ export default function Programa() {
     const [id, setId] = useState(null);
     const [formData, setFormData] = useState({ codigo: "", nome: "" });
 
-    const data = [
+    const columns = [
       { name: "Id", cod: "id" },
       { name: "Código", cod: "codigo" },
       { name: "Nome", cod: "nome" },
@@ -56,7 +56,7 @@ export default function Programa() {
     return (
       <Layout title="Orçamento Público">
         <Header controlModal={controlModal} title="Programas" img="/icons/Program.svg"/>
-        <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="Programa" path="programa"/>
+        <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="Programa" path="programa"/>
           
         {model.length == 0 ? null : 
           <Pagination 

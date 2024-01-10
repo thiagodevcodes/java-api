@@ -18,7 +18,7 @@ export default function Solicitante() {
     const [id, setId] = useState(null);
     const [formData, setFormData] = useState({ codigo: "", nome: "" });
 
-    const data = [
+    const columns = [
       { name: "Id", cod: "id" },
       { name: "Nome", cod: "nome" }
     ]
@@ -54,7 +54,7 @@ export default function Solicitante() {
     return (
       <Layout title="Orçamento Público">
         <Header controlModal={controlModal} title="Solicitantes" img="/icons/Requesting.svg"/>
-        <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="solicitante" path="solicitante"/>
+        <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="solicitante" path="solicitante"/>
           
         {model.length == 0 ? null : 
           <Pagination 
