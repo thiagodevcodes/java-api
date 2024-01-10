@@ -4,11 +4,11 @@ import styles from "../styles/Lancamento.module.css";
 export default function Select({ model, title, onChange, defaultValue, year}) {
     const [value, setValue] = useState(defaultValue);
 
-    if(!model) return
-
     useEffect(() => {
         setValue(defaultValue);
     }, [defaultValue]);
+
+    if(!model) return
 
     return (
         <div className={styles.selectDiv}>

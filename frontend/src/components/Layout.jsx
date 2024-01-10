@@ -2,6 +2,7 @@ import styles from "../styles/Layout.module.css";
 import Link from "next/link"
 import Options from "./Options";
 import { useRouter } from 'next/router';
+import Image from "next/image";
 
 
 export default function Layout({ title, children}) {
@@ -12,7 +13,7 @@ export default function Layout({ title, children}) {
             <header className={styles.layout}>
                 <nav className={styles.nav}>
                     <div className={styles.logoContainer}>
-                        <img src="/icons/favicon.svg" alt="" />
+                        <Image src={"/icons/favicon.svg"} alt="" width={30} height={30}></Image>
                         <h1>{title ?? "Orçamento Público"}</h1>
                     </div>
                     

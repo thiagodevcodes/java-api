@@ -56,7 +56,7 @@ export default function ModalidadeAplicacao() {
     
   return (
     <Layout title="Orçamento Público">
-      <Header controlModal={controlModal} title="Modalidades de Aplicação" img="/icons/Action.svg"/>
+      <Header controlModal={controlModal} title="Modalidades de Aplicação" img="/icons/Transfer.svg"/>
       <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="modalidade-aplicacao" path="modalidade-aplicacao"/>
         
       {model.length == 0 ? null : 

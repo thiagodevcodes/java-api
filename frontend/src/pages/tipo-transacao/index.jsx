@@ -55,7 +55,7 @@ export default function TipoTransacao() {
     
   return (
     <Layout title="Orçamento Público">
-      <Header controlModal={controlModal} title="Tipo Transação" img="/icons/Action.svg"/>
+      <Header controlModal={controlModal} title="Tipo Transação" img="/icons/Transaction.svg"/>
       <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="tipo-transacao" path="tipo-transacao" />
         
       {model.length == 0 ? null : 

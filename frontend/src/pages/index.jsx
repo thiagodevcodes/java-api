@@ -1,8 +1,8 @@
 import Layout from "@/components/Layout"
-import Link from "next/link"
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { fetchDataAll } from "@/services/axios";
+import Image from "next/image";
 
 export default function Home() {
     const [totalLancamento, setTotalLancamento] = useState(0)
@@ -29,7 +29,7 @@ export default function Home() {
     return (
         <Layout>
             <div className={styles.containerTitle}>
-                <img src="/icons/Home.svg" alt="" />
+                <Image src={"/icons/Home.svg"} alt="" width={30} height={30}/>
                 <h1 className={styles.title}>Tela Incial</h1>
             </div>
             

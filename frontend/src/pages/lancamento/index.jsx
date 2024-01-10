@@ -145,7 +145,7 @@ const handleInputChange = (nameObject, e) => {
   console.log(formData)
   return (
     <Layout title="Orçamento Público">
-      <Header controlModal={controlModal} title="Lançamentos" img="/icons/Action.svg"/>
+      <Header controlModal={controlModal} title="Lançamentos" img="/icons/Unity.svg"/>
       <Table columns={datas} model={model} controlModal={controlModal} setId={setId} title="lancamento" path="lancamento"/>
         
       {model.length == 0 ? null : 

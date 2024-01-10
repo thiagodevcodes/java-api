@@ -54,7 +54,7 @@ export default function FonteRecurso() {
   
   return (
     <Layout title="Orçamento Público">
-      <Header controlModal={controlModal} title="Fontes de Recurso" img="/icons/Action.svg"/>
+      <Header controlModal={controlModal} title="Fontes de Recurso" img="/icons/Bonds.svg"/>
       <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="fonte-recurso" path="fonte-recurso"/>
         
       {model.length == 0 ? null : 

@@ -53,7 +53,7 @@ export default function Solicitante() {
       
     return (
       <Layout title="Orçamento Público">
-        <Header controlModal={controlModal} title="Solicitantes" img="/icons/Action.svg"/>
+        <Header controlModal={controlModal} title="Solicitantes" img="/icons/Requesting.svg"/>
         <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="solicitante" path="solicitante"/>
           
         {model.length == 0 ? null : 

@@ -54,7 +54,7 @@ export default function UnidadeOrcamentaria() {
       
     return (
       <Layout title="Orçamento Público">
-        <Header controlModal={controlModal} title="Unidades Orçamentárias" img="/icons/Action.svg"/>
+        <Header controlModal={controlModal} title="Unidades Orçamentárias" img="/icons/Unity.svg"/>
         <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="unidade-orcamentaria" path="unidade-orcamentaria"/>
           
         {model.length == 0 ? null : 

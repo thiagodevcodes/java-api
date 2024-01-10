@@ -53,7 +53,7 @@ export default function TipoLancamento() {
       
     return (
       <Layout title="Orçamento Público">
-        <Header controlModal={controlModal} title="Tipo Lançamento" img="/icons/Action.svg"/>
+        <Header controlModal={controlModal} title="Tipo Lançamento" img="/icons/Posting.svg"/>
         <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="tipo-lancamento" path="tipo-lancamento"/>
           
         {model.length == 0 ? null : 

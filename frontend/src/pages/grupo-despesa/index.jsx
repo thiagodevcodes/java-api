@@ -55,7 +55,7 @@ export default function GrupoDespesa() {
     
   return (
     <Layout title="Orçamento Público">
-      <Header controlModal={controlModal} title="Grupos de Despesa" img="/icons/Action.svg"/>
+      <Header controlModal={controlModal} title="Grupos de Despesa" img="/icons/People.svg"/>
       <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="grupo-despesa" path="grupo-despesa"/>
         
       {model.length == 0 ? null : 

@@ -6,10 +6,6 @@ import { useRouter } from "next/router";
 
 
 export default function ModalUpdate({ title, id, controlModal, path, model, children, setFormData, formData }) {
-    if (!model || model.length == 0) {
-        return 
-    }
-
     const router = useRouter();
 
     useEffect(() => {
@@ -20,6 +16,10 @@ export default function ModalUpdate({ title, id, controlModal, path, model, chil
             console.error(error)
         })
     }, [id]);
+
+    if (!model || model.length == 0) {
+        return 
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();

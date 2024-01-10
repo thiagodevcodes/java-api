@@ -20,7 +20,6 @@ export default function GrupoDespesaById() {
   const [tipoTransacao, setTipoTransacao] = useState([]);
   const [unidade, setUnidade] = useState([]);
   const [unidadeOrcamentaria, setUnidadeOrcamentaria] = useState([]);
-  const [data, setData] = useState([]);
   const [lancamentoPai, setLancamentoPai] = useState([]);
   const id = router.query.id;
 
@@ -111,7 +110,6 @@ export default function GrupoDespesaById() {
     if(lancamento.lancamentoPai) {
       fetchDataById(lancamento.lancamentoPai, "lancamento").then((response) => {
         setLancamentoPai(response);
-        console.log(lancamentoPai)
       })
     }
   },[lancamento])

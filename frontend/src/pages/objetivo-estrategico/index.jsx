@@ -53,7 +53,7 @@ export default function ObjetivoEstrategico() {
 
   return (
     <Layout title="Orçamento Público">
-      <Header controlModal={controlModal} title="Objetivos Estratégicos" img="/icons/Action.svg"/>
+      <Header controlModal={controlModal} title="Objetivos Estratégicos" img="/icons/Strategy.svg"/>
       <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="objetivo-estrategico" path="objetivo-estrategico"/>
         
       {model.length == 0 ? null : 

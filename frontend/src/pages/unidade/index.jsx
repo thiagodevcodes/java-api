@@ -53,7 +53,7 @@ export default function Unidade() {
 
     return (
       <Layout title="Orçamento Público">
-        <Header controlModal={controlModal} title="Unidades" img="/icons/Action.svg"/>
+        <Header controlModal={controlModal} title="Unidades" img="/icons/Unit.svg"/>
         <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="unidade" path="unidade"/>
           
         {model.length == 0 ? null : 
