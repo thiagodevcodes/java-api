@@ -127,9 +127,9 @@ export default function Lancamento() {
         lancamentoInvalido: false,
         dataLancamento: "",
         lancamentoPai: "",
-        anoOrcamento: ""
+        anoOrcamento: ano
       })
-  }, [modalOpen.update])
+  }, [modalOpen.update, ano])
 
   useEffect(() => {
     getAllData().then((response) => {
