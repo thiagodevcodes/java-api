@@ -10,7 +10,6 @@ import { useState, useEffect } from "react"
 import { fetchData } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 import InputForm from "@/components/InputForm";
-import ModalDelete from "@/components/ModalDelete";
 
 export default function ModalidadeAplicacao() {
   const [model, setModel] = useState([]);
