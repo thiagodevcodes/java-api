@@ -1,20 +1,16 @@
 import styles from "../styles/Lancamento.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export default function Checkbox({ title, onChange, nameObject, value }) {
+export default function Checkbox({ title, onChange, nameObject }) {
     const [isChecked, setIsChecked] = useState(false);
 
     const handleCheckboxChange = (event) => {
-        const novoValor = event.target.checked;
+        const novoValor = event.target.checked || false;
         setIsChecked(novoValor);
         if (onChange) {
             onChange(nameObject, novoValor);
         }
     };
-
-    useEffect(() => {
-        setIsChecked(value);
-    }, [value]);
 
     return (
         <div>

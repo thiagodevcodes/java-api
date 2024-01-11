@@ -31,6 +31,10 @@
     text-align: center;
 }
 
+.modal p {
+    text-align: center;
+}
+
 .modal button:hover {
     background-color: rgb(3, 5, 155);
 }
@@ -43,7 +47,7 @@
 .buttons {
     display: flex;
     gap: 5px;
-    justify-content: flex-end;
+    justify-content: center;
     margin-top: 15px;
 }
 
@@ -54,4 +58,9 @@
     border: none;
     border-radius: 30px;
     cursor: pointer;
+    width: 100px;
+}
+
+.buttons button  p {
+    text-align: center;
 }

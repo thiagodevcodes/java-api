@@ -39,16 +39,20 @@ export default function Table({ model, controlModal, setId, path, columns }) {
                             <td key={column.cod}>{row[column.cod]}</td>
                         ))}
                         <td className={styles.link}>
-                            <Link href={`/${path}/${row.id}`}>
-                                <Image src={"/icons/Eye.svg"} alt="" width={30} height={30}></Image>
-                            </Link>
+                            {
+                                path == "lancamento" ? 
+                                <Link href={`/${path}/${row.id}`}>
+                                    <Image src={"/icons/Eye.svg"} alt="" width={30} height={30}></Image>
+                                </Link>
+                                : null
+                            }
 
                             <button className={styles.actionButton} onClick={() => {controlModal("update", true); setId(row.id); }}>
                                 <Image src={"/icons/Edit.svg"} alt="" width={30} height={30}/>  
                             </button>
                                 
-                            <button onClick={() => handleDelete(row.id, path, router)} className={styles.actionButton}>
-                                <Image src={"/icons/Delete.svg"} alt="" width={30} height={30}/>
+                            <button className={styles.actionButton} onClick={() => {controlModal("delete", true); setId(row.id); }}>
+                                <Image src={"/icons/Delete.svg"} alt="" width={30} height={30}/>  
                             </button>
                         </td>
                     </tr>

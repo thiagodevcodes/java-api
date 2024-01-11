@@ -38,7 +38,7 @@ export default function Solicitante() {
     };
   
     useEffect(() => {
-      fetchData(10, currentPage, "solicitante").then((response) => {
+      fetchData(8, currentPage, "solicitante").then((response) => {
         setModel(response.content);
         setTotalPages(response.totalPages);
       }).catch((error) => {

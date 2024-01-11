@@ -1,5 +1,5 @@
 import styles from "../styles/Modal.module.css";
-import ModalButtons from "./ModalButtons";
+import Button from "./Button";
 import { handleUpdate, fetchDataById } from "@/services/axios";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
@@ -32,7 +32,10 @@ export default function ModalUpdate({ title, id, controlModal, path, model, chil
 
                 { children }
 
-                <ModalButtons  controlModal={() => controlModal("update", false)}/>
+                <div className={styles.buttons}>
+                    <Button type="submit" title="Salvar"/>
+                    <Button title="Fechar" onClick={() => controlModal("update", false)}/>  
+                </div>
             </form>
         </div>
     );

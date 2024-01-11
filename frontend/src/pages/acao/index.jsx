@@ -9,12 +9,13 @@ import { useState, useEffect } from "react"
 import { fetchData, fetchDataById } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 import InputForm from "@/components/InputForm";
+import ModalDelete from "@/components/ModalDelete";
 
 export default function Acao() {
   const [model, setModel] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const [modalOpen, setModalOpen] = useState({ post: false, update: false });
+  const [modalOpen, setModalOpen] = useState({ post: false, update: false, delete: false });
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "", nome: "" });
 
@@ -34,7 +35,8 @@ export default function Acao() {
   const controlModal = (modal, isOpen) => {
     setModalOpen({
       post: modal === "post" ? isOpen : false,
-      update: modal === "update" ? isOpen : false
+      update: modal === "update" ? isOpen : false,
+      delete: modal === "delete" ? isOpen : false
     });
   };
 
@@ -112,7 +114,13 @@ export default function Acao() {
                 >
                 </InputForm>
         </ModalUpdate>
+        
        : null}
+
+      {modalOpen.delete ?
+      <ModalDelete path="acao" id={id} controlModal={controlModal} title={"Confirmar Exclusão?"}></ModalDelete> 
+        : null
+      }   
       <ToastContainer/>
     </Layout>
   )

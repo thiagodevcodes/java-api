@@ -13,7 +13,8 @@ import styles from "../../styles/Lancamento.module.css";
 import Select from "@/components/Select";
 import Checkbox from "@/components/Checkbox";
 
-export default function GrupoDespesa() {
+export default function Lancamento() {
+  const date = new Date()
   const [model, setModel] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState({})
@@ -39,7 +40,8 @@ export default function GrupoDespesa() {
     lancamentoInvalido: false,
     dataLancamento: "",
     lancamentoPai: "",
-    numeroLancamento: ""
+    numeroLancamento: "",
+    anoOrcamento: date.getFullYear()
   });
 
   const columns = [
@@ -50,10 +52,9 @@ export default function GrupoDespesa() {
     { name: "Contratado", cod: "contratado" },
     { name: "Valor", cod: "valor"},
     { name: "Ano", cod: "anoOrcamento" },
-    { name: "Data Lançamento", cod: "dataLancamento" }
   ]
   
-  const date = new Date()
+
 
   const ano = date.getFullYear();
   const mes = String(date.getMonth() + 1).padStart(2, '0'); 
@@ -125,7 +126,9 @@ const handleInputChange = (nameObject, e) => {
       contratado: "",
       lancamentoInvalido: false,
       dataLancamento: "",
-      lancamentoPai: "", })
+      lancamentoPai: "", 
+      anoOrcamento: date.getFullYear()
+    })
   }, [modalOpen.update])
 
   useEffect(() => {
@@ -175,7 +178,7 @@ const handleInputChange = (nameObject, e) => {
 
                 <div className={styles.containerSelect}>
                     <InputForm title={"Número Lançamento *"} type="number" onChange={(e) => handleInputChange("numeroLancamento", e)} nameObject="numeroLancamento"/>
-                    <Select year={true} defaultValue={date.getFullYear()} model={arrayAnos} title={"Ano Orçamento *"} type="number" onChange={(e) => handleSelectChange("anoOrcamento", e)} nameObject="anoOrcamento"/>
+                    <Select year={true} model={arrayAnos} title={"Ano Orçamento *"} onChange={(e) => handleSelectChange("anoOrcamento", e)} nameObject={"anoOrcamento"}/>
                     <InputForm title={"Contratado *"} type="text" onChange={(e) => handleInputChange("contratado", e)} nameObject="contratado"/>
                 </div>
 
@@ -218,8 +221,7 @@ const handleInputChange = (nameObject, e) => {
                 </div>
 
                 <div className={styles.containerSelect}>
-                    <Select year={true} defaultValue={date.getFullYear()} model={arrayAnos} title={"Ano Orçamento *"} type="number" onChange={(e) => handleSelectChange("anoOrcamento", e)} nameObject="anoOrcamento"/>
-
+                  <Select year={true} model={arrayAnos} title={"Ano Orçamento *"} onChange={(e) => handleSelectChange("anoOrcamento", e)} nameObject={"anoOrcamento"}/>
                     <InputForm value={formData.dataLancamento} title={"Data Lançamento *"} type="date" onChange={(e) => handleInputChange("dataLancamento", e)} nameObject="dataLancamento"/>
                     <Select defaultValue={formData.lancamentoPai} model={data[12]} title={"Lançamento Pai"} onChange={(e) => handleInputChange("lancamentoPai", e)} nameObject={"lancamentoPai"}/>
                 </div>
