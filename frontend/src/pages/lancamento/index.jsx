@@ -127,7 +127,7 @@ export default function Lancamento() {
         lancamentoInvalido: false,
         dataLancamento: "",
         lancamentoPai: "",
-        anoOrcamento: date.getFullYear()
+        anoOrcamento: ""
       })
   }, [modalOpen.update])
 
