@@ -10,29 +10,29 @@ export default function UnidadeById() {
   const [unidade, setUnidade] = useState({});
   const id = router.query.id;
 
-  useEffect( () => {
-    if(id) {
+  useEffect(() => {
+    if (id) {
       fetchDataById(id, "unidade").then((response) => {
         setUnidade(response);
-    }).catch((error) => {
+      }).catch((error) => {
         console.error(error)
-    })
+      })
     }
   }, [id])
 
   if (!unidade) {
-      return <div>Unidade não encontrada</div>;
+    return <div>Unidade não encontrada</div>;
   }
 
   return (
-      <Layout>
-        <div className={styles.container}>
-          <h1>Detalhes de Unidade</h1>
-          <p>Id: {unidade.id}</p>
-          <p>Nome: {unidade.nome}</p>
-        </div>
+    <Layout>
+      <div className={styles.container}>
+        <h1>Detalhes de Unidade</h1>
+        <p>Id: {unidade.id}</p>
+        <p>Nome: {unidade.nome}</p>
+      </div>
 
-      </Layout>
+    </Layout>
   );
 };
 

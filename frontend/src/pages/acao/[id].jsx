@@ -10,32 +10,32 @@ export default function AcaoById() {
   const [acao, setAcao] = useState({});
   const id = router.query.id;
 
-  useEffect( () => {
-    if(id) {
+  useEffect(() => {
+    if (id) {
       fetchDataById(id, "acao").then((response) => {
         setAcao(response);
-    }).catch((error) => {
+      }).catch((error) => {
         console.error(error)
-    })
+      })
     }
   }, [id])
 
   if (!acao) {
-      return <div>Ação não encontrada</div>;
+    return <div>Ação não encontrada</div>;
   }
 
   return (
-      <Layout>
-        <div className={styles.container}>
+    <Layout>
+      <div className={styles.container}>
 
-        
-          <h1>Detalhes de Ação</h1>
 
-          <p>Id: {acao.id}</p>
-          <p>Nome: {acao.nome}</p>
-          <p>Código: {acao.codigo}</p>
-        </div>
-      </Layout>
+        <h1>Detalhes de Ação</h1>
+
+        <p>Id: {acao.id}</p>
+        <p>Nome: {acao.nome}</p>
+        <p>Código: {acao.codigo}</p>
+      </div>
+    </Layout>
   );
 };
 

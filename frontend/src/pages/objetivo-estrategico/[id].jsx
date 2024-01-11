@@ -10,28 +10,28 @@ export default function ObjetivoEstrategicoById() {
   const [objetivoEstrategico, setObjetivoEstrategico] = useState({});
   const id = router.query.id;
 
-  useEffect( () => {
-    if(id) {
+  useEffect(() => {
+    if (id) {
       fetchDataById(id, "objetivo-estrategico").then((response) => {
         setObjetivoEstrategico(response);
-    }).catch((error) => {
+      }).catch((error) => {
         console.error(error)
-    })
+      })
     }
   }, [id])
 
   if (!objetivoEstrategico) {
-      return <div>Objetivo Estratégico não encontrado</div>;
+    return <div>Objetivo Estratégico não encontrado</div>;
   }
 
   return (
-      <Layout>
-        <div className={styles.container}>
-          <h1>Detalhes de Objetivo Estratégico</h1>
-          <p>Id: {objetivoEstrategico.id}</p>
-          <p>Nome: {objetivoEstrategico.nome}</p>
-        </div>
-      </Layout>
+    <Layout>
+      <div className={styles.container}>
+        <h1>Detalhes de Objetivo Estratégico</h1>
+        <p>Id: {objetivoEstrategico.id}</p>
+        <p>Nome: {objetivoEstrategico.nome}</p>
+      </div>
+    </Layout>
   );
 };
 

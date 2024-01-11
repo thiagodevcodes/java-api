@@ -21,12 +21,12 @@ export default function ModalDelete({ id, title, controlModal, path, children, f
             <div className={styles.modal}>
                 <h2>{title}</h2>
                 <p>Tem certeza que quer excluir, <br /> essa ação não tem como ser revertida!</p>
-                
-                { children }
-                
+
+                {children}
+
                 <div className={styles.buttons}>
-                    <Button title="Sim" onClick={handleSubmit}/>
-                    <Button title="Não" onClick={() => controlModal("delete", false)}/>  
+                    <Button title="Sim" onClick={handleSubmit} />
+                    <Button title="Não" onClick={() => controlModal("delete", false)} />
                 </div>
             </div>
         </div>

@@ -10,28 +10,28 @@ export default function SolicitanteById() {
   const [solicitante, setSolicitante] = useState({});
   const id = router.query.id;
 
-  useEffect( () => {
-    if(id) {
+  useEffect(() => {
+    if (id) {
       fetchDataById(id, "solicitante").then((response) => {
         setSolicitante(response);
-    }).catch((error) => {
+      }).catch((error) => {
         console.error(error)
-    })
+      })
     }
   }, [id])
 
   if (!solicitante) {
-      return <div>Solicitante não encontrado</div>;
+    return <div>Solicitante não encontrado</div>;
   }
 
   return (
-      <Layout>
-        <div className={styles.container}> 
-          <h1>Detalhes de Solicitante</h1>
-          <p>Id: {solicitante.id}</p>
-          <p>Nome: {solicitante.nome}</p>
-        </div>
-      </Layout>
+    <Layout>
+      <div className={styles.container}>
+        <h1>Detalhes de Solicitante</h1>
+        <p>Id: {solicitante.id}</p>
+        <p>Nome: {solicitante.nome}</p>
+      </div>
+    </Layout>
   );
 };
 

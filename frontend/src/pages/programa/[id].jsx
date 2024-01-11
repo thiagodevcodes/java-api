@@ -10,29 +10,29 @@ export default function ProgramaById() {
   const [programa, setPrograma] = useState({});
   const id = router.query.id;
 
-  useEffect( () => {
-    if(id) {
+  useEffect(() => {
+    if (id) {
       fetchDataById(id, "programa").then((response) => {
         setPrograma(response);
-    }).catch((error) => {
+      }).catch((error) => {
         console.error(error)
-    })
+      })
     }
   }, [id])
 
   if (!programa) {
-      return <div>Programa não encontrado</div>;
+    return <div>Programa não encontrado</div>;
   }
 
   return (
-      <Layout>
-        <div className={styles.container}>
-          <h1>Detalhes de Programa</h1>
-          <p>Id: {programa.id}</p>
-          <p>Nome: {programa.nome}</p>
-          <p>Código: {programa.codigo}</p>
-        </div>
-      </Layout>
+    <Layout>
+      <div className={styles.container}>
+        <h1>Detalhes de Programa</h1>
+        <p>Id: {programa.id}</p>
+        <p>Nome: {programa.nome}</p>
+        <p>Código: {programa.codigo}</p>
+      </div>
+    </Layout>
   );
 };
 

@@ -18,23 +18,23 @@ export default function Pagination({ currentPage, setCurrentPage, totalPages }) 
             <li>
                 <button disabled={current == 0} onClick={() => setCurrentPage(current - 1)}>Anterior</button>
             </li>
-            
+
             {
-            Array.from({ length: Math.min(MAX_ITENS, pages) })
-                .map((_, index) => index + first)
-                .map((page) => (
-                    <li key={page}>
-                        <button className={
-                            page - 1 === current ? styles.pageBarButtonActive : null
-                        } onClick={() => setCurrentPage(page - 1)}>{page}
-                        </button>
-                    </li>
-                ))
+                Array.from({ length: Math.min(MAX_ITENS, pages) })
+                    .map((_, index) => index + first)
+                    .map((page) => (
+                        <li key={page}>
+                            <button className={
+                                page - 1 === current ? styles.pageBarButtonActive : null
+                            } onClick={() => setCurrentPage(page - 1)}>{page}
+                            </button>
+                        </li>
+                    ))
             }
 
             <li>
                 <button disabled={current == pages - 1} onClick={() => setCurrentPage(current + 1)}>Próximo</button>
-            </li> 
+            </li>
         </ul>
     )
 }

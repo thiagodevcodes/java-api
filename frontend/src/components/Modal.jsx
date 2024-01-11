@@ -10,11 +10,11 @@ export default function Modal({ title, controlModal, path, children, formData })
         e.preventDefault();
 
         try {
-            handleCreate(formData , path, router, controlModal);
+            handleCreate(formData, path, router, controlModal);
         } catch (error) {
             console.error("Erro ao criar:", error);
         }
-        
+
     };
 
     return (
@@ -22,11 +22,11 @@ export default function Modal({ title, controlModal, path, children, formData })
             <form className={styles.modal} onSubmit={handleSubmit} method="POST">
                 <h2>{title}</h2>
 
-                { children }
+                {children}
 
                 <div className={styles.buttons}>
-                    <Button type="submit" title="Salvar"/>
-                    <Button title="Fechar" onClick={() => controlModal("post", false)}/>  
+                    <Button type="submit" title="Salvar" />
+                    <Button title="Fechar" onClick={() => controlModal("post", false)} />
                 </div>
             </form>
         </div>

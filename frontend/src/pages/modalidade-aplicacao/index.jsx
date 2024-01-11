@@ -4,17 +4,19 @@ import Pagination from "@/components/Pagination";
 import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import ModalUpdate from "@/components/ModalUpdate";
-import { ToastContainer, toast } from "react-toastify";
+import ModalDelete from "@/components/ModalDelete";
+import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react"
 import { fetchData } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 import InputForm from "@/components/InputForm";
+import ModalDelete from "@/components/ModalDelete";
 
 export default function ModalidadeAplicacao() {
   const [model, setModel] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const [modalOpen, setModalOpen] = useState({ post: false, update: false });
+  const [modalOpen, setModalOpen] = useState({ post: false, update: false, delete: false });
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "", nome: "" });
 
@@ -34,7 +36,8 @@ export default function ModalidadeAplicacao() {
   const controlModal = (modal, isOpen) => {
     setModalOpen({
       post: modal === "post" ? isOpen : false,
-      update: modal === "update" ? isOpen : false
+      update: modal === "update" ? isOpen : false,
+      delete: modal === "delete" ? isOpen : false
     });
   };
 
@@ -48,73 +51,78 @@ export default function ModalidadeAplicacao() {
   }, [currentPage]);
 
   useEffect(() => {
-    if(modalOpen.update == false)
+    if (modalOpen.update == false)
       setFormData({ nome: "", codigo: "" })
   }, [modalOpen.update])
-  
-  
-    
+
+
+
   return (
     <Layout title="Orçamento Público">
-      <Header controlModal={controlModal} title="Modalidades de Aplicação" img="/icons/Transfer.svg"/>
-      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="modalidade-aplicacao" path="modalidade-aplicacao"/>
-        
-      {model.length == 0 ? null : 
-        <Pagination 
+      <Header controlModal={controlModal} title="Modalidades de Aplicação" img="/icons/Transfer.svg" />
+      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="modalidade-aplicacao" path="modalidade-aplicacao" />
+
+      {model.length == 0 ? null :
+        <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           totalPages={totalPages}
         />
       }
 
-    {modalOpen.post ? 
-        <Modal title="Adicionar Modalidade Aplicação" controlModal={controlModal} path={"modalidade-aplicacao"} formData={ formData }>
-                <InputForm         
-                    key={"codigo"}    
-                    id={"codigo"}
-                    type={"number"}
-                    title={"Código"}
-                    htmlFor={"codigo"}
-                    onChange={(e) => handleInputChange("codigo", e)}
-                    value={ formData.codigo }
-                >
-                </InputForm>
-                <InputForm         
-                    key={"nome"}    
-                    id={"nome"}
-                    type={"text"}
-                    title={"Nome"}
-                    htmlFor={"nome"}
-                    onChange={(e) => handleInputChange("nome", e)}
-                    value={ formData.nome }
-                >
-                </InputForm>
+      {modalOpen.post ?
+        <Modal title="Adicionar Modalidade Aplicação" controlModal={controlModal} path={"modalidade-aplicacao"} formData={formData}>
+          <InputForm
+            key={"codigo"}
+            id={"codigo"}
+            type={"number"}
+            title={"Código"}
+            htmlFor={"codigo"}
+            onChange={(e) => handleInputChange("codigo", e)}
+            value={formData.codigo}
+          >
+          </InputForm>
+          <InputForm
+            key={"nome"}
+            id={"nome"}
+            type={"text"}
+            title={"Nome"}
+            htmlFor={"nome"}
+            onChange={(e) => handleInputChange("nome", e)}
+            value={formData.nome}
+          >
+          </InputForm>
         </Modal>
-       : modalOpen.update ? 
-        <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Modalidade Aplicação" controlModal={controlModal} path={"modalidade-aplicacao"} formData={ formData }>
-                <InputForm         
-                    key={"codigo"}    
-                    id={"codigo"}
-                    type={"number"}
-                    title={"Código"}
-                    htmlFor={"codigo"}
-                    onChange={(e) => handleInputChange("codigo", e)}
-                    value={ formData.codigo }
-                >
-                </InputForm>
-                <InputForm         
-                    key={"nome"}    
-                    id={"nome"}
-                    type={"text"}
-                    title={"Nome"}
-                    htmlFor={"Nome"}
-                    onChange={(e) => handleInputChange("nome", e)}
-                    value={ formData.nome }
-                >
-                </InputForm>
-        </ModalUpdate>
-       : null}
-      <ToastContainer/>
+        : modalOpen.update ?
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Modalidade Aplicação" controlModal={controlModal} path={"modalidade-aplicacao"} formData={formData}>
+            <InputForm
+              key={"codigo"}
+              id={"codigo"}
+              type={"number"}
+              title={"Código"}
+              htmlFor={"codigo"}
+              onChange={(e) => handleInputChange("codigo", e)}
+              value={formData.codigo}
+            >
+            </InputForm>
+            <InputForm
+              key={"nome"}
+              id={"nome"}
+              type={"text"}
+              title={"Nome"}
+              htmlFor={"Nome"}
+              onChange={(e) => handleInputChange("nome", e)}
+              value={formData.nome}
+            >
+            </InputForm>
+          </ModalUpdate>
+          : null}
+
+      {modalOpen.delete ?
+        <ModalDelete path="lancamento" id={id} controlModal={controlModal} title={"Confirmar Exclusão?"}></ModalDelete>
+        : null
+      }
+      <ToastContainer />
     </Layout>
   )
 }

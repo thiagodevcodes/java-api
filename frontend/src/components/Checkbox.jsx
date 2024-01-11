@@ -22,6 +22,6 @@ export default function Checkbox({ title, onChange, nameObject }) {
                     onChange={handleCheckboxChange}
                 />
             </label>
-      </div>
+        </div>
     )
 }

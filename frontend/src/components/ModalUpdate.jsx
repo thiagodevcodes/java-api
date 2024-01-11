@@ -10,14 +10,14 @@ export default function ModalUpdate({ title, id, controlModal, path, model, chil
 
     useEffect(() => {
         fetchDataById(id, path).then((response) => {
-            setFormData( response )
+            setFormData(response)
         }).catch((error) => {
             console.error(error)
         })
     }, [id, setFormData, path]);
 
     if (!model || model.length == 0) {
-        return 
+        return
     }
 
     const handleSubmit = (e) => {
@@ -30,11 +30,11 @@ export default function ModalUpdate({ title, id, controlModal, path, model, chil
             <form className={styles.modal} onSubmit={handleSubmit}>
                 <h2>{title}</h2>
 
-                { children }
+                {children}
 
                 <div className={styles.buttons}>
-                    <Button type="submit" title="Salvar"/>
-                    <Button title="Fechar" onClick={() => controlModal("update", false)}/>  
+                    <Button type="submit" title="Salvar" />
+                    <Button title="Fechar" onClick={() => controlModal("update", false)} />
                 </div>
             </form>
         </div>

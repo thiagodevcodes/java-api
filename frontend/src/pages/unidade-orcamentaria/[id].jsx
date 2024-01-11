@@ -10,30 +10,30 @@ export default function UnidadeOrcamentariaById() {
   const [unidadeOrcamentaria, setUnidadeOrcamentaria] = useState({});
   const id = router.query.id;
 
-  useEffect( () => {
-    if(id) {
+  useEffect(() => {
+    if (id) {
       fetchDataById(id, "unidade-orcamentaria").then((response) => {
         setUnidadeOrcamentaria(response);
-    }).catch((error) => {
+      }).catch((error) => {
         console.error(error)
-    })
+      })
     }
   }, [id])
 
   if (!unidadeOrcamentaria) {
-      return <div>Unidade Orçamentaria não encontrada</div>;
+    return <div>Unidade Orçamentaria não encontrada</div>;
   }
 
   return (
-      <Layout>
-        <div className={styles.container}>
-          <h1>Detalhes de Unidade Orçamentária</h1>
-          <p>Id: {unidadeOrcamentaria.id}</p>
-          <p>Nome: {unidadeOrcamentaria.nome}</p>
-          <p>Código: {unidadeOrcamentaria.codigo}</p>
-        </div>
+    <Layout>
+      <div className={styles.container}>
+        <h1>Detalhes de Unidade Orçamentária</h1>
+        <p>Id: {unidadeOrcamentaria.id}</p>
+        <p>Nome: {unidadeOrcamentaria.nome}</p>
+        <p>Código: {unidadeOrcamentaria.codigo}</p>
+      </div>
 
-      </Layout>
+    </Layout>
   );
 };
 

@@ -10,28 +10,28 @@ export default function TipoTransacaoById() {
   const [tipoTransacao, setTipoTransacao] = useState({});
   const id = router.query.id;
 
-  useEffect( () => {
-    if(id) {
+  useEffect(() => {
+    if (id) {
       fetchDataById(id, "tipo-transacao").then((response) => {
         setTipoTransacao(response);
-    }).catch((error) => {
+      }).catch((error) => {
         console.error(error)
-    })
+      })
     }
   }, [id])
 
   if (!tipoTransacao) {
-      return <div>Tipo de Transação não encontrada</div>;
+    return <div>Tipo de Transação não encontrada</div>;
   }
 
   return (
-      <Layout>
-        <div className={styles.container}>
-          <h1>Detalhes de Tipo de Transação</h1>
-          <p>Id: {tipoTransacao.id}</p>
-          <p>Nome: {tipoTransacao.nome}</p>
-        </div>
-      </Layout>
+    <Layout>
+      <div className={styles.container}>
+        <h1>Detalhes de Tipo de Transação</h1>
+        <p>Id: {tipoTransacao.id}</p>
+        <p>Nome: {tipoTransacao.nome}</p>
+      </div>
+    </Layout>
   );
 };
 

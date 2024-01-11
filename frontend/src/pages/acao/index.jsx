@@ -50,78 +50,78 @@ export default function Acao() {
   }, [currentPage]);
 
   useEffect(() => {
-    if(modalOpen.update == false)
+    if (modalOpen.update == false)
       setFormData({ nome: "", codigo: "" })
   }, [modalOpen.update])
 
-   
+
   return (
     <Layout title="Orçamento Público">
-      <Header controlModal={controlModal} title="Ações" img="/icons/Action.svg"/>
-      <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="acao" path="acao"/>
-        
-      {model.length == 0 ? null : 
-        <Pagination 
+      <Header controlModal={controlModal} title="Ações" img="/icons/Action.svg" />
+      <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="acao" path="acao" />
+
+      {model.length == 0 ? null :
+        <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           totalPages={totalPages}
         />
       }
 
-      {modalOpen.post ? 
-        <Modal title="Adicionar Ação" controlModal={controlModal} path={"acao"} formData={  formData  }>
-                <InputForm         
-                    key={"codigo"}    
-                    id={"codigo"}
-                    type={"number"}
-                    title={"Código"}
-                    htmlFor={"codigo"}
-                    onChange={(e) => handleInputChange("codigo", e)}
-                    value={ formData.codigo }
-                >
-                </InputForm>
-                <InputForm         
-                    key={"nome"}    
-                    id={"nome"}
-                    type={"text"}
-                    title={"Nome"}
-                    htmlFor={"nome"}
-                    onChange={(e) => handleInputChange("nome", e)}
-                    value={ formData.nome }
-                >
-                </InputForm>
+      {modalOpen.post ?
+        <Modal title="Adicionar Ação" controlModal={controlModal} path={"acao"} formData={formData}>
+          <InputForm
+            key={"codigo"}
+            id={"codigo"}
+            type={"number"}
+            title={"Código"}
+            htmlFor={"codigo"}
+            onChange={(e) => handleInputChange("codigo", e)}
+            value={formData.codigo}
+          >
+          </InputForm>
+          <InputForm
+            key={"nome"}
+            id={"nome"}
+            type={"text"}
+            title={"Nome"}
+            htmlFor={"nome"}
+            onChange={(e) => handleInputChange("nome", e)}
+            value={formData.nome}
+          >
+          </InputForm>
         </Modal>
-       : modalOpen.update ? 
-        <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Ação" controlModal={controlModal} path={"acao"} formData={ formData }>
-                <InputForm         
-                    key={"codigo"}    
-                    id={"codigo"}
-                    type={"number"}
-                    title={"Código"}
-                    htmlFor={"codigo"}
-                    onChange={(e) => handleInputChange("codigo", e)}
-                    value={ formData.codigo }
-                >
-                </InputForm>
-                <InputForm         
-                    key={"nome"}    
-                    id={"nome"}
-                    type={"text"}
-                    title={"Nome"}
-                    htmlFor={"Nome"}
-                    onChange={(e) => handleInputChange("nome", e)}
-                    value={ formData.nome }
-                >
-                </InputForm>
-        </ModalUpdate>
-        
-       : null}
+        : modalOpen.update ?
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Ação" controlModal={controlModal} path={"acao"} formData={formData}>
+            <InputForm
+              key={"codigo"}
+              id={"codigo"}
+              type={"number"}
+              title={"Código"}
+              htmlFor={"codigo"}
+              onChange={(e) => handleInputChange("codigo", e)}
+              value={formData.codigo}
+            >
+            </InputForm>
+            <InputForm
+              key={"nome"}
+              id={"nome"}
+              type={"text"}
+              title={"Nome"}
+              htmlFor={"Nome"}
+              onChange={(e) => handleInputChange("nome", e)}
+              value={formData.nome}
+            >
+            </InputForm>
+          </ModalUpdate>
+
+          : null}
 
       {modalOpen.delete ?
-      <ModalDelete path="acao" id={id} controlModal={controlModal} title={"Confirmar Exclusão?"}></ModalDelete> 
+        <ModalDelete path="acao" id={id} controlModal={controlModal} title={"Confirmar Exclusão?"}></ModalDelete>
         : null
-      }   
-      <ToastContainer/>
+      }
+      <ToastContainer />
     </Layout>
   )
 }

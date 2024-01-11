@@ -10,28 +10,28 @@ export default function TipoLancamentoById() {
   const [tipoLancamento, setTipoLancamento] = useState({});
   const id = router.query.id;
 
-  useEffect( () => {
-    if(id) {
+  useEffect(() => {
+    if (id) {
       fetchDataById(id, "tipo-lancamento").then((response) => {
         setTipoLancamento(response);
-    }).catch((error) => {
+      }).catch((error) => {
         console.error(error)
-    })
+      })
     }
   }, [id])
 
   if (!tipoLancamento) {
-      return <div>Tipo de Lançamento não encontrado</div>;
+    return <div>Tipo de Lançamento não encontrado</div>;
   }
 
   return (
-      <Layout>
-        <div className={styles.container}>
-          <h1>Detalhes de Tipo Lançamento</h1>
-          <p>Id: {tipoLancamento.id}</p>
-          <p>Nome: {tipoLancamento.nome}</p>
-        </div>
-      </Layout>
+    <Layout>
+      <div className={styles.container}>
+        <h1>Detalhes de Tipo Lançamento</h1>
+        <p>Id: {tipoLancamento.id}</p>
+        <p>Nome: {tipoLancamento.nome}</p>
+      </div>
+    </Layout>
   );
 };
 

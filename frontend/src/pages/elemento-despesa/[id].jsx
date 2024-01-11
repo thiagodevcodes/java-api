@@ -10,29 +10,29 @@ export default function ElementoDespesaById() {
   const [elementoDespesa, setElementoDespesa] = useState({});
   const id = router.query.id;
 
-  useEffect( () => {
-    if(id) {
+  useEffect(() => {
+    if (id) {
       fetchDataById(id, "elemento-despesa").then((response) => {
         setElementoDespesa(response);
-    }).catch((error) => {
+      }).catch((error) => {
         console.error(error)
-    })
+      })
     }
   }, [id])
 
   if (!elementoDespesa) {
-      return <div>Elemento Despesa não encontrado</div>;
+    return <div>Elemento Despesa não encontrado</div>;
   }
 
   return (
-      <Layout>
-          <div className={styles.container}>
-            <h1>Detalhes de Elemento Desepsa</h1>
-            <p>Id: {elementoDespesa.id}</p>
-            <p>Nome: {elementoDespesa.nome}</p>
-            <p>Código: {elementoDespesa.codigo}</p>
-          </div>
-      </Layout>
+    <Layout>
+      <div className={styles.container}>
+        <h1>Detalhes de Elemento Desepsa</h1>
+        <p>Id: {elementoDespesa.id}</p>
+        <p>Nome: {elementoDespesa.nome}</p>
+        <p>Código: {elementoDespesa.codigo}</p>
+      </div>
+    </Layout>
   );
 };
 
