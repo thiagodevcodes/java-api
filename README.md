@@ -12,6 +12,10 @@
 
 - <img height="28" src="https://img.shields.io/badge/-Mysql-02569B?logo=mysql&logoColor=white&style=fot-the-badge">
 
+- <img height="28" src="https://img.shields.io/badge/-React-1ac5ff?logo=react&logoColor=white&style=fot-the-badge">
+
+- <img height="28" src="https://img.shields.io/badge/-NextJS-000000?logo=next.js&logoColor=white&style=fot-the-badge">
+
 ### Arquitetura Back-end: 
 
 <img width="640" src="./src/main/resources/images/arquitetura.png">
