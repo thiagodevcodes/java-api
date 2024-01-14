@@ -24,6 +24,16 @@
     border: 1px solid black;
     width: 100% - 30px;
     margin-bottom: 5px;
+
+}
+
+
+.modal input[type='date'] {
+    width: 170px;
+}
+
+.modal input[type='checkbox'] {
+    width: 30px;    
 }
 
 .modal h2 {
@@ -31,12 +41,12 @@
     text-align: center;
 }
 
-.modal p {
-    text-align: center;
-}
-
 .modal button:hover {
     background-color: rgb(3, 5, 155);
+}
+
+.messageDelete {
+    text-align: center;
 }
 
 .inputContainer {
