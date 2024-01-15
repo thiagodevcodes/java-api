@@ -69,7 +69,7 @@ export default function Acao() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Ação" controlModal={controlModal} path={"acao"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"acao"} formData={formData}>
           <InputForm
             key={"codigo"}
             id={"codigo"}
@@ -92,7 +92,7 @@ export default function Acao() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Ação" controlModal={controlModal} path={"acao"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"acao"} formData={formData}>
             <InputForm
               key={"codigo"}
               id={"codigo"}

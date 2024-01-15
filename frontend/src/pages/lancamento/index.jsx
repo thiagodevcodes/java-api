@@ -151,7 +151,7 @@ export default function Lancamento() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Lançamento" controlModal={controlModal} path={"lancamento"} formData={formData}>
+        <Modal title="Novo Lançamento" controlModal={controlModal} path={"lancamento"} formData={formData}>
           <div className={styles.containerSelect}>
             <Select model={data[0]} title={"Ação *"} onChange={(e) => handleSelectChange("acao", e)} nameObject={"acao"} />
             <Select model={data[1]} title={"Elemento Despesa *"} onChange={(e) => handleSelectChange("elementoDespesa", e)} nameObject={"elementoDespesa"} />

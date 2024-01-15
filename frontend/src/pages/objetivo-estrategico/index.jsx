@@ -67,7 +67,7 @@ export default function ObjetivoEstrategico() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Objetivo Estratégico" controlModal={controlModal} path={"objetivo-estrategico"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"objetivo-estrategico"} formData={formData}>
           <InputForm
             key={"nome"}
             id={"nome"}
@@ -80,7 +80,7 @@ export default function ObjetivoEstrategico() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Objetivo Estratégico" controlModal={controlModal} path={"objetivo-estrategico"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"objetivo-estrategico"} formData={formData}>
             <InputForm
               key={"nome"}
               id={"nome"}

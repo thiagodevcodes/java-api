@@ -67,7 +67,7 @@ export default function TipoLancamento() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Tipo Lançamento" controlModal={controlModal} path={"tipo-lancamento"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"tipo-lancamento"} formData={formData}>
           <InputForm
             key={"nome"}
             id={"nome"}
@@ -80,7 +80,7 @@ export default function TipoLancamento() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Tipo Lançamento" controlModal={controlModal} path={"tipo-lancamento"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"tipo-lancamento"} formData={formData}>
             <InputForm
               key={"nome"}
               id={"nome"}

@@ -11,6 +11,7 @@ export default function ModalDelete({ id, title, controlModal, path, children, f
 
         try {
             handleDelete(id, path, router);
+            controlModal("delete", false)
         } catch (error) {
             console.error("Erro ao deletar:", error);
         }

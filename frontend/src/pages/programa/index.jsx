@@ -69,7 +69,7 @@ export default function Programa() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Programa" controlModal={controlModal} path={"programa"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"programa"} formData={formData}>
           <InputForm
             key={"codigo"}
             id={"codigo"}
@@ -92,7 +92,7 @@ export default function Programa() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Programa" controlModal={controlModal} path={"programa"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"programa"} formData={formData}>
             <InputForm
               key={"codigo"}
               id={"codigo"}

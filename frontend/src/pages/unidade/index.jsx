@@ -67,7 +67,7 @@ export default function Unidade() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Unidade" controlModal={controlModal} path={"unidade"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"unidade"} formData={formData}>
           <InputForm
             key={"nome"}
             id={"nome"}
@@ -80,7 +80,7 @@ export default function Unidade() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Unidade" controlModal={controlModal} path={"unidade"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"unidade"} formData={formData}>
             <InputForm
               key={"nome"}
               id={"nome"}

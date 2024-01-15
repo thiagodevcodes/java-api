@@ -69,7 +69,7 @@ export default function GrupoDespesa() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Grupo Despesa" controlModal={controlModal} path={"grupo-despesa"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"grupo-despesa"} formData={formData}>
           <InputForm
             key={"codigo"}
             id={"codigo"}
@@ -92,7 +92,7 @@ export default function GrupoDespesa() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Grupo Despesa" controlModal={controlModal} path={"grupo-despesa"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"grupo-despesa"} formData={formData}>
             <InputForm
               key={"codigo"}
               id={"codigo"}

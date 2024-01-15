@@ -69,7 +69,7 @@ export default function TipoTransacao() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Tipo Transação" controlModal={controlModal} path={"tipo-transacao"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"tipo-transacao"} formData={formData}>
           <InputForm
             key={"nome"}
             id={"nome"}
@@ -82,7 +82,7 @@ export default function TipoTransacao() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Tipo Transação" controlModal={controlModal} path={"tipo-transacao"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"tipo-transacao"} formData={formData}>
             <InputForm
               key={"nome"}
               id={"nome"}

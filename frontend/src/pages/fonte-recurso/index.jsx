@@ -68,7 +68,7 @@ export default function FonteRecurso() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Fonte Recurso" controlModal={controlModal} path={"fonte-recurso"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"fonte-recurso"} formData={formData}>
           <InputForm
             key={"codigo"}
             id={"codigo"}
@@ -91,7 +91,7 @@ export default function FonteRecurso() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Fonte Recurso" controlModal={controlModal} path={"fonte-recurso"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"fonte-recurso"} formData={formData}>
             <InputForm
               key={"codigo"}
               id={"codigo"}

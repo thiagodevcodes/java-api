@@ -68,7 +68,7 @@ export default function UnidadeOrcamentaria() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Unidade Orçamentária" controlModal={controlModal} path={"unidade-orcamentaria"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"unidade-orcamentaria"} formData={formData}>
           <InputForm
             key={"codigo  "}
             id={"codigo"}
@@ -91,7 +91,7 @@ export default function UnidadeOrcamentaria() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Unidade Orçamentária" controlModal={controlModal} path={"unidade-orcamentaria"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"unidade-orcamentaria"} formData={formData}>
             <InputForm
               key={"nome"}
               id={"nome"}

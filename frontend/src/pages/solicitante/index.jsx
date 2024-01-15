@@ -67,7 +67,7 @@ export default function Solicitante() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Solicitante" controlModal={controlModal} path={"solicitante"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"solicitante"} formData={formData}>
           <InputForm
             key={"nome"}
             id={"nome"}
@@ -80,7 +80,7 @@ export default function Solicitante() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Solicitante" controlModal={controlModal} path={"solicitante"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"solicitante"} formData={formData}>
             <InputForm
               key={"nome"}
               id={"nome"}

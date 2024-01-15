@@ -68,7 +68,7 @@ export default function ElementoDespesa() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Elemento Despesa" controlModal={controlModal} path={"elemento-despesa"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"elemento-despesa"} formData={formData}>
           <InputForm
             key={"codigo"}
             id={"codigo"}
@@ -91,7 +91,7 @@ export default function ElementoDespesa() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Elemento Despesa" controlModal={controlModal} path={"elemento-despesa"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"elemento-despesa"} formData={formData}>
             <InputForm
               key={"codigo"}
               id={"codigo"}

@@ -70,7 +70,7 @@ export default function ModalidadeAplicacao() {
       }
 
       {modalOpen.post ?
-        <Modal title="Adicionar Modalidade Aplicação" controlModal={controlModal} path={"modalidade-aplicacao"} formData={formData}>
+        <Modal title="Adicionar" controlModal={controlModal} path={"modalidade-aplicacao"} formData={formData}>
           <InputForm
             key={"codigo"}
             id={"codigo"}
@@ -93,7 +93,7 @@ export default function ModalidadeAplicacao() {
           </InputForm>
         </Modal>
         : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar Modalidade Aplicação" controlModal={controlModal} path={"modalidade-aplicacao"} formData={formData}>
+          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"modalidade-aplicacao"} formData={formData}>
             <InputForm
               key={"codigo"}
               id={"codigo"}
