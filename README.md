@@ -16,6 +16,18 @@
 
 - <img height="28" src="https://img.shields.io/badge/-NextJS-000000?logo=next.js&logoColor=white&style=fot-the-badge">
 
-### Arquitetura Back-end: 
 
-<img width="640" src="./src/main/resources/images/arquitetura.png">
+
+### Back-end: 
+
+- Necessita do Maven 3 e do Java 17
+- mvn spring-boot:run
+
+- URL: https://localhost:8080
+
+### Front-end:
+- URL: https://orcamento-publico.vercel.app
+
+- Acessar a pasta frontend pelo CMD e digitar "npm run dev"
+
+
