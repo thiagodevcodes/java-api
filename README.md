@@ -30,4 +30,13 @@
 
 - Acessar a pasta frontend pelo CMD e digitar "npm run dev"
 
+### Fotos do Projeto
+
+<img width="700px" src="./frontend//public/img/img1.png">
+<img width="700px" src="./frontend//public/img/img2.png">
+<img width="700px" src="./frontend//public/img/img3.png">
+<img width="700px" src="./frontend//public/img/img4.png">
+<img width="700px" src="./frontend//public/img/img5.png">
+<img width="700px" src="./frontend//public/img/img6.png">
+
 
