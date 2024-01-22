@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react"
 import "react-toastify/dist/ReactToastify.css";
 import InputForm from "@/components/InputForm";
+import Loading from "@/components/Loading";
 
 export default function Solicitante() {
   const [model, setModel] = useState([]);
@@ -18,6 +19,7 @@ export default function Solicitante() {
   const [modalOpen, setModalOpen] = useState({ post: false, update: false, delete: false });
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "", nome: "" });
+  const [loading, setLoading] = useState(false)
 
   const columns = [
     { name: "Id", cod: "id" },
@@ -40,9 +42,11 @@ export default function Solicitante() {
   };
 
   useEffect(() => {
+    setLoading(false)
     fetchData(10, currentPage, "solicitante").then((response) => {
       setModel(response.content);
       setTotalPages(response.totalPages);
+      setLoading(true)  
     }).catch((error) => {
       console.error(error)
     })
@@ -56,7 +60,9 @@ export default function Solicitante() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Solicitantes" img="/icons/Requesting.svg" />
-      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="solicitante" path="solicitante" />
+      { loading && model && <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="solicitante" path="solicitante" />} 
+
+      { !loading && <Loading/> }
 
       {model.length == 0 ? null :
         <Pagination
@@ -75,7 +81,6 @@ export default function Solicitante() {
             title={"Nome"}
             htmlFor={"nome"}
             onChange={(e) => handleInputChange("nome", e)}
-            value={formData.nome}
           >
           </InputForm>
         </Modal>

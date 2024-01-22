@@ -13,6 +13,7 @@ import InputForm from "@/components/InputForm";
 import styles from "../../styles/Lancamento.module.css";
 import Select from "@/components/Select";
 import Checkbox from "@/components/Checkbox";
+import Loading from "@/components/Loading";
 
 export default function Lancamento() {
   const date = new Date()
@@ -22,6 +23,7 @@ export default function Lancamento() {
   const [totalPages, setTotalPages] = useState(0);
   const [modalOpen, setModalOpen] = useState({ post: false, update: false, delete: false });
   const [id, setId] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     acao: "",
     elementoDespesa: "",
@@ -97,9 +99,11 @@ export default function Lancamento() {
   };
 
   useEffect(() => {
+    setLoading(false)
     fetchData(10, currentPage, "lancamento").then((response) => {
       setModel(response.content);
       setTotalPages(response.totalPages);
+      setLoading(true)
     }).catch((error) => {
       console.error(error)
     })
@@ -120,6 +124,7 @@ export default function Lancamento() {
         fonteRecurso: "",
         objetivoEstrategico: "",
         unidadeOrcamentaria: "",
+        numeroLancamento: "",
         unidade: "",
         valor: "",
         ged: "",
@@ -140,7 +145,9 @@ export default function Lancamento() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Lançamentos" img="/icons/Unity.svg" />
-      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="lancamento" path="lancamento" />
+      { model && loading && <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="lancamento" path="lancamento" />}
+      
+      { !loading && <Loading/> }
 
       {model.length == 0 ? null :
         <Pagination
@@ -221,7 +228,7 @@ export default function Lancamento() {
             </div>
 
             <div className={styles.containerSelect}>
-              <Select year={true} model={arrayAnos} title={"Ano Orçamento *"} onChange={(e) => handleSelectChange("anoOrcamento", e)} nameObject={"anoOrcamento"} />
+              <Select year={true} title={"Ano Orçamento *"} onChange={(e) => handleSelectChange("anoOrcamento", e)} nameObject={"anoOrcamento"} />
               <Select defaultValue={formData.lancamentoPai} model={data[12]} title={"Lançamento Pai"} onChange={(e) => handleInputChange("lancamentoPai", e)} nameObject={"lancamentoPai"} />
               <InputForm value={formData.dataLancamento} title={"Data Lançamento *"} type="date" onChange={(e) => handleInputChange("dataLancamento", e)} nameObject="dataLancamento" />
             </div>

@@ -5,7 +5,7 @@ CREATE TABLE unidade (
   nome varchar(255) NOT NULL,
   data_cadastro datetime NOT NULL,
   data_alteracao datetime NULL,
-  CONSTRAINT PK_Unidade PRIMARY KEY (ID)
+  CONSTRAINT PK_Unidade PRIMARY KEY (ID) 
 );
 CREATE TABLE tipo_lancamento (
   id int AUTO_INCREMENT NOT NULL,

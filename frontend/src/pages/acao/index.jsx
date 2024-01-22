@@ -4,12 +4,13 @@ import Pagination from "@/components/Pagination";
 import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import ModalUpdate from "@/components/ModalUpdate";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react"
-import { fetchData, fetchDataById } from "@/services/axios";
+import { fetchData } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 import InputForm from "@/components/InputForm";
 import ModalDelete from "@/components/ModalDelete";
+import Loading from "@/components/Loading";
 
 export default function Acao() {
   const [model, setModel] = useState([]);
@@ -18,8 +19,9 @@ export default function Acao() {
   const [modalOpen, setModalOpen] = useState({ post: false, update: false, delete: false });
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "", nome: "" });
+  const [loading, setLoading] = useState(false);
 
-  const data = [
+  const columns = [
     { name: "Id", cod: "id" },
     { name: "Código", cod: "codigo" },
     { name: "Nome", cod: "nome" },
@@ -41,9 +43,11 @@ export default function Acao() {
   };
 
   useEffect(() => {
+    setLoading(false)
     fetchData(10, currentPage, "acao").then((response) => {
       setModel(response.content);
       setTotalPages(response.totalPages);
+      setLoading(true);
     }).catch((error) => {
       console.error(error)
     })
@@ -54,11 +58,14 @@ export default function Acao() {
       setFormData({ nome: "", codigo: "" })
   }, [modalOpen.update])
 
-
+  
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Ações" img="/icons/Action.svg" />
-      <Table columns={data} model={model} controlModal={controlModal} setId={setId} title="acao" path="acao" />
+      { model && loading && <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="acao" path="acao" />}
+      
+      { !loading && <Loading/> }
+      
 
       {model.length == 0 ? null :
         <Pagination
@@ -77,7 +84,6 @@ export default function Acao() {
             title={"Código"}
             htmlFor={"codigo"}
             onChange={(e) => handleInputChange("codigo", e)}
-            value={formData.codigo}
           >
           </InputForm>
           <InputForm
@@ -87,39 +93,36 @@ export default function Acao() {
             title={"Nome"}
             htmlFor={"nome"}
             onChange={(e) => handleInputChange("nome", e)}
-            value={formData.nome}
           >
           </InputForm>
         </Modal>
-        : modalOpen.update ?
-          <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"acao"} formData={formData}>
-            <InputForm
-              key={"codigo"}
-              id={"codigo"}
-              type={"number"}
-              title={"Código"}
-              htmlFor={"codigo"}
-              onChange={(e) => handleInputChange("codigo", e)}
-              value={formData.codigo}
-            >
-            </InputForm>
-            <InputForm
-              key={"nome"}
-              id={"nome"}
-              type={"text"}
-              title={"Nome"}
-              htmlFor={"Nome"}
-              onChange={(e) => handleInputChange("nome", e)}
-              value={formData.nome}
-            >
-            </InputForm>
-          </ModalUpdate>
+        : modalOpen.update &&
+        <ModalUpdate setFormData={setFormData} model={model} id={id} title="Editar" controlModal={controlModal} path={"acao"} formData={formData}>
+          <InputForm
+            key={"codigo"}
+            id={"codigo"}
+            type={"number"}
+            title={"Código"}
+            htmlFor={"codigo"}
+            onChange={(e) => handleInputChange("codigo", e)}
+            value={formData.codigo}
+          >
+          </InputForm>
+          <InputForm
+            key={"nome"}
+            id={"nome"}
+            type={"text"}
+            title={"Nome"}
+            htmlFor={"Nome"}
+            onChange={(e) => handleInputChange("nome", e)}
+            value={formData.nome}
+          >
+          </InputForm>
+        </ModalUpdate>
+      }
 
-          : null}
-
-      {modalOpen.delete ?
+      {modalOpen.delete &&
         <ModalDelete path="acao" id={id} controlModal={controlModal} title={"Confirmar Exclusão?"}></ModalDelete>
-        : null
       }
       <ToastContainer />
     </Layout>

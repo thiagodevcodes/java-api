@@ -5,11 +5,12 @@ import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import ModalUpdate from "@/components/ModalUpdate";
 import ModalDelete from "@/components/ModalDelete";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react"
 import { fetchData } from "@/services/axios";
 import InputForm from "@/components/InputForm";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "@/components/Loading";
 
 export default function ElementoDespesa() {
   const [model, setModel] = useState([]);
@@ -18,6 +19,7 @@ export default function ElementoDespesa() {
   const [modalOpen, setModalOpen] = useState({ post: false, update: false, delete: false });
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "", nome: "" });
+  const [loading, setLoading] = useState(false)
 
   const columns = [
     { name: "Id", cod: "id" },
@@ -41,9 +43,11 @@ export default function ElementoDespesa() {
   };
 
   useEffect(() => {
+    setLoading(false)
     fetchData(10, currentPage, "elemento-despesa").then((response) => {
       setModel(response.content);
       setTotalPages(response.totalPages);
+      setLoading(true)
     }).catch((error) => {
       console.error(error)
     })
@@ -57,7 +61,9 @@ export default function ElementoDespesa() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Elementos Despesas" img="/icons/Cost.svg" />
-      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="elemento-despesa" path="elemento-despesa" />
+      { loading && model && <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="elemento-despesa" path="elemento-despesa" />
+ }
+      { !loading && <Loading/> }
 
       {model.length == 0 ? null :
         <Pagination
@@ -75,8 +81,7 @@ export default function ElementoDespesa() {
             type={"number"}
             title={"Código"}
             htmlFor={"codigo"}
-            onChange={(e) => handleInputChange("codigo", e)}
-            value={formData.codigo}
+            onChange={(e) => handleInputChange("codigo", e)}   
           >
           </InputForm>
           <InputForm
@@ -86,7 +91,6 @@ export default function ElementoDespesa() {
             title={"Nome"}
             htmlFor={"nome"}
             onChange={(e) => handleInputChange("nome", e)}
-            value={formData.nome}
           >
           </InputForm>
         </Modal>

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { fetchDataById, getAllData } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "../../styles/Details.module.css";
+import Loading from "@/components/Loading";
 
 export default function GrupoDespesaById() {
   const router = useRouter();
@@ -21,12 +22,14 @@ export default function GrupoDespesaById() {
   const [unidade, setUnidade] = useState([]);
   const [unidadeOrcamentaria, setUnidadeOrcamentaria] = useState([]);
   const [lancamentoPai, setLancamentoPai] = useState([]);
+  const [loading, setLoading] = useState(false);
   const id = router.query.id;
 
   useEffect(() => {
     if (id) {
       fetchDataById(id, "lancamento").then((response) => {
         setLancamento(response);
+        setLoading(true);
       }).catch((error) => {
         console.error(error)
       })
@@ -111,6 +114,7 @@ export default function GrupoDespesaById() {
         setLancamentoPai(response);
       })
     }
+    setLoading(true);
   }, [lancamento])
 
   if (!lancamento) {
@@ -125,7 +129,9 @@ export default function GrupoDespesaById() {
 
   return (
     <Layout>
-      <div className={styles.container}>
+      {
+        loading && 
+        <div className={styles.container}>
         <h1>Detalhes do Lançamento</h1>
         <p>Id: {lancamento.id}</p>
         <p>Número Lançamento: {lancamento.numeroLancamento}</p>
@@ -150,6 +156,9 @@ export default function GrupoDespesaById() {
         <p>Unidade: {unidade.nome ? unidade.nome : null}</p>
         <p>Unidade Orçamentária: {unidadeOrcamentaria.nome ? unidadeOrcamentaria.nome : null}</p>
       </div>
+      }
+      
+      <Loading/>
     </Layout>
   );
 };

@@ -10,6 +10,7 @@ import { useState, useEffect } from "react"
 import { fetchData } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 import InputForm from "@/components/InputForm";
+import Loading from "@/components/Loading";
 
 export default function GrupoDespesa() {
   const [model, setModel] = useState([]);
@@ -18,6 +19,7 @@ export default function GrupoDespesa() {
   const [modalOpen, setModalOpen] = useState({ post: false, update: false, delete: false });
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "", nome: "" });
+  const [loading, setLoading] = useState(false);
 
   const columns = [
     { name: "Id", cod: "id" },
@@ -41,9 +43,11 @@ export default function GrupoDespesa() {
   };
 
   useEffect(() => {
+    setLoading(false)
     fetchData(10, currentPage, "grupo-despesa").then((response) => {
       setModel(response.content);
       setTotalPages(response.totalPages);
+      setLoading(true)
     }).catch((error) => {
       console.error(error)
     })
@@ -58,7 +62,9 @@ export default function GrupoDespesa() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Grupos de Despesa" img="/icons/People.svg" />
-      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="grupo-despesa" path="grupo-despesa" />
+      { loading && model && <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="grupo-despesa" path="grupo-despesa" />}
+
+      { !loading && <Loading/> }
 
       {model.length == 0 ? null :
         <Pagination
@@ -76,8 +82,7 @@ export default function GrupoDespesa() {
             type={"number"}
             title={"Código"}
             htmlFor={"codigo"}
-            onChange={(e) => handleInputChange("codigo", e)}
-            value={formData.codigo}
+            onChange={(e) => handleInputChange("codigo", e)} 
           >
           </InputForm>
           <InputForm
@@ -86,8 +91,7 @@ export default function GrupoDespesa() {
             type={"text"}
             title={"Nome"}
             htmlFor={"nome"}
-            onChange={(e) => handleInputChange("nome", e)}
-            value={formData.nome}
+            onChange={(e) => handleInputChange("nome", e)}    
           >
           </InputForm>
         </Modal>

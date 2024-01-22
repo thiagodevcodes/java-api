@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react"
 import "react-toastify/dist/ReactToastify.css";
 import InputForm from "@/components/InputForm";
+import Loading from "@/components/Loading";
 
 export default function UnidadeOrcamentaria() {
   const [model, setModel] = useState([]);
@@ -18,6 +19,7 @@ export default function UnidadeOrcamentaria() {
   const [modalOpen, setModalOpen] = useState({ post: false, update: false, delete: false });
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "", nome: "" });
+  const [loading, setLoading] = useState(false)
 
   const columns = [
     { name: "Id", cod: "id" },
@@ -41,9 +43,11 @@ export default function UnidadeOrcamentaria() {
   };
 
   useEffect(() => {
+    setLoading(false)
     fetchData(10, currentPage, "unidade-orcamentaria").then((response) => {
       setModel(response.content);
       setTotalPages(response.totalPages);
+      setLoading(true)
     }).catch((error) => {
       console.error(error)
     })
@@ -57,7 +61,9 @@ export default function UnidadeOrcamentaria() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Unidades Orçamentárias" img="/icons/Unity.svg" />
-      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="unidade-orcamentaria" path="unidade-orcamentaria" />
+      { loading && model && <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="unidade-orcamentaria" path="unidade-orcamentaria" />}
+
+      { !loading && <Loading/> }
 
       {model.length == 0 ? null :
         <Pagination
@@ -76,7 +82,6 @@ export default function UnidadeOrcamentaria() {
             title={"Código"}
             htmlFor={"codigo"}
             onChange={(e) => handleInputChange("codigo", e)}
-            value={formData.codigo}
           >
           </InputForm>
           <InputForm
@@ -86,7 +91,6 @@ export default function UnidadeOrcamentaria() {
             title={"Nome"}
             htmlFor={"nome"}
             onChange={(e) => handleInputChange("nome", e)}
-            value={formData.nome}
           >
           </InputForm>
         </Modal>

@@ -1,12 +1,8 @@
 import styles from "../styles/Table.module.css"
 import Link from "next/link"
-import { useRouter } from "next/router";
-import { handleDelete } from "@/services/axios";
 import Image from "next/image";
 
 export default function Table({ model, controlModal, setId, path, columns }) {
-    const router = useRouter();
-
     return (
         <div className={styles.container}>
             <div className={styles.container2}>

@@ -10,6 +10,7 @@ import { useState, useEffect } from "react"
 import { fetchData } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 import InputForm from "@/components/InputForm";
+import Loading from "@/components/Loading";
 
 export default function ModalidadeAplicacao() {
   const [model, setModel] = useState([]);
@@ -18,6 +19,7 @@ export default function ModalidadeAplicacao() {
   const [modalOpen, setModalOpen] = useState({ post: false, update: false, delete: false });
   const [id, setId] = useState(null);
   const [formData, setFormData] = useState({ codigo: "", nome: "" });
+  const [loading, setLoading] = useState(false)
 
   const columns = [
     { name: "Id", cod: "id" },
@@ -41,9 +43,11 @@ export default function ModalidadeAplicacao() {
   };
 
   useEffect(() => {
+    setLoading(false)
     fetchData(10, currentPage, "modalidade-aplicacao").then((response) => {
       setModel(response.content);
       setTotalPages(response.totalPages);
+      setLoading(true)
     }).catch((error) => {
       console.error(error)
     })
@@ -59,7 +63,9 @@ export default function ModalidadeAplicacao() {
   return (
     <Layout title="Orçamento Público">
       <Header controlModal={controlModal} title="Modalidades de Aplicação" img="/icons/Transfer.svg" />
-      <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="modalidade-aplicacao" path="modalidade-aplicacao" />
+      { loading && model && <Table columns={columns} model={model} controlModal={controlModal} setId={setId} title="modalidade-aplicacao" path="modalidade-aplicacao" />}
+
+      { !loading && <Loading/> }
 
       {model.length == 0 ? null :
         <Pagination
@@ -78,7 +84,6 @@ export default function ModalidadeAplicacao() {
             title={"Código"}
             htmlFor={"codigo"}
             onChange={(e) => handleInputChange("codigo", e)}
-            value={formData.codigo}
           >
           </InputForm>
           <InputForm
@@ -88,7 +93,6 @@ export default function ModalidadeAplicacao() {
             title={"Nome"}
             htmlFor={"nome"}
             onChange={(e) => handleInputChange("nome", e)}
-            value={formData.nome}
           >
           </InputForm>
         </Modal>
