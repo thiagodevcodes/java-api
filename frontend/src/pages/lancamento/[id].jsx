@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout/Layout";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { fetchDataById, getAllData } from "@/services/axios";
+import { fetchDataById } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "../../styles/Details.module.css";
 import Loading from "@/components/Loading/Loading";
