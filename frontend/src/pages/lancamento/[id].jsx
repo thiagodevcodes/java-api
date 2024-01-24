@@ -1,10 +1,10 @@
-import Layout from "@/components/Layout";
+import Layout from "@/components/Layout/Layout";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { fetchDataById, getAllData } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "../../styles/Details.module.css";
-import Loading from "@/components/Loading";
+import Loading from "@/components/Loading/Loading";
 
 export default function GrupoDespesaById() {
   const router = useRouter();

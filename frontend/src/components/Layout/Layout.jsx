@@ -1,6 +1,6 @@
-import styles from "../styles/Layout.module.css";
+import styles from "./Layout.module.css";
 import Link from "next/link"
-import Options from "./Options";
+import Options from "../Options/Options";
 import { useRouter } from 'next/router';
 import Image from "next/image";
 

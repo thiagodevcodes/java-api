@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import styles from "../styles/Lancamento.module.css";
+import styles from "./Select.module.css";
 
 export default function Select({ model, title, onChange, defaultValue, year }) {
     const date = new Date()

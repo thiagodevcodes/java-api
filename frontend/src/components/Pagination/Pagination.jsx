@@ -1,4 +1,4 @@
-import styles from "../styles/Pagination.module.css"
+import styles from "./Pagination.module.css"
 
 const MAX_ITENS = 7
 const MAX_LEFT = (MAX_ITENS - 1) / 2;

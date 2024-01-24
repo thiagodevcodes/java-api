@@ -1,16 +1,16 @@
-import Table from "@/components/Table";
-import Layout from "@/components/Layout";
-import Pagination from "@/components/Pagination";
-import Header from "@/components/Header";
-import Modal from "@/components/Modal";
-import ModalUpdate from "@/components/ModalUpdate";
-import ModalDelete from "@/components/ModalDelete";
+import Table from "@/components/Table/Table";
+import Layout from "@/components/Layout/Layout";
+import Pagination from "@/components/Pagination/Pagination";
+import Header from "@/components/Header/Header";
+import Modal from "@/components/Modal/Modal";
+import ModalUpdate from "@/components/ModalUpdate/ModalUpdate";
+import ModalDelete from "@/components/ModalDelete/ModalDelete";
 import { ToastContainer, toast } from "react-toastify";
 import { useState, useEffect } from "react"
 import { fetchData } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
-import InputForm from "@/components/InputForm";
-import Loading from "@/components/Loading";
+import InputForm from "@/components/InputForm/InputForm";
+import Loading from "@/components/Loading/Loading";
 
 export default function TipoTransacao() {
   const [model, setModel] = useState([]);
@@ -49,6 +49,7 @@ export default function TipoTransacao() {
       setLoading(true)
     }).catch((error) => {
       console.error(error)
+      setLoading(true);
     })
   }, [currentPage]);
 

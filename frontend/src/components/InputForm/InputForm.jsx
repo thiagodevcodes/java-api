@@ -1,5 +1,4 @@
-import styles from "../styles/Modal.module.css";
-import { useState } from "react";
+import styles from "./InputForm.module.css";
 
 export default function InputForm({ htmlFor, title, id, onChange, type, min, value }) {
     return (

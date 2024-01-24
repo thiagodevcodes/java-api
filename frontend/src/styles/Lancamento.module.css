@@ -5,19 +5,5 @@
     margin-bottom: 15px;
 }
 
-.selectDiv {
-    display: flex;
-    flex-direction: column;
-}
 
-.select {
-    width: 182px;
-    height: 30px;
-    border-radius: 10px;
-}
-
-.optionSelect {
-    width: 100px;
-    
-}
 

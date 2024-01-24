@@ -1,19 +1,19 @@
-import Table from "@/components/Table";
-import Layout from "@/components/Layout";
-import Pagination from "@/components/Pagination";
-import Header from "@/components/Header";
-import Modal from "@/components/Modal";
-import ModalUpdate from "@/components/ModalUpdate";
-import ModalDelete from "@/components/ModalDelete";
+import Table from "@/components/Table/Table";
+import Layout from "@/components/Layout/Layout";
+import Pagination from "@/components/Pagination/Pagination";
+import Header from "@/components/Header/Header";
+import Modal from "@/components/Modal/Modal";
+import ModalUpdate from "@/components/ModalUpdate/ModalUpdate";
+import ModalDelete from "@/components/ModalDelete/ModalDelete";
 import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react"
 import { fetchData, getAllData } from "@/services/axios";
 import "react-toastify/dist/ReactToastify.css";
-import InputForm from "@/components/InputForm";
+import InputForm from "@/components/InputForm/InputForm";
 import styles from "../../styles/Lancamento.module.css";
-import Select from "@/components/Select";
-import Checkbox from "@/components/Checkbox";
-import Loading from "@/components/Loading";
+import Select from "@/components/Select/Select";
+import Checkbox from "@/components/Checkbox/Checkbox";
+import Loading from "@/components/Loading/Loading";
 
 export default function Lancamento() {
   const date = new Date()
@@ -106,6 +106,7 @@ export default function Lancamento() {
       setLoading(true)
     }).catch((error) => {
       console.error(error)
+      setLoading(true);
     })
   }, [currentPage]);
 

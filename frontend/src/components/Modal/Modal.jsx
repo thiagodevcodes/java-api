@@ -1,5 +1,5 @@
-import styles from "../styles/Modal.module.css";
-import Button from "./Button";
+import styles from "./Modal.module.css";
+import Button from "../Button/Button";
 import { useRouter } from "next/router";
 import { handleCreate } from "@/services/axios";
 

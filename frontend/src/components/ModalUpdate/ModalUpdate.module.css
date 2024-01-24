@@ -1,0 +1,56 @@
+.modalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+  
+.modal {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modal input {
+    padding: 5px;
+    border-radius: 6px;
+    border: 1px solid black;
+    width: 100% - 30px;
+    margin-bottom: 5px;
+
+}
+
+.modal input[type='date'] {
+    width: 170px;
+}
+
+.modal input[type='checkbox'] {
+    width: 30px;    
+}
+
+.modal h2 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.modal button:hover {
+    background-color: rgb(3, 5, 155);
+}
+
+.messageDelete {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin-top: 15px;
+}

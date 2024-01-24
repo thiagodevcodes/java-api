@@ -27,7 +27,6 @@
 
 }
 
-
 .modal input[type='date'] {
     width: 170px;
 }
@@ -49,28 +48,9 @@
     text-align: center;
 }
 
-.inputContainer {
-    display: flex;
-    flex-direction: column;
-}
-
 .buttons {
     display: flex;
     gap: 5px;
     justify-content: center;
     margin-top: 15px;
-}
-
-.buttons button {
-    background-color: #2d31ff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    width: 100px;
-}
-
-.buttons button  p {
-    text-align: center;
 }

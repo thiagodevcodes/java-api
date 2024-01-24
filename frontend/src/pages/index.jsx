@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout"
+import Layout from "@/components/Layout/Layout"
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { fetchDataAll } from "@/services/axios";
@@ -6,23 +6,25 @@ import Image from "next/image";
 
 export default function Home() {
     const [totalLancamento, setTotalLancamento] = useState(0)
-    const [totalValor, setTotalValor] = useState(0)
+    const [totalValor, setTotalValor] = useState((0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
 
     useEffect(() => {
         fetchDataAll("lancamento").then((response) => {
             let total = 0;
-            console.log(response.length);
-            setTotalLancamento(response.length)
-        
+            if(response) {
+                console.log(response.length);
+                setTotalLancamento(response.length)
             
-            response.map((item) => {
-                console.log(item)
-                total += item.valor
-            })
+                
+                response.map((item) => {
+                    console.log(item)
+                    total += item.valor
+                })
 
-
-            setTotalValor(total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
-            console.log(total)
+                
+                setTotalValor(total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                console.log(total)
+            }
         })
     }, [])
 

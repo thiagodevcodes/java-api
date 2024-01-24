@@ -1,4 +1,4 @@
-import styles from "../styles/Table.module.css"
+import styles from "./Table.module.css"
 import Link from "next/link"
 import Image from "next/image";
 

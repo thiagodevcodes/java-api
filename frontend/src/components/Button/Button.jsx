@@ -1,4 +1,4 @@
-import styles from "../styles/Modal.module.css";
+import styles from "./Button.module.css";
 
 export default function Button({ type, onClick, title }) {
     return (

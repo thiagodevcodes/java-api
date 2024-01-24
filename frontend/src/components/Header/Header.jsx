@@ -1,4 +1,4 @@
-import styles from "../styles/Table.module.css";
+import styles from "./Header.module.css"
 import Image from "next/image";
 
 export default function Header({ controlModal, title, img }) {

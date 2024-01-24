@@ -1,4 +1,3 @@
-import styles from "../styles/Lancamento.module.css";
 import { useState } from "react";
 
 export default function Checkbox({ title, onChange, nameObject }) {
