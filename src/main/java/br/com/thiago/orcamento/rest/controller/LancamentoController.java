@@ -35,6 +35,12 @@ public class LancamentoController {
         return ResponseEntity.ok().body(lancamentoDtoDtoList);
     }
 
+    @GetMapping("/all/{id}")
+    public ResponseEntity<LancamentoDto> findIdAllData(@PathVariable("id") Integer id) {
+        LancamentoDto lancamentoDto = lancamentoService.findAllDataById(id);
+        return ResponseEntity.ok().body(lancamentoDto);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<LancamentoDto> find(@PathVariable("id") Integer id) {
         LancamentoDto lancamentoDto = lancamentoService.findById(id);
