@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import styles from "./Select.module.css";
-import { fetchDataById } from "@/services/axios";
 
-export default function Select({ model, title, onChange, value, setValue, id, year }) {
+export default function Select({ model, title, onChange, defaultValue, year }) {
     const date = new Date()
+    const [value, setValue] = useState(defaultValue);
+ 
     let arrayAnos = []
 
     for (let index = 0; index < 30; index++) {
@@ -11,20 +12,16 @@ export default function Select({ model, title, onChange, value, setValue, id, ye
     }
 
     useEffect(() => {
-        if(!id) return
-    
-        fetchDataById(id, "lancamento/all").then((res) => {
-          setValue(res)
-        }).catch((err) => {
-          console.log(err)
-        })
-      }, [id])
+        if(defaultValue)
+        setValue(defaultValue);
+    }, [defaultValue]);
 
     return (
         <div className={styles.selectDiv}>
             <p>{title}</p>
-            <select value={value ? value : ""} className={styles.select} onChange={onChange}>            
-                { !year && <option className={styles.optionSelect} value={""} key={0}>Nenhum Selecionado</option> }
+            <select value={value ? value : ""} className={styles.select} onChange={onChange}>
+                
+                <option className={styles.optionSelect} value={""} key={0}>Nenhum Selecionado</option>
 
                 {
                     year ?

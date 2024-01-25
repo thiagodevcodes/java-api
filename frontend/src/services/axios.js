@@ -21,7 +21,7 @@ export const fetchDataAll = async (path) => {
 };
 
 export const fetchDataById = async (id, path) => {
-    try { //lancamento/all"
+    try {
         const response = await axios.get(`http://localhost:8080/api/orcamento/${path}/${id}`);
         return response.data
     } catch (error) {
@@ -105,7 +105,7 @@ export const getAllData = async () => {
         const dataArray = await Promise.all(
             paths.map(async (path) => {
                 const data = await fetchDataAll(path);
-                //console.log(`Data from ${path}:`, data); // Adicione esta linha
+                // console.log(`Data from ${path}:`, data); // Adicione esta linha
                 return data;
             })
         );

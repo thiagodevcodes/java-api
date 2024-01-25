@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.thiago.orcamento.model.LancamentoConsulta;
 import br.com.thiago.orcamento.model.LancamentoModel;
 import br.com.thiago.orcamento.repository.LancamentoRepository;
 import br.com.thiago.orcamento.rest.dto.LancamentoDto;
@@ -30,15 +29,6 @@ public class LancamentoService {
     private ModelMapper modelMapper;
 
     public LancamentoDto findById(Integer id) {
-        try {
-            LancamentoConsulta lancamentoModel = lancamentoRepository.findLancamentoById(id).get();
-            return modelMapper.map(lancamentoModel, LancamentoDto.class);
-        } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + LancamentoModel.class.getName());
-        }
-    }
-
-    public LancamentoDto findAllDataById(Integer id) {
         try {
             LancamentoModel lancamentoModel = lancamentoRepository.findById(id).get();
             return modelMapper.map(lancamentoModel, LancamentoDto.class);
@@ -60,7 +50,7 @@ public class LancamentoService {
     }
 
     public Page<LancamentoDto> findAll(Pageable pageable){
-        Page<LancamentoConsulta> lancamentoPage = lancamentoRepository.findLancamentos(pageable);
+        Page<LancamentoModel> lancamentoPage = lancamentoRepository.findAll(pageable);
         return lancamentoPage.map(lancamento -> modelMapper.map(lancamento, LancamentoDto.class));
     }
 

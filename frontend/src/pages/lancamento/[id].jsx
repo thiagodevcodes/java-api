@@ -13,9 +13,11 @@ export default function LancamentoById() {
   const id = router.query.id;
 
   useEffect(() => {
+    setLoading(false)
     if (id) {
       fetchDataById(id, "lancamento").then((response) => {
         setLancamento(response);
+        setLoading(true)
       }).catch((error) => {
         console.error(error)
       })
@@ -33,7 +35,7 @@ export default function LancamentoById() {
     <Layout>
         <div className={styles.container}>
           <h1>Detalhes do Lançamento</h1>
-          { lancamento &&
+          { lancamento && loading &&
             <div>
               <p>Id: {lancamento.id}</p>
               <p>Número Lançamento: {lancamento.numeroLancamento}</p>
@@ -60,6 +62,7 @@ export default function LancamentoById() {
             </div>
           }
         </div>
+        { !loading && <Loading />}
     </Layout>
   );
 };
