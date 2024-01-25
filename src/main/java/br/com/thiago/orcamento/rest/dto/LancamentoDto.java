@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LancamentoConsultaDto {
+public class LancamentoDto {
     private Integer id;
     private Boolean lancamentoInvalido;
     private Integer numeroLancamento;
