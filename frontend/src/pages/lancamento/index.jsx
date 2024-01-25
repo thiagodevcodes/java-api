@@ -135,45 +135,45 @@ export default function Lancamento() {
       {modalOpen.post ?
         <Modal title="Novo Lançamento" controlModal={controlModal} path={"lancamento"} formData={formData}>
          <div className={styles.containerSelect}>
-            <Select model={data[0]} title={"Ação *"} onChange={(e) => handleSelectChange("acao", e)} nameObject={"acao"} />
-            <Select model={data[1]} title={"Elemento Despesa *"} onChange={(e) => handleSelectChange("elementoDespesa", e)} nameObject={"elementoDespesa"} />
-            <Select model={data[2]} title={"Programa *"} onChange={(e) => handleSelectChange("programa", e)} nameObject={"programa"} />
+            <Select value={formData.acao} model={data[0]} title={"Ação *"} onChange={(e) => handleSelectChange("acao", e)} nameObject={"acao"} />
+            <Select value={formData.elementoDespesa} model={data[1]} title={"Elemento Despesa *"} onChange={(e) => handleSelectChange("elementoDespesa", e)} nameObject={"elementoDespesa"} />
+            <Select value={formData.programa} model={data[2]} title={"Programa *"} onChange={(e) => handleSelectChange("programa", e)} nameObject={"programa"} />
           </div>
 
           <div className={styles.containerSelect}>
-            <Select model={data[3]} title={"Unidade *"} onChange={(e) => handleSelectChange("unidade", e)} nameObject={"unidade"} />
-            <Select model={data[4]} title={"Grupo Despesa *"} onChange={(e) => handleSelectChange("grupoDespesa", e)} nameObject={"grupoDespesa"} />
-            <Select model={data[5]} title={"Unidade Orçamentária *"} onChange={(e) => handleSelectChange("unidadeOrcamentaria", e)} nameObject={"unidadeOrcamentaria"} />
+            <Select value={formData.unidade} model={data[3]} title={"Unidade *"} onChange={(e) => handleSelectChange("unidade", e)} nameObject={"unidade"} />
+            <Select value={formData.grupoDespesa} model={data[4]} title={"Grupo Despesa *"} onChange={(e) => handleSelectChange("grupoDespesa", e)} nameObject={"grupoDespesa"} />
+            <Select value={formData.unidadeOrcamentaria} model={data[5]} title={"Unidade Orçamentária *"} onChange={(e) => handleSelectChange("unidadeOrcamentaria", e)} nameObject={"unidadeOrcamentaria"} />
           </div>
 
           <div className={styles.containerSelect}>
-            <Select model={data[6]} title={"Solicitante"} onChange={(e) => handleSelectChange("solicitante", e)} nameObject={"solicitante"} />
-            <Select model={data[7]} title={"Tipo de Lançamento *"} onChange={(e) => handleSelectChange("tipoLancamento", e)} nameObject={"tipoLancamento"} />
-            <Select model={data[8]} title={"Tipo de Transação *"} onChange={(e) => handleSelectChange("tipoTransacao", e)} nameObject={"tipoTransacao"} />
+            <Select value={formData.solicitante} model={data[6]} title={"Solicitante"} onChange={(e) => handleSelectChange("solicitante", e)} nameObject={"solicitante"} />
+            <Select value={formData.tipoLancamento} model={data[7]} title={"Tipo de Lançamento *"} onChange={(e) => handleSelectChange("tipoLancamento", e)} nameObject={"tipoLancamento"} />
+            <Select value={formData.tipoTransacao} model={data[8]} title={"Tipo de Transação *"} onChange={(e) => handleSelectChange("tipoTransacao", e)} nameObject={"tipoTransacao"} />
           </div>
 
           <div className={styles.containerSelect}>
-            <Select model={data[9]} title={"Objetivo Estratégico"} onChange={(e) => handleSelectChange("objetivoEstrategico", e)} />
-            <Select model={data[10]} title={"Fonte de Recurso *"} onChange={(e) => handleSelectChange("fonteRecurso", e)} />
-            <Select model={data[11]} title={"Modalidade de Aplicação *"} onChange={(e) => handleSelectChange("modalidadeAplicacao", e)} />
+            <Select value={formData.objetivoEstrategico} model={data[9]} title={"Objetivo Estratégico"} onChange={(e) => handleSelectChange("objetivoEstrategico", e)} />
+            <Select value={formData.fonteRecurso} model={data[10]} title={"Fonte de Recurso *"} onChange={(e) => handleSelectChange("fonteRecurso", e)} />
+            <Select value={formData.modalidadeAplicacao} model={data[11]} title={"Modalidade de Aplicação *"} onChange={(e) => handleSelectChange("modalidadeAplicacao", e)} />
           </div>
 
           <div className={styles.containerSelect}>
             <Select year={true} model={arrayAnos} title={"Ano Orçamento *"} onChange={(e) => handleSelectChange("anoOrcamento", e)} nameObject={"anoOrcamento"} />
-            <Select model={data[12]} title={"Lançamento Pai"} onChange={(e) => handleSelectChange("lancamentoPai", e)} nameObject={"lancamentoPai"} value={formData.lancamentoPai} />
-            <InputForm title={"Data Lançamento *"} type="date" onChange={(e) => handleInputChange("dataLancamento", e)} nameObject="dataLancamento" min={dataFormatada} />
+            <Select value={formData.lancamentoPai} model={data[12]} title={"Lançamento Pai"} onChange={(e) => handleSelectChange("lancamentoPai", e)} />
+            <InputForm title={"Data Lançamento *"} type="date" onChange={(e) => handleInputChange("dataLancamento", e)} min={dataFormatada} />
           </div>
 
           <div className={styles.containerSelect}>
-            <InputForm title={"Número Lançamento *"} type="number" onChange={(e) => handleInputChange("numeroLancamento", e)} nameObject="numeroLancamento" />  
-            <InputForm title={"Contratado *"} type="text" onChange={(e) => handleInputChange("contratado", e)} nameObject="contratado" />
-            <InputForm title={"Descrição *"} type="text" onChange={(e) => handleInputChange("descricao", e)} nameObject="descricao" />
+            <InputForm title={"Número Lançamento *"} type="number" onChange={(e) => handleInputChange("numeroLancamento", e)} />  
+            <InputForm title={"Contratado *"} type="text" onChange={(e) => handleInputChange("contratado", e)} />
+            <InputForm title={"Descrição *"} type="text" onChange={(e) => handleInputChange("descricao", e)} />
           </div>
 
           <div className={styles.containerSelect}>
-            <InputForm title={"Valor *"} type="number" onChange={(e) => handleInputChange("valor", e)} nameObject="valor" />
-            <InputForm title={"GED *"} type="text" onChange={(e) => handleInputChange("ged", e)} nameObject="ged" />
-            <Checkbox title={"Lançamento Inválido *"} onChange={handleCheckboxChange} nameObject="lancamentoInvalido" />
+            <InputForm title={"Valor *"} type="number" onChange={(e) => handleInputChange("valor", e)} />
+            <InputForm title={"GED *"} type="text" onChange={(e) => handleInputChange("ged", e)} />
+            <Checkbox title={"Lançamento Inválido *"} onChange={handleCheckboxChange} />
           </div>
         </Modal>
         
